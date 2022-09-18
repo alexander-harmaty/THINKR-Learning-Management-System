@@ -35,7 +35,7 @@ public class App extends Application {
         //System.out.println("George push");
         //System.out.println("Trinity push");
         //System.out.println("Forhad push");
-        //System.out.println("Alex push");
+        System.out.println("Alex push");
         
         launch();
     }
