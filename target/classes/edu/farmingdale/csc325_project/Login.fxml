@@ -13,8 +13,8 @@
       <VBox alignment="CENTER" layoutX="200.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" spacing="15.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Learning Management System" />
-            <TextField fx:id="textField_email" text="Email" />
-            <TextField fx:id="textField_password" text="Password" />
+            <TextField fx:id="textField_email" promptText="Email" />
+            <TextField fx:id="textField_password" promptText="Password" />
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0" spacing="40.0">
                <children>
                   <Button fx:id="button_login" mnemonicParsing="false" onAction="#handleButton_login" prefWidth="60.0" text="Login" />
