@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="edu.farmingdale.csc325_project.LoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc325_project.LoginController">
    <children>
-      <Text layoutX="285.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" />
+      <VBox alignment="CENTER" layoutX="200.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" spacing="15.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Learning Management System" />
+            <TextField fx:id="textField_email" text="Email" />
+            <TextField fx:id="textField_password" text="Password" />
+            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0" spacing="40.0">
+               <children>
+                  <Button fx:id="button_login" mnemonicParsing="false" onAction="#handleButton_login" prefWidth="60.0" text="Login" />
+                  <Button fx:id="button_register" mnemonicParsing="false" onAction="#handleButton_register" prefWidth="60.0" text="Register" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
-</AnchorPane>
+</Pane>
