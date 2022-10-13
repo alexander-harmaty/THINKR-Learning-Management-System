@@ -9,23 +9,29 @@ import java.sql.DriverManager;
 
 /**
  * This class simplifies the connection to the database with the connectDB() method.
- * By using "con = DatabaseConnection.connectDB();", users can save repeating code.
+ * By using "con = DatabaseConnection.connectDB();", users can save on repeating code.
  * This also offers a way to quickly change database details like local or remote paths, 
  * and login credentials. 
  * @author AlexH
  */
 public class DBConnection {
-//    public static Connection connectDB() {
-//        String user = "pportal";
-//        String pass = "admin";
-//        try{
-//            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
-//            Connection con = DriverManager.getConnection("jdbc:sqlserver://24.45.36.120:1433;"
-//                        + "databaseName=PatientPortal;encrypt=true;trustServerCertificate=true;", user, pass);
-//            return con;
-//        }
-//        catch (Exception e) {
-//            return null;
-//        }
-//    }
+    public static Connection connectDB() {
+        
+        String ip = "24.45.36.120:1433";
+        String databaseName = "PatientPortal";
+        String user = "pportal";
+        String pass = "admin";
+        
+        try{
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
+            Connection con = DriverManager.getConnection("jdbc:sqlserver://" 
+                    + ip + ";databaseName=" + databaseName 
+                    + ";encrypt=true;trustServerCertificate=true;", user, pass);
+            return con;
+        }
+        catch (Exception e) {
+            return null;
+        }
+        
+    }
 }
