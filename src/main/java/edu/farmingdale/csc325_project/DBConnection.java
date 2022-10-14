@@ -17,7 +17,7 @@ public class DBConnection {
     public static Connection connectDB() {
         
         String ip = "69.123.55.71";
-        String databaseName = "Thinkr";
+        String databaseName = "Capstone";
         String user = "admin";
         String pass = "admin";
         
