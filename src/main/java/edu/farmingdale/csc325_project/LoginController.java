@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -22,6 +23,10 @@ import javafx.scene.control.TextField;
  */
 public class LoginController implements Initializable {
     
+    //Declare FXML textField elements
+    @FXML
+    private TextField textField_email, textField_password;
+    
     /**
      * Initializes the controller class.
      * @param url
@@ -32,12 +37,13 @@ public class LoginController implements Initializable {
         // TODO
     }
     
-    @FXML
-    private Button button_login, button_register;
-
-    @FXML
-    private TextField textField_email, textField_password;
-    
+    /**
+     * Handle function for register button.
+     * 
+     * Changes view to register page.
+     * 
+     * @throws IOException 
+     */
     public void handleButton_register() throws IOException {
         App.setRoot("Register");
     }
@@ -66,7 +72,8 @@ public class LoginController implements Initializable {
             {
                 Connection con = DBConnection.connectDB();
                 Statement st = con.createStatement();
-                ResultSet rs = st.executeQuery("select * from users where email = '" + email + "' and password = '" + pass + "';");
+                ResultSet rs = st.executeQuery("select * from users where email = '"
+                        + email + "' and password = '" + pass + "';");
                 
                 if (rs.next() && rs.getString(2).equals(email) && rs.getString(3).equals(pass)) 
                 {
@@ -93,7 +100,7 @@ public class LoginController implements Initializable {
                     //javax.swing.JOptionPane.showMessageDialog( null, "Incorrect username or password." , "Error", 
                     //javax.swing.JOptionPane.ERROR_MESSAGE );     
                 }
-            } catch (Exception e) {
+            } catch (IOException | SQLException e) {
                 //javax.swing.JOptionPane.showMessageDialog( null, "Please fill in all fields" , "Error",javax.swing.JOptionPane.ERROR_MESSAGE );
             }
         } 

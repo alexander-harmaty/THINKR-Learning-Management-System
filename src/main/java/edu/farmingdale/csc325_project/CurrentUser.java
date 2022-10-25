@@ -4,10 +4,15 @@
  */
 package edu.farmingdale.csc325_project;
 
-import java.time.LocalDate;
+import java.io.IOException;
+//import java.time.LocalDate;
 
 /**
- *
+ * CurrentUser class holds the data of the current user from the DB.
+ * 
+ * Objects of this class should only be declared in the App.java,
+ * and initialized in the LoginController.
+ * 
  * @author AlexH
  */
 public class CurrentUser {
@@ -28,7 +33,7 @@ public class CurrentUser {
         this.lastName = "lastName";
         this.status = "status";
         this.DOB = "date";
-//LocalDate.now();
+        //this.DOB = LocalDate.now();
     }
 
     public CurrentUser(String userID, String email, String type, 
@@ -57,4 +62,11 @@ public class CurrentUser {
     public void setLastName(String lastName) { this.lastName = lastName; }
     public void setStatus(String status) { this.status = status; }
     public void setDOB(String DOB) { this.DOB = DOB; }
+    
+    public void logOut() throws IOException {
+        //deletes itself or sets itself to null
+        
+        //switches user to login controller
+        App.setRoot("Login");
+    }
 }
