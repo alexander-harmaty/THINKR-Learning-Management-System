@@ -42,11 +42,7 @@ public class LoginController implements Initializable {
     }
     
     
-    Connection con = null;
-    Connection con3 = null;
-    Connection con2 = null;
-    ResultSet rs = null;
-    ResultSet rs2 = null;
+    
     public void handleButton_login() throws IOException {
         //connect to database
         //compare textFields to logins table
@@ -55,11 +51,12 @@ public class LoginController implements Initializable {
             
         //App.setRoot("");
        
-    
-        String userName = textField_email.getText();
-        String passWord = textField_password.getText();
+        Connection con = null;
+        ResultSet rs = null;
+        String email = textField_email.getText();
+        String pass = textField_password.getText();
         
-        if ("".equals(userName) && "".equals(passWord))
+        if ("".equals(email) && "".equals(pass))
         {
             //javax.swing.JOptionPane.showMessageDialog( null, "Please fill in all fields" , "Error",javax.swing.JOptionPane.ERROR_MESSAGE );
         }
@@ -69,67 +66,24 @@ public class LoginController implements Initializable {
             {
                 con = DBConnection.connectDB();
                 Statement st = (Statement) con.createStatement();
-                rs = st.executeQuery( "Select * FROM LOGIN WHERE Username = '" + userName + "' AND Password = '" + passWord + "';");
+                rs = st.executeQuery("Select * FROM USERS WHERE Email = '" + email + "' AND Password = '" + pass + "';");
 
-                con2 = DBConnection.connectDB();
-                Statement st2 = (Statement) con2.createStatement();
-                rs2 = st2.executeQuery( "Select * FROM LOGIN WHERE Email = '" + userName + "' AND Password = '" + passWord + "';");
-
-                if (rs.next() && rs.getString(2).equals(userName) && rs.getString(3).equals(passWord)) 
+                if (rs.next() && rs.getString(1).equals(email) && rs.getString(2).equals(pass)) 
                 {
-                    App.currentUser = new CurrentUser(rs.getString(1), rs.getString(5));
+                    App.currentUser = new CurrentUser(rs.getString(1), rs.getString(2));
 
-                    if (rs.getString(5).toUpperCase().equals("PATIENT"))
-                    {           
-                            App.setRoot("patientDashboard");
-                            //JOptionPane.showMessageDialog(null, "Your login was successful.");
-                            //button_login.getScene().getWindow().hide();
-                            //Parent root = FXMLLoader.load(getClass().getResource("patientDashboard.fxml")); 
-                            //Stage mainStage = new Stage();
-                            //Scene scene = new Scene(root);
-                            //mainStage.setScene(scene);
-                            //mainStage.show();
-                    }
-                    else if (rs.getString(5).toUpperCase().equals("DOCTOR")) 
-                    {
-                            App.setRoot("doctorDashboard");
-                    }
-                    else if (rs.getString(5).toUpperCase().equals("LAB")) 
-                    {
-                            App.setRoot("servicesDashboard");
-                    }
-                    else if (rs.getString(5).toUpperCase().equals("PHARMACY")) 
-                    {
-                            App.setRoot("servicesDashboard");
-                    }
-                    else if (rs.getString(5).toUpperCase().equals("OFFICE")) 
-                    {
-                            App.setRoot("servicesDashboard");
-                    }
-                }
-                else if (rs2.next() && rs2.getString(4).equals(userName) && rs2.getString(3).equals(passWord)) 
-                {
-                    App.currentUser = new CurrentUser(rs2.getString(1), rs.getString(5));
-
-                    if (rs2.getString(5).toUpperCase().equals("PATIENT"))
-                    {       
-                            App.setRoot("patientDashboard");   
-                    }
-                    else if (rs2.getString(5).toUpperCase().equals("DOCTOR")) 
-                    {
-                            App.setRoot("doctorDashboard");  
-                    }
-                    else if (rs2.getString(5).toUpperCase().equals("LAB")) 
-                    {
-                            App.setRoot("servicesDashboard"); 
-                    }
-                    else if (rs2.getString(5).toUpperCase().equals("PHARMACY")) 
-                    {
-                            App.setRoot("servicesDashboard"); 
-                    }
-                    else if (rs2.getString(5).toUpperCase().equals("OFFICE")) 
-                    {
-                            App.setRoot("servicesDashboard"); 
+                    switch (rs.getString(3).toUpperCase()) {
+                        case "STUDENT":           
+                            App.setRoot("StudentView");
+                            break;
+                        case "PROFESSOR":
+                            App.setRoot("ProfessorView");
+                            break;
+                        case "ADMIN":
+                            App.setRoot("AdminView");
+                            break;
+                        default:
+                            break;
                     }
                 }
                 else
