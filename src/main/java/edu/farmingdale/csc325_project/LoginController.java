@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -25,6 +24,8 @@ public class LoginController implements Initializable {
     
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -40,7 +41,6 @@ public class LoginController implements Initializable {
     public void handleButton_register() throws IOException {
         App.setRoot("Register");
     }
-    
     
     /**
      * Handle function for login button.
@@ -68,13 +68,13 @@ public class LoginController implements Initializable {
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery("select * from users where email = '" + email + "' and password = '" + pass + "';");
                 
-                //rs.next() && rs.getString(1).equals(email) && rs.getString(2).equals(pass)
-                if (rs.next() && rs.getString(7).equals(email) && rs.getString(8).equals(pass)) 
+                if (rs.next() && rs.getString(2).equals(email) && rs.getString(3).equals(pass)) 
                 {
-                    
-                    App.currentUser = new CurrentUser(rs.getString(7), rs.getString(8));
+                    App.currentUser = new CurrentUser(rs.getString(1), rs.getString(2), 
+                            rs.getString(4), rs.getString(5), rs.getString(6), 
+                            rs.getString(7), rs.getString(8));
 
-                    switch (rs.getString(5).toUpperCase()) {
+                    switch (rs.getString(4).toUpperCase()) {
                         case "STUDENT":           
                             App.setRoot("StudentView");
                             break;
@@ -90,12 +90,10 @@ public class LoginController implements Initializable {
                 }
                 else
                 { 
-                    System.out.println("else");
                     //javax.swing.JOptionPane.showMessageDialog( null, "Incorrect username or password." , "Error", 
                     //javax.swing.JOptionPane.ERROR_MESSAGE );     
                 }
             } catch (Exception e) {
-                System.out.println("else");
                 //javax.swing.JOptionPane.showMessageDialog( null, "Please fill in all fields" , "Error",javax.swing.JOptionPane.ERROR_MESSAGE );
             }
         } 

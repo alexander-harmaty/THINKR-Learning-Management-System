@@ -16,8 +16,9 @@ public class CurrentUser {
     protected String type;
     protected String firstName;
     protected String lastName;
-    protected LocalDate DOB;
     protected String status;
+    protected String DOB;
+    
 
     public CurrentUser(String email, String type) {
         this.userID = "userID";
@@ -25,19 +26,20 @@ public class CurrentUser {
         this.type = type;
         this.firstName = "firstName";
         this.lastName = "lastName";
-        this.DOB = LocalDate.now();
         this.status = "status";
+        this.DOB = "date";
+//LocalDate.now();
     }
 
     public CurrentUser(String userID, String email, String type, 
-            String firstName, String lastName, LocalDate DOB, String status) {
+            String firstName, String lastName, String DOB, String status) {
         this.userID = userID;
         this.email = email;
         this.type = type;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.DOB = DOB;
         this.status = status;
+        this.DOB = DOB;
     }
 
     public String getUserID() { return userID; }
@@ -45,14 +47,14 @@ public class CurrentUser {
     public String getType() { return type; }
     public String getFirstName() { return firstName; }
     public String getLastName() { return lastName; }
-    public LocalDate getDOB() { return DOB; }
     public String getStatus() { return status; }
+    public String getDOB() { return DOB; }
 
     public void setUserID(String userID) { this.userID = userID; }
     public void setEmail(String email) { this.email = email; }
     public void setType(String type) { this.type = type; }
     public void setFirstName(String firstName) { this.firstName = firstName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
-    public void setDOB(LocalDate DOB) { this.DOB = DOB; }
     public void setStatus(String status) { this.status = status; }
+    public void setDOB(String DOB) { this.DOB = DOB; }
 }
