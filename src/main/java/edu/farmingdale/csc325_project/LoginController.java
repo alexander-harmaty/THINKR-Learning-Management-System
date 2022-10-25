@@ -42,17 +42,17 @@ public class LoginController implements Initializable {
     }
     
     
-    
+    /**
+     * Handle function for login button.
+     * 
+     * Takes text from text fields for email and password.
+     * Then compares email and passwords to logins table to find a match.
+     * If match is found, account type is read and switched to
+     * 
+     * @throws IOException 
+     */
     public void handleButton_login() throws IOException {
-        //connect to database
-        //compare textFields to logins table
-        //if an email and password match, 
-            //read account type, then switch to appropriate view
-            
-        //App.setRoot("");
-       
-        Connection con = null;
-        ResultSet rs = null;
+                
         String email = textField_email.getText();
         String pass = textField_password.getText();
         
@@ -64,15 +64,17 @@ public class LoginController implements Initializable {
         {
             try 
             {
-                con = DBConnection.connectDB();
-                Statement st = (Statement) con.createStatement();
-                rs = st.executeQuery("Select * FROM USERS WHERE Email = '" + email + "' AND Password = '" + pass + "';");
-
-                if (rs.next() && rs.getString(1).equals(email) && rs.getString(2).equals(pass)) 
+                Connection con = DBConnection.connectDB();
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery("select * from users where email = '" + email + "' and password = '" + pass + "';");
+                
+                //rs.next() && rs.getString(1).equals(email) && rs.getString(2).equals(pass)
+                if (rs.next() && rs.getString(7).equals(email) && rs.getString(8).equals(pass)) 
                 {
-                    App.currentUser = new CurrentUser(rs.getString(1), rs.getString(2));
+                    
+                    App.currentUser = new CurrentUser(rs.getString(7), rs.getString(8));
 
-                    switch (rs.getString(3).toUpperCase()) {
+                    switch (rs.getString(5).toUpperCase()) {
                         case "STUDENT":           
                             App.setRoot("StudentView");
                             break;
@@ -88,10 +90,12 @@ public class LoginController implements Initializable {
                 }
                 else
                 { 
+                    System.out.println("else");
                     //javax.swing.JOptionPane.showMessageDialog( null, "Incorrect username or password." , "Error", 
                     //javax.swing.JOptionPane.ERROR_MESSAGE );     
                 }
             } catch (Exception e) {
+                System.out.println("else");
                 //javax.swing.JOptionPane.showMessageDialog( null, "Please fill in all fields" , "Error",javax.swing.JOptionPane.ERROR_MESSAGE );
             }
         } 
