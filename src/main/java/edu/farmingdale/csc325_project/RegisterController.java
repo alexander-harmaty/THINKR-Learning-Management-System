@@ -77,36 +77,40 @@ public class RegisterController implements Initializable {
      */
     public void handleButton_register() throws IOException, SQLException{
         
-        String email1 = textField_email1.getText();
-        String email2 = textField_email2.getText();
-        String pass1 = textField_password1.getText();
-        String pass2 = textField_password2.getText();
-        String fName = textField_firstName.getText();
-        String lName = textField_lastName.getText();
-        LocalDate birthday = datePicker_DOB.getValue();
-        String DOB = birthday.toString();
-        String type = comboBox_accountType.getValue();
-        
-        //check for missmatching email & pass
-        if (!email1.equals(email2) || !pass1.equals(pass2)) {
-            System.out.println("Please assure email and password match");
-            //javax.swing.JOptionPane.showMessageDialog( null, "Please assure email and password match" , "Error",javax.swing.JOptionPane.ERROR_MESSAGE );
-        }
-        //check for any blank fields
-        else if ("".equals(email1) || "".equals(email2) || "".equals(pass1) || "".equals(pass2)
-                || "".equals(fName) || "".equals(lName) || birthday == null || "".equals(type)) {
-            System.out.println("Please assure all fields are filled");
-            //javax.swing.JOptionPane.showMessageDialog( null, "Please assure all fields are filled" , "Error",javax.swing.JOptionPane.ERROR_MESSAGE );
-        }
-        //add user
-        else {
-            Connection con = DBConnection.connectDB();
-            Statement st = con.createStatement();
-            String query = "insert into users (email, password, type, firstName, lastName, DOB) values"
-                    + "(" + email1 + ",'" + pass1 + "','" + type + "','" + fName + "','" + lName + "','" + DOB + "')";
-            st.executeQuery(query);
-            
-            App.setRoot("Login");
+        try {
+            String email1 = textField_email1.getText();
+            String email2 = textField_email2.getText();
+            String pass1 = textField_password1.getText();
+            String pass2 = textField_password2.getText();
+            String fName = textField_firstName.getText();
+            String lName = textField_lastName.getText();
+            LocalDate birthday = datePicker_DOB.getValue();
+            String DOB = birthday.toString();
+            String type = comboBox_accountType.getValue();
+
+            //check for missmatching email & pass
+            if (!email1.equals(email2) || !pass1.equals(pass2)) {
+                System.out.println("Please assure email and password match");
+                //javax.swing.JOptionPane.showMessageDialog( null, "Please assure email and password match" , "Error",javax.swing.JOptionPane.ERROR_MESSAGE );
+            }
+            //check for any blank fields
+            else if ("".equals(email1) || "".equals(email2) || "".equals(pass1) || "".equals(pass2)
+                    || "".equals(fName) || "".equals(lName) || "".equals(type)) {
+                System.out.println("Please assure all fields are filled");
+                //javax.swing.JOptionPane.showMessageDialog( null, "Please assure all fields are filled" , "Error",javax.swing.JOptionPane.ERROR_MESSAGE );
+            }
+            //add user
+            else {
+                Connection con = DBConnection.connectDB();
+                Statement st = con.createStatement();
+                String query = "insert into users (email, password, type, firstName, lastName, DOB) values"
+                        + "(" + email1 + ",'" + pass1 + "','" + type + "','" + fName + "','" + lName + "','" + DOB + "')";
+                st.executeQuery(query);
+
+                App.setRoot("Login");
+            }
+        } catch (NullPointerException e){
+            System.out.println("Please assure a date is selected");
         }
     }
 }
