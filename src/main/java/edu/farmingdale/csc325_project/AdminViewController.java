@@ -1,26 +1,38 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package edu.farmingdale.csc325_project;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
-/**
- * FXML Controller class
- *
- * @author Alexander
- */
-public class AdminViewController implements Initializable {
+public class AdminViewController {
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+    @FXML
+    private Button AddCourses;
+
+    @FXML
+    private Button AddStudent;
+
+    @FXML
+    private Button DisplayAllCourses;
+
+    @FXML
+    private Button DisplayAllStudents;
+
+    @FXML
+    private Button Exit;
+
+    @FXML
+    void handleButton_AddCourses(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleButton_AddStudent(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleButton_DisplayAllCourses(ActionEvent event) {
+
+    }
 }
