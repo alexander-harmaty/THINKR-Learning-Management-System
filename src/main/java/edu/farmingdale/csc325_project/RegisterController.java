@@ -102,10 +102,18 @@ public class RegisterController implements Initializable {
             //add user
             else {
                 Connection con = DBConnection.connectDB();
-                Statement st = con.createStatement();
-                String query = "insert into users (email, password, type, firstName, lastName, DOB) values"
-                        + "(" + email1 + ",'" + pass1 + "','" + type + "','" + fName + "','" + lName + "','" + DOB + "')";
-                st.executeQuery(query);
+                String query = "insert into users (email, password, type, firstName, lastName, DOB) values (?,?,?,?,?,?)";
+                PreparedStatement ps = con.prepareStatement(query);
+                
+                ps.setString(1, email1);
+                ps.setString(2, pass1);
+                ps.setString(3, type);
+                ps.setString(4, fName);
+                ps.setString(5, lName);
+                ps.setString(6, DOB);
+                
+                ps.executeUpdate();
+                
 
                 App.setRoot("Login");
             }
