@@ -30,7 +30,7 @@ public class ProfessorViewController implements Initializable {
     
     
     @FXML
-    private Button button_Settings;
+    private Button button_settings;
 
     @FXML
     private TitledPane titledpane_Calander;
