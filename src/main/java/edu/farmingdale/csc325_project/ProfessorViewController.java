@@ -6,6 +6,7 @@ package edu.farmingdale.csc325_project;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -37,6 +38,11 @@ public class ProfessorViewController implements Initializable {
 
     @FXML
     private AnchorPane titledpane_Courses;
+    
+    @FXML
+    void handleButton_settings(ActionEvent event) {
+
+    }
 
 }
 

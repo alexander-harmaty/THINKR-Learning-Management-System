@@ -80,13 +80,15 @@ public class LoginController implements Initializable {
                     App.currentUser = new CurrentUser(rs.getString(1), rs.getString(2), 
                             rs.getString(4), rs.getString(5), rs.getString(6), 
                             rs.getString(7), rs.getString(8));
+                    System.out.println(rs.getString(4));
 
-                    switch (rs.getString(4).toUpperCase()) {
+                    switch (rs.getString(4)) {
                         case "STUDENT":           
                             App.setRoot("StudentView");
                             break;
                         case "PROFESSOR":
                             App.setRoot("ProfessorView");
+                            System.out.println("Professor");
                             break;
                         case "ADMIN":
                             App.setRoot("AdminView");

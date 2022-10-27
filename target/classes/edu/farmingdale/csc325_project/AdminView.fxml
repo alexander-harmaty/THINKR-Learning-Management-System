@@ -5,17 +5,17 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="377.0" prefWidth="419.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc325_project.AdminViewController">
+<AnchorPane id="AnchorPane" prefHeight="377.0" prefWidth="419.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc325_project.AdminViewController">
    <children>
       <Label layoutX="69.0" layoutY="50.0" prefHeight="18.0" prefWidth="85.0" text="Student Admin" />
-      <Button fx:id="DisplayAllCourses" layoutX="71.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleButton_DisplayAllCourses" text="Display All Courses" />
-      <Button fx:id="AddStudent" layoutX="69.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleButton_AddStudent" text="Add Students" />
-      <Button fx:id="DisplayAllStudents" layoutX="69.0" layoutY="146.0" mnemonicParsing="false" onAction="#handleButton_DisplayAllStudents" text="Display All Students" />
-      <Button fx:id="AddCourses" layoutX="70.0" layoutY="206.0" mnemonicParsing="false" onAction="#handleButton_AddCourses" text="Add Courses" />
-      <Button fx:id="Exit" layoutX="335.0" layoutY="324.0" mnemonicParsing="false" onAction="#handleButton_Exit" text="Exit" />
-      <TextField layoutX="235.0" layoutY="100.0" />
-      <TextField layoutX="235.0" layoutY="146.0" />
-      <TextField layoutX="235.0" layoutY="206.0" />
-      <TextField layoutX="235.0" layoutY="270.0" />
+      <Button fx:id="displayAllCourses" layoutX="71.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleButton_displayAllCourses" text="Display All Courses" />
+      <Button fx:id="addStudent" layoutX="69.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleButton_addStudent" text="Add Students" />
+      <Button fx:id="dsplayAllStudents" layoutX="69.0" layoutY="146.0" mnemonicParsing="false" onAction="#handleButton_displayAllStudents" text="Display All Students" />
+      <Button fx:id="addCourses" layoutX="70.0" layoutY="206.0" mnemonicParsing="false" onAction="#handleButton_addCourses" text="Add Courses" />
+      <Button fx:id="exit" layoutX="335.0" layoutY="324.0" mnemonicParsing="false" onAction="#handleButton_exit" text="Exit" />
+      <TextField fx:id="textField_addStudents" layoutX="235.0" layoutY="100.0" />
+      <TextField fx:id="textField_displayStudents" layoutX="235.0" layoutY="146.0" />
+      <TextField fx:id="textField_addCourses" layoutX="235.0" layoutY="206.0" />
+      <TextField fx:id="textField_displayCourses" layoutX="235.0" layoutY="270.0" />
    </children>
 </AnchorPane>
