@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc325_project.AdminViewController">
-    
+<AnchorPane id="AnchorPane" prefHeight="377.0" prefWidth="419.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc325_project.AdminViewController">
+   <children>
+      <Label layoutX="69.0" layoutY="50.0" prefHeight="18.0" prefWidth="85.0" text="Student Admin" />
+      <Button fx:id="DisplayAllCourses" layoutX="71.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleButton_DisplayAllCourses" text="Display All Courses" />
+      <Button fx:id="AddStudent" layoutX="69.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleButton_AddStudent" text="Add Students" />
+      <Button fx:id="DisplayAllStudents" layoutX="69.0" layoutY="146.0" mnemonicParsing="false" onAction="#handleButton_DisplayAllStudents" text="Display All Students" />
+      <Button fx:id="AddCourses" layoutX="70.0" layoutY="206.0" mnemonicParsing="false" onAction="#handleButton_AddCourses" text="Add Courses" />
+      <Button fx:id="Exit" layoutX="335.0" layoutY="324.0" mnemonicParsing="false" onAction="#handleButton_Exit" text="Exit" />
+      <TextField layoutX="235.0" layoutY="100.0" />
+      <TextField layoutX="235.0" layoutY="146.0" />
+      <TextField layoutX="235.0" layoutY="206.0" />
+      <TextField layoutX="235.0" layoutY="270.0" />
+   </children>
 </AnchorPane>
