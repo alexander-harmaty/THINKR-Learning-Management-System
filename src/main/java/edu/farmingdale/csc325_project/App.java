@@ -14,6 +14,8 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+    
+    //creates instance of currentUser
     static CurrentUser currentUser;
 
     @Override
