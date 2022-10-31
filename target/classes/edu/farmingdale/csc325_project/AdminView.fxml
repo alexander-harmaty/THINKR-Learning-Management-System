@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="377.0" prefWidth="419.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc325_project.AdminViewController">
+<AnchorPane id="AnchorPane" prefHeight="377.0" prefWidth="419.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="edu.farmingdale.csc325_project.AdminViewController">
    <children>
       <Label layoutX="69.0" layoutY="50.0" prefHeight="18.0" prefWidth="85.0" text="Student Admin" />
       <Button fx:id="displayAllCourses" layoutX="71.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleButton_displayAllCourses" text="Display All Courses" />
