@@ -64,7 +64,7 @@ public class LoginController implements Initializable {
         
         if ("".equals(email) && "".equals(pass))
         {
-            //javax.swing.JOptionPane.showMessageDialog( null, "Please fill in all fields" , "Error",javax.swing.JOptionPane.ERROR_MESSAGE );
+            javax.swing.JOptionPane.showMessageDialog( null, "Please fill in all fields" , "Error",javax.swing.JOptionPane.ERROR_MESSAGE );
         }
         else
         {
