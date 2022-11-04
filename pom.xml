@@ -30,6 +30,11 @@
             <artifactId>mssql-jdbc</artifactId>
             <version>11.2.0.jre11</version>
         </dependency>
+        <dependency>
+            <groupId>io.github.palexdev</groupId>
+            <artifactId>materialfx</artifactId>
+            <version>11.13.5</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
