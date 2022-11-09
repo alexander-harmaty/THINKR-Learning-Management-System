@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import com.google.cloud.firestore.Firestore;
 
 import java.io.IOException;
 
@@ -17,9 +18,13 @@ public class App extends Application {
     
     //creates instance of currentUser
     static CurrentUser currentUser;
+    
+    public static Firestore fstore;
+    private static FirestoreContext contextFirebase;
 
     @Override
     public void start(Stage stage) throws IOException {
+        contextFirebase = new FirestoreContext();
         scene = new Scene(loadFXML("Login"), 640, 480);
         stage.setTitle("Learning Management System");
         stage.setScene(scene);
