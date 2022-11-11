@@ -25,7 +25,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         contextFirebase = new FirestoreContext();
-        scene = new Scene(loadFXML("Login"), 640, 480);
+        scene = new Scene(loadFXML("LoginRegister"), 640, 480);
         stage.setTitle("Learning Management System");
         stage.setScene(scene);
         stage.show();

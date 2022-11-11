@@ -1,63 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc325_project.LoginRegisterController">
-   <children>
-      <HBox prefHeight="400.0" prefWidth="600.0">
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc325_project.LoginRegisterController">
+   <left>
+      <VBox fx:id="vBox_existingAccount" alignment="CENTER" spacing="15.0" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <VBox fx:id="vBox_existingAccount" alignment="CENTER" prefWidth="300.0" spacing="15.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Existing Account" />
-                  <MFXTextField fx:id="textField_existing_email" floatMode="BORDER" floatingText="E-mail" prefWidth="200.0" />
-                  <MFXPasswordField fx:id="textField_existing_pass" floatMode="BORDER" floatingText="Password" prefWidth="200.0" />
-                  <MFXButton fx:id="button_existing_login" buttonType="RAISED" onAction="#handleButton_login" prefWidth="100.0" text="Login" />
-               </children>
-               <padding>
-                  <Insets left="15.0" right="15.0" />
-               </padding>
-            </VBox>
-            <VBox fx:id="vBox_newAccount" alignment="CENTER" prefWidth="300.0" spacing="20.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="New Account" />
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0" spacing="15.0">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="15.0">
-                           <children>
-                              <TextField fx:id="textField_new_email1" promptText="Email" />
-                              <TextField fx:id="textField_new_email2" promptText="Re-type Email" />
-                              <TextField fx:id="textField_new_pass1" promptText="Password" />
-                              <TextField fx:id="textField_new_pass2" promptText="Re-type Password" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="15.0">
-                           <children>
-                              <TextField fx:id="textField_new_fName" promptText="First Name" />
-                              <TextField fx:id="textField_new_lName" promptText="Last Name" />
-                              <DatePicker fx:id="datePicker_new_DOB" prefHeight="25.0" prefWidth="200.0" promptText="Date of Birth" />
-                              <ComboBox fx:id="comboBox_new_type" prefWidth="200.0" promptText="Account Type" />
-                           </children>
-                        </VBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="15.0" right="15.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <MFXButton fx:id="button_new_register" buttonType="RAISED" onAction="#handleButton_register" prefWidth="100.0" text="Register" />
-               </children>
-            </VBox>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Existing Account" />
+            <MFXTextField fx:id="textField_existing_email" floatMode="BORDER" floatingText="E-mail" />
+            <MFXPasswordField fx:id="textField_existing_pass" floatMode="BORDER" floatingText="Password" />
+            <MFXButton fx:id="button_existing_login" buttonType="RAISED" onAction="#handleButton_login" text="Login" />
          </children>
-      </HBox>
-   </children>
-</AnchorPane>
+         <padding>
+            <Insets left="15.0" right="15.0" />
+         </padding>
+      </VBox>
+   </left>
+   <right>
+      <VBox fx:id="vBox_newAccount" alignment="CENTER" spacing="20.0" BorderPane.alignment="CENTER_RIGHT">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="New Account" />
+            <HBox alignment="CENTER" spacing="15.0">
+               <children>
+                  <VBox alignment="CENTER" spacing="15.0">
+                     <children>
+                        <MFXTextField fx:id="textField_new_email1" floatMode="BORDER" floatingText="E-mail" />
+                        <MFXTextField fx:id="textField_new_email2" floatMode="BORDER" floatingText="Re-type E-mail" />
+                        <MFXPasswordField fx:id="textField_new_pass1" floatMode="BORDER" floatingText="Password" />
+                        <MFXPasswordField fx:id="textField_new_pass2" floatMode="BORDER" floatingText="Re-type Password" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" spacing="15.0">
+                     <children>
+                        <MFXTextField fx:id="textField_new_fName" floatMode="BORDER" floatingText="First Name" />
+                        <MFXTextField fx:id="textField_new_lName" floatMode="BORDER" floatingText="Last Name" />
+                        <MFXDatePicker fx:id="datePicker_new_DOB" floatMode="BORDER" floatingText="Date of Birth" />
+                        <MFXComboBox fx:id="comboBox_new_type" floatMode="BORDER" floatingText="Account Type" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" />
+               </VBox.margin>
+            </HBox>
+            <MFXButton fx:id="button_new_register" buttonType="RAISED" onAction="#handleButton_register" text="Register" />
+         </children>
+      </VBox>
+   </right>
+</BorderPane>
