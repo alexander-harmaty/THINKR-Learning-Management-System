@@ -1,71 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TitledPane?>
+<?import com.gluonhq.charm.glisten.control.Icon?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="edu.farmingdale.csc325_project.ProfessorViewController">
-   <top>
-      <VBox prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane prefHeight="212.0" prefWidth="600.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="175.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="449.0" minWidth="10.0" prefWidth="425.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="400.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="133.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="77.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <MenuBar>
-               <menus>
-                  <Menu mnemonicParsing="false" text="File">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Close" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Edit">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Delete" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Help">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="About" />
-                     </items>
-                  </Menu>
-               </menus>
-            </MenuBar>
-            <Label prefHeight="17.0" prefWidth="146.0" text="Professor Name">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
+            <Pane prefHeight="400.0" prefWidth="173.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4653eb" height="400.0" stroke="BLACK" strokeType="INSIDE" width="175.0" />
+                  <Text fill="#f8f8f8" layoutX="14.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thinkr " wrappingWidth="134.21630859375">
+                     <font>
+                        <Font size="48.0" />
+                     </font>
+                  </Text>
+                  <Hyperlink layoutX="64.0" layoutY="103.0" prefHeight="31.0" prefWidth="109.0" text="Home Page " textFill="#fff6f6" underline="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Hyperlink>
+                  <Icon content="HELP_OUTLINE" layoutX="28.0" layoutY="103.0" prefHeight="24.0" prefWidth="30.0" />
+                  <Hyperlink layoutX="79.0" layoutY="162.0" prefHeight="31.0" prefWidth="80.0" text="Courses" textFill="#fffefe" underline="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Hyperlink>
+                  <Hyperlink layoutX="79.0" layoutY="227.0" text="Calendar" textFill="#fffefe" underline="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Hyperlink>
+                  <Hyperlink layoutX="82.0" layoutY="295.0" text="Settings" textFill="#fff9f9" underline="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Hyperlink>
+                  <Icon content="HELP_OUTLINE" layoutX="28.0" layoutY="162.0" prefHeight="31.0" prefWidth="30.0" />
+                  <Icon content="HELP_OUTLINE" layoutX="28.0" layoutY="295.0" prefHeight="31.0" prefWidth="30.0" />
+                  <Icon content="HELP_OUTLINE" layoutX="28.0" layoutY="227.0" prefHeight="31.0" prefWidth="30.0" />
+               </children>
+            </Pane>
+            <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="297.0" prefWidth="328.0" GridPane.columnIndex="1" />
          </children>
-      </VBox>
-   </top>
-   <center>
-      <HBox alignment="CENTER_RIGHT" prefHeight="319.0" prefWidth="539.0" spacing="25.0" BorderPane.alignment="CENTER">
-         <children>
-            <TitledPane animated="false" text="Courses">
-               <content>
-                  <AnchorPane fx:id="titledpane_Courses" minHeight="0.0" minWidth="0.0" prefHeight="293.0" prefWidth="353.0" />
-               </content>
-            </TitledPane>
-            <TitledPane fx:id="titledpane_Calander" animated="false" text="Calander">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-               </content>
-            </TitledPane>
-         </children>
-      </HBox>
-   </center>
-   <bottom>
-      <HBox alignment="BOTTOM_RIGHT" prefHeight="24.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="button_settings" mnemonicParsing="false" onAction="#handleButton_settings" prefHeight="26.0" prefWidth="70.0" text="Settings" />
-         </children>
-      </HBox>
-   </bottom>
-</BorderPane>
+      </GridPane>
+      <TabPane layoutX="226.0" layoutY="222.0" prefHeight="156.0" prefWidth="279.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Courses">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="92.0" prefWidth="309.0" />
+            </content>
+          </Tab>
+          <Tab text="Notifications ">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="110.0" prefWidth="302.0" />
+            </content>
+          </Tab>
+            <Tab text="News">
+              <content>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="99.0" prefWidth="279.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
