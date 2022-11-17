@@ -1,50 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package edu.farmingdale.csc325_project;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TitledPane;
-import javafx.scene.layout.AnchorPane;
 
-/**
- * FXML Controller class
- *
- * @author AlexH
- */
-public class ProfessorViewController implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-
-    
-    
-    @FXML
-    private Button button_settings;
+public class ProfessorViewController {
 
     @FXML
-    private TitledPane titledpane_Calander;
+    private MFXButton calander_button;
 
     @FXML
-    private AnchorPane titledpane_Courses;
-    
-    @FXML
-    void handleButton_settings(ActionEvent event) {
+    private MFXButton courses_button;
 
-    }
+    @FXML
+    private MFXButton home_button;
+
+    @FXML
+    private MFXButton setting_button;
 
 }
-
-    
-
