@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.gluonhq.charm.glisten.control.Icon?>
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -20,7 +19,7 @@
             <Pane fx:id="pane_box" BorderPane.alignment="CENTER">
                <children>
                   <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="550.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="216.0" />
-                  <Text fill="WHITE" layoutX="14.0" layoutY="66.0" stroke="BLACK" strokeType="OUTSIDE" text="Thinkr" wrappingWidth="134.21630859375">
+                  <Text fill="WHITE" layoutX="25.0" layoutY="66.0" stroke="BLACK" strokeType="OUTSIDE" text="Thinkr" wrappingWidth="134.21630859375">
                      <font>
                         <Font size="48.0" />
                      </font>
@@ -91,9 +90,6 @@
                </children>
             </Pane>
          </left>
-         <center>
-            <MFXButton BorderPane.alignment="CENTER" />
-         </center>
       </BorderPane>
    </children>
 </AnchorPane>
