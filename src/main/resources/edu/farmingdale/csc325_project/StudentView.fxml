@@ -43,32 +43,32 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <MFXButton alignment="CENTER" prefWidth="135.0" text="Home Page" textFill="#4653eb">
+                        <MFXButton fx:id="button_homePage" alignment="CENTER" prefWidth="135.0" text="Home Page" textFill="#4653eb">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </MFXButton>
-                        <MFXButton alignment="CENTER" prefWidth="135.0" text="Courses" textFill="#4653eb" GridPane.rowIndex="1">
+                        <MFXButton fx:id="button_courses" alignment="CENTER" prefWidth="135.0" text="Courses" textFill="#4653eb" GridPane.rowIndex="1">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </MFXButton>
-                        <MFXButton alignment="CENTER" prefWidth="135.0" text="Grades" textFill="#4653eb" GridPane.rowIndex="2">
+                        <MFXButton fx:id="button_grades" alignment="CENTER" prefWidth="135.0" text="Grades" textFill="#4653eb" GridPane.rowIndex="2">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </MFXButton>
-                        <MFXButton alignment="CENTER" prefWidth="135.0" text="Registrar" textFill="#4653eb" GridPane.rowIndex="4">
+                        <MFXButton fx:id="button_registrar" alignment="CENTER" prefWidth="135.0" text="Registrar" textFill="#4653eb" GridPane.rowIndex="4">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </MFXButton>
-                        <MFXButton alignment="CENTER" prefWidth="135.0" text="Calender" textFill="#4653eb" GridPane.rowIndex="3">
+                        <MFXButton fx:id="button_calender" alignment="CENTER" prefWidth="135.0" text="Calender" textFill="#4653eb" GridPane.rowIndex="3">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </MFXButton>
-                        <MFXButton alignment="CENTER" prefWidth="135.0" text="Settings" textFill="#4653eb" GridPane.rowIndex="5">
+                        <MFXButton fx:id="button_settings" alignment="CENTER" prefWidth="135.0" text="Settings" textFill="#4653eb" GridPane.rowIndex="5">
                            <font>
                               <Font size="17.0" />
                            </font>
