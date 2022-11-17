@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.Icon?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXListView?>
 <?import io.github.palexdev.materialfx.controls.MFXNotificationCenter?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
-<?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc325_project.StudentViewController">
    <children>
@@ -25,13 +22,13 @@
          <left>
             <Pane fx:id="pane_box" BorderPane.alignment="CENTER">
                <children>
-                  <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="#4653eb" height="550.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="216.0" />
+                  <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="#4654eb" height="550.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="216.0" />
                   <Text fill="WHITE" layoutX="25.0" layoutY="66.0" stroke="BLACK" strokeType="OUTSIDE" text="Thinkr" wrappingWidth="134.21630859375">
                      <font>
                         <Font size="48.0" />
                      </font>
                   </Text>
-                  <GridPane layoutX="25.0" layoutY="87.0" prefHeight="430.0" prefWidth="183.0">
+                  <GridPane alignment="CENTER" layoutX="25.0" layoutY="78.0" prefHeight="430.0" prefWidth="183.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
@@ -42,38 +39,26 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Hyperlink prefHeight="38.0" prefWidth="153.0" text="Home Page" textFill="WHITE" underline="true">
+                        <MFXButton alignment="CENTER" prefWidth="135.0" text="Home Page" textFill="#4653eb">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="17.0" />
                            </font>
-                           <graphic>
-                              <Icon content="HELP_OUTLINE" prefHeight="24.0" prefWidth="30.0" />
-                           </graphic>
-                        </Hyperlink>
-                        <Hyperlink text="Accounts" textFill="WHITE" underline="true" GridPane.rowIndex="2">
+                        </MFXButton>
+                        <MFXButton alignment="CENTER" prefWidth="135.0" text="Registrar" textFill="#4653eb" GridPane.rowIndex="1">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="17.0" />
                            </font>
-                           <graphic>
-                              <Icon content="HELP_OUTLINE" prefHeight="24.0" prefWidth="30.0" />
-                           </graphic>
-                        </Hyperlink>
-                        <Hyperlink text="Settings" textFill="WHITE" underline="true" GridPane.rowIndex="3">
+                        </MFXButton>
+                        <MFXButton alignment="CENTER" prefWidth="135.0" text="Accounts" textFill="#4653eb" GridPane.rowIndex="2">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="17.0" />
                            </font>
-                           <graphic>
-                              <Icon content="HELP_OUTLINE" prefHeight="24.0" prefWidth="30.0" />
-                           </graphic>
-                        </Hyperlink>
-                        <Hyperlink text="Registrar" textFill="WHITE" underline="true" GridPane.rowIndex="1">
+                        </MFXButton>
+                        <MFXButton alignment="CENTER" prefWidth="135.0" text="Settings" textFill="#4653eb" GridPane.rowIndex="3">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="17.0" />
                            </font>
-                           <graphic>
-                              <Icon content="HELP_OUTLINE" prefHeight="24.0" prefWidth="30.0" />
-                           </graphic>
-                        </Hyperlink>
+                        </MFXButton>
                      </children>
                   </GridPane>
                </children>
@@ -82,29 +67,18 @@
          <right>
             <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <MFXDatePicker layoutX="12.0" layoutY="30.0" prefHeight="29.0" prefWidth="176.0" />
-                  <MFXNotificationCenter layoutX="14.0" layoutY="211.0" prefHeight="22.0" prefWidth="22.0" />
-                  <MFXListView layoutX="23.0" layoutY="267.0" prefHeight="260.0" prefWidth="155.0" />
-                  <MFXListView layoutX="19.0" layoutY="68.0" prefHeight="141.0" prefWidth="163.0" />
-                  <MFXTextField alignment="CENTER" layoutX="70.0" layoutY="215.0" prefHeight="48.0" prefWidth="110.0" text="Reminders" />
+                  <MFXDatePicker layoutX="12.0" layoutY="30.0" prefHeight="29.0" prefWidth="176.0" style="-fx-border-color: #4653eb;" />
+                  <MFXNotificationCenter layoutX="14.0" layoutY="211.0" prefHeight="22.0" prefWidth="22.0" style="-fx-region-background: #4653eb;" />
+                  <MFXListView layoutX="23.0" layoutY="267.0" prefHeight="260.0" prefWidth="155.0" style="-fx-border-color: #4653eb;" />
+                  <MFXTextField alignment="CENTER" floatMode="ABOVE" layoutX="70.0" layoutY="215.0" prefHeight="48.0" prefWidth="110.0" style="-fx-border-color: #4653eb;" text="Reminders">
+                     <textFill>
+                        <Color red="0.27450981736183167" green="0.32549020648002625" blue="0.9215686321258545" opacity="0.8700000047683716" />
+                     </textFill></MFXTextField>
                </children>
             </Pane>
          </right>
          <center>
-            <Pane prefHeight="26.0" prefWidth="423.0" BorderPane.alignment="CENTER">
-               <children>
-                  <TabPane layoutX="131.0" layoutY="275.0" prefHeight="200.0" prefWidth="270.0" tabClosingPolicy="UNAVAILABLE">
-                    <tabs>
-                        <Tab text="Courses">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                          </content>
-                        </Tab>
-                      <Tab text="Notifications" />
-                      <Tab text="News" />
-                    </tabs>
-                  </TabPane>
-               </children></Pane>
+            <Pane prefHeight="26.0" prefWidth="423.0" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </children>
