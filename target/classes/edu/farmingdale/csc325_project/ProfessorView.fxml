@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.gluonhq.charm.glisten.control.Icon?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXListView?>
 <?import io.github.palexdev.materialfx.controls.MFXNotificationCenter?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -38,33 +38,32 @@
                         <Font size="48.0" />
                      </font>
                   </Text>
-                  <Hyperlink layoutX="64.0" layoutY="103.0" prefHeight="31.0" prefWidth="109.0" text="Home Page " textFill="#fff6f6" underline="true">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Hyperlink>
                   <Icon content="HELP_OUTLINE" layoutX="28.0" layoutY="103.0" prefHeight="24.0" prefWidth="30.0" />
-                  <Hyperlink layoutX="79.0" layoutY="162.0" prefHeight="31.0" prefWidth="80.0" text="Courses" textFill="#fffefe" underline="true">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Hyperlink>
-                  <Hyperlink layoutX="79.0" layoutY="227.0" text="Calendar" textFill="#fffefe" underline="true">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Hyperlink>
-                  <Hyperlink layoutX="82.0" layoutY="295.0" text="Settings" textFill="#fff9f9" underline="true">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Hyperlink>
                   <Icon content="HELP_OUTLINE" layoutX="28.0" layoutY="162.0" prefHeight="31.0" prefWidth="30.0" />
                   <Icon content="HELP_OUTLINE" layoutX="28.0" layoutY="295.0" prefHeight="31.0" prefWidth="30.0" />
                   <Icon content="HELP_OUTLINE" layoutX="28.0" layoutY="227.0" prefHeight="31.0" prefWidth="30.0" />
+                  <MFXButton layoutX="66.0" layoutY="99.0" prefHeight="43.0" prefWidth="99.0" rippleColor="#0a0a0a" style="-fx-background-color: FFFFFF; -fx-font: 000000;" text="Home Page" textFill="#111010">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </MFXButton>
+                  <MFXButton layoutX="66.0" layoutY="162.0" prefHeight="43.0" prefWidth="99.0" rippleColor="#0a0a0a" style="-fx-background-color: FFFFFF; -fx-font: 000000;" text="Courses" textFill="#111010">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </MFXButton>
+                  <MFXButton layoutX="66.0" layoutY="227.0" prefHeight="43.0" prefWidth="99.0" rippleColor="#0a0a0a" style="-fx-background-color: FFFFFF; -fx-font: 000000;" text="Calander" textFill="#111010">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </MFXButton>
+                  <MFXButton layoutX="66.0" layoutY="283.0" prefHeight="43.0" prefWidth="99.0" rippleColor="#0a0a0a" style="-fx-background-color: FFFFFF; -fx-font: 000000;" text="Settings" textFill="#111010">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </MFXButton>
                </children>
             </Pane>
-            <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="297.0" prefWidth="328.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <TabPane layoutX="198.0" layoutY="222.0" prefHeight="156.0" prefWidth="258.0" tabClosingPolicy="UNAVAILABLE">
@@ -89,5 +88,6 @@
       <MFXDatePicker layoutX="420.0" layoutY="16.0" prefHeight="43.0" prefWidth="158.0" AnchorPane.bottomAnchor="341.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="16.0" />
       <MFXListView layoutX="462.0" layoutY="137.0" prefHeight="241.0" prefWidth="121.0" AnchorPane.topAnchor="137.0" />
       <MFXNotificationCenter layoutX="526.0" layoutY="78.0" prefHeight="22.0" prefWidth="27.0" />
+      <VBox alignment="BOTTOM_CENTER" layoutX="266.0" layoutY="-141.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="297.0" prefWidth="328.0" />
    </children>
 </AnchorPane>
