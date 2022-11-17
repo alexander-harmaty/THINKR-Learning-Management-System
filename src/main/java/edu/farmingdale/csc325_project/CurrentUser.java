@@ -15,58 +15,54 @@ import java.io.IOException;
  * 
  * @author AlexH
  */
-public class CurrentUser {
-    protected String userID;
-    protected String email;
-    protected String type;
-    protected String firstName;
-    protected String lastName;
-    protected String status;
-    protected String DOB;
-    
+public class CurrentUser extends User {
 
-    public CurrentUser(String email, String type) {
-        this.userID = "userID";
-        this.email = email;
-        this.type = type;
-        this.firstName = "firstName";
-        this.lastName = "lastName";
-        this.status = "status";
-        this.DOB = "date";
-        //this.DOB = LocalDate.now();
+    public CurrentUser() {
+        this.userID = "";
+        this.DOB = "";
+        this.email = "";
+        this.firstName = "";
+        this.lastName = "";
+        this.password = "";
+        this.status = "";
+        this.type = "";
     }
 
-    public CurrentUser(String userID, String email, String type, 
-            String firstName, String lastName, String DOB, String status) {
+    public CurrentUser(User user) {
+        this.userID = user.getUserID();
+        this.DOB = user.getDOB();
+        this.email = user.getEmail();
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
+        this.password = "PROTECTED";
+        this.status = user.getStatus();
+        this.type = user.getType();
+    }
+    
+    
+    
+    public CurrentUser(String userID, String DOB, String email, String firstName, String lastName, String status, String type) {
         this.userID = userID;
+        this.DOB = DOB;
         this.email = email;
-        this.type = type;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.password = "PROTECTED";
         this.status = status;
-        this.DOB = DOB;
+        this.type = type;
     }
-
-    public String getUserID() { return userID; }
-    public String getEmail() { return email; }
-    public String getType() { return type; }
-    public String getFirstName() { return firstName; }
-    public String getLastName() { return lastName; }
-    public String getStatus() { return status; }
-    public String getDOB() { return DOB; }
-
-    public void setUserID(String userID) { this.userID = userID; }
-    public void setEmail(String email) { this.email = email; }
-    public void setType(String type) { this.type = type; }
-    public void setFirstName(String firstName) { this.firstName = firstName; }
-    public void setLastName(String lastName) { this.lastName = lastName; }
-    public void setStatus(String status) { this.status = status; }
-    public void setDOB(String DOB) { this.DOB = DOB; }
     
     public void logOut() throws IOException {
-        //deletes itself or sets itself to null
+        this.userID = "";
+        this.DOB = "";
+        this.email = "";
+        this.firstName = "";
+        this.lastName = "";
+        this.password = "";
+        this.status = "";
+        this.type = "";
         
         //switches user to login controller
-        App.setRoot("Login");
+        App.setRoot("LoginRegisterController");
     }
 }

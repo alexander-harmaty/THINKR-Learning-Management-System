@@ -5,11 +5,13 @@ import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
+import com.google.firestore.v1.Document;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.awt.Frame;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -40,6 +42,7 @@ import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Translate;
 import javafx.util.Duration;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -91,7 +94,7 @@ public class LoginRegisterController implements Initializable {
         ObservableList<String> options = FXCollections.observableArrayList(accountTypes);
         comboBox_new_type.setItems(options);
         
-        //showExisting();
+        showExisting();
         
     }
     
@@ -226,7 +229,7 @@ public class LoginRegisterController implements Initializable {
                         if (docEmail.equals(inputEmail) && docPass.equals(inputPass)) 
                         {
                             userFound = true;
-                            //App.currentUser = new CurrentUser();
+                            App.currentUser = new CurrentUser();
 
                             switch(docType) 
                             {
@@ -302,7 +305,7 @@ public class LoginRegisterController implements Initializable {
             }
             //add user
             else {
-                DocumentReference docRef = App.fstore.collection("users").document(UUID.randomUUID().toString());
+                DocumentReference docRef = App.fstore.collection("users").document(UUID.randomUUID().toString()); //generate number ID instead?
                 
                 Map<String, Object> data = new HashMap<>();
                 data.put("DOB", DOB);
@@ -315,11 +318,18 @@ public class LoginRegisterController implements Initializable {
                 //asynchronously write data
                 ApiFuture<WriteResult> result = docRef.set(data);
                 
-                App.setRoot("Login");
+                System.out.println(docRef.getId());
+                
+                JOptionPane.showMessageDialog(null, 
+                        "Account successfully created! \n Please log in..." , "Success!", 
+                        JOptionPane.INFORMATION_MESSAGE);
+                
+                showExisting();
             }
         } catch (NullPointerException e){
+            //just for datePicker
             javax.swing.JOptionPane.showMessageDialog( null, 
-                    "Please assure a date is selected" , "Error",
+                    "Please assure all fields are filled" , "Error",
                     javax.swing.JOptionPane.ERROR_MESSAGE );
         }
     }
