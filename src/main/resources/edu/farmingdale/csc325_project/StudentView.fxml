@@ -14,11 +14,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BorderPane layoutX="-14.0" prefHeight="550.0" prefWidth="825.0">
+      <BorderPane layoutX="-14.0" prefHeight="550.0" prefWidth="839.0">
          <left>
             <Pane fx:id="pane_box" BorderPane.alignment="CENTER">
                <children>
-                  <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="550.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="216.0" />
+                  <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="#4653eb" height="550.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="216.0" />
                   <Text fill="WHITE" layoutX="25.0" layoutY="66.0" stroke="BLACK" strokeType="OUTSIDE" text="Thinkr" wrappingWidth="134.21630859375">
                      <font>
                         <Font size="48.0" />
