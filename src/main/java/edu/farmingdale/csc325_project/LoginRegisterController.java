@@ -1,5 +1,10 @@
 package edu.farmingdale.csc325_project;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.WriteResult;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
@@ -13,7 +18,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
@@ -177,69 +187,82 @@ public class LoginRegisterController implements Initializable {
     }
 
     /**
-     * Handle function for login button.
+     * Handle function for login button.Takes text from text fields for email and password.Then compares email and passwords to logins table to find a match.
      * 
-     * Takes text from text fields for email and password.
-     * Then compares email and passwords to logins table to find a match.
      * If match is found, account type is read and switched to
      * 
      * @throws IOException 
+     * @throws java.lang.InterruptedException 
+     * @throws java.util.concurrent.ExecutionException 
      */
-    public void handleButton_login() throws IOException {
+    public void handleButton_login() throws IOException, InterruptedException, ExecutionException {
                 
-        String email = textField_existing_email.getText();
-        String pass = textField_existing_pass.getText();
+        String inputEmail = textField_existing_email.getText();
+        String inputPass = textField_existing_pass.getText();
+        String docEmail;
+        String docPass;
+        String docType;
+        Boolean userFound = false;
         
-        if ("".equals(email) && "".equals(pass))
+        if (!"".equals(inputEmail) && !"".equals(inputPass))
         {
-            javax.swing.JOptionPane.showMessageDialog( null, 
-                    "Please fill in all fields" , "Error",
-                    javax.swing.JOptionPane.ERROR_MESSAGE );
-        }
-        else
-        {
+            //asynchronously retrieve all documents
+            ApiFuture<QuerySnapshot> future =  App.fstore.collection("users").get();
+            // future.get() blocks on response
+            List<QueryDocumentSnapshot> documents;
+            
             try 
             {
-                Connection con = DBConnection.connectDB();
-                Statement st = con.createStatement();
-                ResultSet rs = st.executeQuery("select * from users where email = '"
-                        + email + "' and password = '" + pass + "';");
-                
-                if (rs.next() && rs.getString(2).equals(email) && rs.getString(3).equals(pass)) 
+                documents = future.get().getDocuments();
+            
+                if(!documents.isEmpty())
                 {
-                    App.currentUser = new CurrentUser(rs.getString(1), rs.getString(2), 
-                            rs.getString(4), rs.getString(5), rs.getString(6), 
-                            rs.getString(7), rs.getString(8));
-                    System.out.println(rs.getString(4));
+                    for (QueryDocumentSnapshot document : documents) 
+                    {
+                        docEmail = String.valueOf(document.getData().get("email"));
+                        docPass = String.valueOf(document.getData().get("password"));
+                        docType = String.valueOf(document.getData().get("type"));
+                        
+                        if (docEmail.equals(inputEmail) && docPass.equals(inputPass)) 
+                        {
+                            userFound = true;
+                            //App.currentUser = new CurrentUser();
 
-                    switch (rs.getString(4)) {
-                        case "STUDENT":           
-                            App.setRoot("StudentView");
-                            break;
-                        case "PROFESSOR":
-                            App.setRoot("ProfessorView");
-                            System.out.println("Professor");
-                            break;
-                        case "ADMIN":
-                            App.setRoot("AdminView");
-                            break;
-                        default:
-                            break;
+                            switch(docType) 
+                            {
+                                case "STUDENT":           
+                                    App.setRoot("StudentView");
+                                    break;
+                                case "PROFESSOR":
+                                    App.setRoot("ProfessorView");
+                                    break;
+                                case "ADMIN":
+                                    App.setRoot("AdminView");
+                                    break;
+                                default:
+                                    break;
+                            }
+                            
+                        }
+                    }
+                    if (!userFound) {
+                        javax.swing.JOptionPane.showMessageDialog( null, "Incorrect username or password." , "Error", javax.swing.JOptionPane.ERROR_MESSAGE );  
                     }
                 }
                 else
-                { 
-                    javax.swing.JOptionPane.showMessageDialog( null, 
-                            "Incorrect username or password." , "Error",
-                            javax.swing.JOptionPane.ERROR_MESSAGE );     
+                {
+                   javax.swing.JOptionPane.showMessageDialog( null, "EMPTY DATABASE" , "Error",javax.swing.JOptionPane.ERROR_MESSAGE );
                 }
-            } catch (IOException | SQLException e) {
-                javax.swing.JOptionPane.showMessageDialog( null, 
-                        "Please fill in all fields" , "Error",
-                        javax.swing.JOptionPane.ERROR_MESSAGE );
-            }
+                
+            } 
+            catch (IOException e) {}
         } 
+        else
+        {
+            javax.swing.JOptionPane.showMessageDialog( null, "Please fill in all fields" , "Error",javax.swing.JOptionPane.ERROR_MESSAGE );
+        }
     }
+
 
     /**
      * Handle function for register button.Makes a connection to the DB and creates a record in the users table.
@@ -279,20 +302,19 @@ public class LoginRegisterController implements Initializable {
             }
             //add user
             else {
-                Connection con = DBConnection.connectDB();
-                String query = "insert into users (email, password, type, firstName, lastName, DOB) values (?,?,?,?,?,?)";
-                PreparedStatement ps = con.prepareStatement(query);
+                DocumentReference docRef = App.fstore.collection("users").document(UUID.randomUUID().toString());
                 
-                ps.setString(1, email1);
-                ps.setString(2, pass1);
-                ps.setString(3, type);
-                ps.setString(4, fName);
-                ps.setString(5, lName);
-                ps.setString(6, DOB);
+                Map<String, Object> data = new HashMap<>();
+                data.put("DOB", DOB);
+                data.put("email", email1);
+                data.put("firstName", fName);
+                data.put("lastName", lName);
+                data.put("password", pass1);
+                data.put("type", type);
                 
-                ps.executeUpdate();
+                //asynchronously write data
+                ApiFuture<WriteResult> result = docRef.set(data);
                 
-
                 App.setRoot("Login");
             }
         } catch (NullPointerException e){
