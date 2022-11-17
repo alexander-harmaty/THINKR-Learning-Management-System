@@ -4,13 +4,18 @@
  */
 package edu.farmingdale.csc325_project;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -49,62 +54,136 @@ public class LoginController implements Initializable {
     }
     
     /**
-     * Handle function for login button.
+     * Handle function for login button.Takes text from text fields for email and password.
      * 
-     * Takes text from text fields for email and password.
      * Then compares email and passwords to logins table to find a match.
-     * If match is found, account type is read and switched to
+ If match is found, account type is read and switched to
      * 
      * @throws IOException 
+     * @throws java.lang.InterruptedException 
      */
-    public void handleButton_login() throws IOException {
+    public void handleButton_login() throws IOException, InterruptedException, ExecutionException {
                 
-        String email = textField_email.getText();
-        String pass = textField_password.getText();
+        String inputEmail = textField_email.getText();
+        String inputPass = textField_password.getText();
+        String docEmail;
+        String docPass;
+        String docType;
         
-        if ("".equals(email) && "".equals(pass))
+        if (!"".equals(inputEmail) && !"".equals(inputPass))
+        {
+            //asynchronously retrieve all documents
+            ApiFuture<QuerySnapshot> future =  App.fstore.collection("users").get();
+            // future.get() blocks on response
+            List<QueryDocumentSnapshot> documents;
+            
+            try 
+            {
+                documents = future.get().getDocuments();
+            
+                if(!documents.isEmpty())
+                {
+                    for (QueryDocumentSnapshot document : documents) 
+                    {
+                        docEmail = String.valueOf(document.getData().get("email"));
+                        docPass = String.valueOf(document.getData().get("password"));
+                        docType = String.valueOf(document.getData().get("type"));
+                        
+                        if (docEmail.equals(inputEmail) && docPass.equals(inputPass)) 
+                        {
+                            //App.currentUser = new CurrentUser();
+
+                            switch(docType) 
+                            {
+                                case "STUDENT":           
+                                    App.setRoot("StudentView");
+                                    break;
+                                case "PROFESSOR":
+                                    App.setRoot("ProfessorView");
+                                    break;
+                                case "ADMIN":
+                                    App.setRoot("AdminView");
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    }
+                    javax.swing.JOptionPane.showMessageDialog( null, "Incorrect username or password." , "Error", javax.swing.JOptionPane.ERROR_MESSAGE );  
+                }
+                else
+                {
+                   System.out.println("No data"); 
+                }
+                
+            } 
+            catch (IOException e) {}
+        } 
+        else
         {
             javax.swing.JOptionPane.showMessageDialog( null, "Please fill in all fields" , "Error",javax.swing.JOptionPane.ERROR_MESSAGE );
         }
-        else
-        {
-            try 
-            {
-                Connection con = DBConnection.connectDB();
-                Statement st = con.createStatement();
-                ResultSet rs = st.executeQuery("select * from users where email = '"
-                        + email + "' and password = '" + pass + "';");
-                
-                if (rs.next() && rs.getString(2).equals(email) && rs.getString(3).equals(pass)) 
-                {
-                    App.currentUser = new CurrentUser(rs.getString(1), rs.getString(2), 
-                            rs.getString(4), rs.getString(5), rs.getString(6), 
-                            rs.getString(7), rs.getString(8));
-                    System.out.println(rs.getString(4));
-
-                    switch (rs.getString(4)) {
-                        case "STUDENT":           
-                            App.setRoot("StudentView");
-                            break;
-                        case "PROFESSOR":
-                            App.setRoot("ProfessorView");
-                            System.out.println("Professor");
-                            break;
-                        case "ADMIN":
-                            App.setRoot("AdminView");
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                else
-                { 
-                    //javax.swing.JOptionPane.showMessageDialog( null, "Incorrect username or password." , "Error", 
-                    //javax.swing.JOptionPane.ERROR_MESSAGE );     
-                }
-            } catch (IOException | SQLException e) {
-                //javax.swing.JOptionPane.showMessageDialog( null, "Please fill in all fields" , "Error",javax.swing.JOptionPane.ERROR_MESSAGE );
-            }
-        } 
     }
 }
+
+
+
+//    /**
+//     * Handle function for login button.
+//     * 
+//     * Takes text from text fields for email and password.
+//     * Then compares email and passwords to logins table to find a match.
+//     * If match is found, account type is read and switched to
+//     * 
+//     * @throws IOException 
+//     */
+//    public void handleButton_login() throws IOException {
+//                
+//        String email = textField_email.getText();
+//        String pass = textField_password.getText();
+//        
+//        if ("".equals(email) && "".equals(pass))
+//        {
+//            javax.swing.JOptionPane.showMessageDialog( null, "Please fill in all fields" , "Error",javax.swing.JOptionPane.ERROR_MESSAGE );
+//        }
+//        else
+//        {
+//            try 
+//            {
+//                Connection con = DBConnection.connectDB();
+//                Statement st = con.createStatement();
+//                ResultSet rs = st.executeQuery("select * from users where email = '"
+//                        + email + "' and password = '" + pass + "';");
+//                
+//                if (rs.next() && rs.getString(2).equals(email) && rs.getString(3).equals(pass)) 
+//                {
+//                    App.currentUser = new CurrentUser(rs.getString(1), rs.getString(2), 
+//                            rs.getString(4), rs.getString(5), rs.getString(6), 
+//                            rs.getString(7), rs.getString(8));
+//                    System.out.println(rs.getString(4));
+//
+//                    switch (rs.getString(4)) {
+//                        case "STUDENT":           
+//                            App.setRoot("StudentView");
+//                            break;
+//                        case "PROFESSOR":
+//                            App.setRoot("ProfessorView");
+//                            System.out.println("Professor");
+//                            break;
+//                        case "ADMIN":
+//                            App.setRoot("AdminView");
+//                            break;
+//                        default:
+//                            break;
+//                    }
+//                }
+//                else
+//                { 
+//                    //javax.swing.JOptionPane.showMessageDialog( null, "Incorrect username or password." , "Error", 
+//                    //javax.swing.JOptionPane.ERROR_MESSAGE );     
+//                }
+//            } catch (IOException | SQLException e) {
+//                //javax.swing.JOptionPane.showMessageDialog( null, "Please fill in all fields" , "Error",javax.swing.JOptionPane.ERROR_MESSAGE );
+//            }
+//        } 
+//    }
