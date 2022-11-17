@@ -3,6 +3,7 @@
 <?import com.gluonhq.charm.glisten.control.Icon?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXListView?>
+<?import io.github.palexdev.materialfx.controls.MFXNotificationCenter?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -86,6 +87,7 @@
         </tabs>
       </TabPane>
       <MFXDatePicker layoutX="420.0" layoutY="16.0" prefHeight="43.0" prefWidth="158.0" AnchorPane.bottomAnchor="341.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="16.0" />
-      <MFXListView layoutX="456.0" layoutY="139.0" prefHeight="248.0" prefWidth="143.0" />
+      <MFXListView layoutX="462.0" layoutY="137.0" prefHeight="241.0" prefWidth="121.0" AnchorPane.topAnchor="137.0" />
+      <MFXNotificationCenter layoutX="526.0" layoutY="78.0" prefHeight="22.0" prefWidth="27.0" />
    </children>
 </AnchorPane>
