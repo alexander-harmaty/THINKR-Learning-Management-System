@@ -42,22 +42,22 @@
                   <Icon content="HELP_OUTLINE" layoutX="28.0" layoutY="162.0" prefHeight="31.0" prefWidth="30.0" />
                   <Icon content="HELP_OUTLINE" layoutX="28.0" layoutY="295.0" prefHeight="31.0" prefWidth="30.0" />
                   <Icon content="HELP_OUTLINE" layoutX="28.0" layoutY="227.0" prefHeight="31.0" prefWidth="30.0" />
-                  <MFXButton layoutX="66.0" layoutY="99.0" prefHeight="43.0" prefWidth="99.0" rippleColor="#0a0a0a" style="-fx-background-color: FFFFFF; -fx-font: 000000;" text="Home Page" textFill="#111010">
+                  <MFXButton fx:id="home_button" layoutX="66.0" layoutY="99.0" prefHeight="43.0" prefWidth="99.0" rippleColor="#0a0a0a" style="-fx-background-color: FFFFFF; -fx-font: 000000;" text="Home Page" textFill="#070606">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </MFXButton>
-                  <MFXButton layoutX="66.0" layoutY="162.0" prefHeight="43.0" prefWidth="99.0" rippleColor="#0a0a0a" style="-fx-background-color: FFFFFF; -fx-font: 000000;" text="Courses" textFill="#111010">
+                  <MFXButton fx:id="courses_button" layoutX="66.0" layoutY="162.0" prefHeight="43.0" prefWidth="99.0" rippleColor="#0a0a0a" style="-fx-background-color: FFFFFF; -fx-font: 000000;" text="Courses" textFill="#111010">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </MFXButton>
-                  <MFXButton layoutX="66.0" layoutY="227.0" prefHeight="43.0" prefWidth="99.0" rippleColor="#0a0a0a" style="-fx-background-color: FFFFFF; -fx-font: 000000;" text="Calander" textFill="#111010">
+                  <MFXButton fx:id="calander_button" layoutX="66.0" layoutY="227.0" prefHeight="43.0" prefWidth="99.0" rippleColor="#0a0a0a" style="-fx-background-color: FFFFFF; -fx-font: 000000;" text="Calander" textFill="#111010">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </MFXButton>
-                  <MFXButton layoutX="66.0" layoutY="283.0" prefHeight="43.0" prefWidth="99.0" rippleColor="#0a0a0a" style="-fx-background-color: FFFFFF; -fx-font: 000000;" text="Settings" textFill="#111010">
+                  <MFXButton fx:id="setting_button" layoutX="66.0" layoutY="283.0" prefHeight="43.0" prefWidth="99.0" rippleColor="#0a0a0a" style="-fx-background-color: FFFFFF; -fx-font: 000000;" text="Settings" textFill="#111010">
                      <font>
                         <Font size="10.0" />
                      </font>
