@@ -4,7 +4,6 @@
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXListView?>
 <?import io.github.palexdev.materialfx.controls.MFXNotificationCenter?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,7 +12,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -84,10 +82,11 @@
                   <MFXDatePicker layoutX="12.0" layoutY="30.0" prefHeight="29.0" prefWidth="176.0" style="-fx-border-color: #4653eb;" />
                   <MFXNotificationCenter layoutX="14.0" layoutY="211.0" prefHeight="22.0" prefWidth="22.0" style="-fx-region-background: #4653eb;" />
                   <MFXListView layoutX="23.0" layoutY="267.0" prefHeight="260.0" prefWidth="155.0" style="-fx-border-color: #4653eb;" />
-                  <MFXTextField alignment="CENTER" floatMode="ABOVE" layoutX="70.0" layoutY="215.0" prefHeight="48.0" prefWidth="110.0" style="-fx-border-color: #4653eb;" text="Reminders">
-                     <textFill>
-                        <Color red="0.27450981736183167" green="0.32549020648002625" blue="0.9215686321258545" opacity="0.8700000047683716" />
-                     </textFill></MFXTextField>
+                  <Text fill="WHITE" layoutX="76.0" layoutY="248.0" stroke="BLACK" strokeType="OUTSIDE" text="Reminders" wrappingWidth="134.21630859375">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Text>
                </children>
             </Pane>
          </right>
