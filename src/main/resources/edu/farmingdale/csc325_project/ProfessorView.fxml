@@ -3,6 +3,7 @@
 <?import com.gluonhq.charm.glisten.control.Icon?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -65,11 +66,11 @@
             <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="297.0" prefWidth="328.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <TabPane layoutX="226.0" layoutY="222.0" prefHeight="156.0" prefWidth="279.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="198.0" layoutY="222.0" prefHeight="156.0" prefWidth="258.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Courses">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="92.0" prefWidth="309.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="101.0" prefWidth="265.0" />
             </content>
           </Tab>
           <Tab text="Notifications ">
@@ -84,6 +85,7 @@
             </Tab>
         </tabs>
       </TabPane>
-      <MFXDatePicker layoutX="525.0" layoutY="48.0" prefHeight="43.0" prefWidth="44.0" AnchorPane.bottomAnchor="309.0" AnchorPane.leftAnchor="525.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="48.0" />
+      <MFXDatePicker layoutX="420.0" layoutY="16.0" prefHeight="43.0" prefWidth="158.0" AnchorPane.bottomAnchor="341.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="16.0" />
+      <ListView layoutX="482.0" layoutY="155.0" prefHeight="221.0" prefWidth="99.0" />
    </children>
 </AnchorPane>
