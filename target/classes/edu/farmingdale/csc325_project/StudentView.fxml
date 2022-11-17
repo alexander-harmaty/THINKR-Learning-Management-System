@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.Icon?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
-
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -12,10 +18,81 @@
          <left>
             <Pane fx:id="pane_box" BorderPane.alignment="CENTER">
                <children>
-                  <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="550.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="241.0" />
+                  <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="550.0" stroke="BLACK" strokeType="INSIDE" width="241.0" />
+                  <Text fill="WHITE" layoutX="14.0" layoutY="66.0" stroke="BLACK" strokeType="OUTSIDE" text="Thinkr" wrappingWidth="134.21630859375">
+                     <font>
+                        <Font size="48.0" />
+                     </font>
+                  </Text>
+                  <GridPane layoutX="25.0" layoutY="87.0" prefHeight="401.0" prefWidth="183.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Hyperlink prefHeight="38.0" prefWidth="153.0" text="Home Page" textFill="#fff6f6" underline="true">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <graphic>
+                              <Icon content="HELP_OUTLINE" prefHeight="24.0" prefWidth="30.0" />
+                           </graphic>
+                        </Hyperlink>
+                        <Hyperlink text="Calendar" textFill="#fffefe" underline="true" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <graphic>
+                              <Icon content="HELP_OUTLINE" prefHeight="24.0" prefWidth="30.0" />
+                           </graphic>
+                        </Hyperlink>
+                        <Hyperlink text="Grades" textFill="#fff9f9" underline="true" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <graphic>
+                              <Icon content="HELP_OUTLINE" prefHeight="24.0" prefWidth="30.0" />
+                           </graphic>
+                        </Hyperlink>
+                        <Hyperlink text="Registrar" textFill="#fff9f9" underline="true" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <graphic>
+                              <Icon content="HELP_OUTLINE" prefHeight="24.0" prefWidth="30.0" />
+                           </graphic>
+                        </Hyperlink>
+                        <Hyperlink text="Settings" textFill="#fff9f9" underline="true" GridPane.rowIndex="5">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <graphic>
+                              <Icon content="HELP_OUTLINE" prefHeight="24.0" prefWidth="30.0" />
+                           </graphic>
+                        </Hyperlink>
+                        <Hyperlink text="Courses" textFill="#fff9f9" underline="true" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <graphic>
+                              <Icon content="HELP_OUTLINE" prefHeight="24.0" prefWidth="30.0" />
+                           </graphic>
+                        </Hyperlink>
+                     </children>
+                  </GridPane>
                </children>
             </Pane>
          </left>
+         <center>
+            <Rectangle fx:id="rectangle1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="28.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="241.0" BorderPane.alignment="CENTER" />
+         </center>
       </BorderPane>
    </children>
 </AnchorPane>
