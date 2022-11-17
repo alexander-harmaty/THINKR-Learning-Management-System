@@ -28,7 +28,7 @@ public class StudentViewController {
     private MFXButton button_grades;
 
     @FXML
-    private MFXButton button_homePage;
+    private MFXButton button_home;
 
     @FXML
     private MFXButton button_registrar;
