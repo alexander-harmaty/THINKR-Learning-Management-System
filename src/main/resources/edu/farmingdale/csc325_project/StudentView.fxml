@@ -99,7 +99,7 @@
                <children>
                   <MFXDatePicker layoutX="12.0" layoutY="30.0" prefHeight="29.0" prefWidth="176.0" />
                   <MFXNotificationCenter layoutX="14.0" layoutY="211.0" prefHeight="22.0" prefWidth="22.0" />
-                  <MFXListView layoutX="19.0" layoutY="267.0" prefHeight="274.0" prefWidth="163.0" />
+                  <MFXListView layoutX="23.0" layoutY="267.0" prefHeight="260.0" prefWidth="155.0" />
                   <MFXListView layoutX="19.0" layoutY="68.0" prefHeight="141.0" prefWidth="163.0" />
                   <MFXTextField alignment="CENTER" layoutX="70.0" layoutY="215.0" prefHeight="48.0" prefWidth="110.0" text="Reminders" />
                </children>
