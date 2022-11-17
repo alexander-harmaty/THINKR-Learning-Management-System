@@ -1,187 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.MFXListView?>
+<?import io.github.palexdev.materialfx.controls.MFXNotificationCenter?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="825.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="edu.farmingdale.csc325_project.StudentViewController">
-   <center>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-        <tabs>
-          <Tab fx:id="tab_courses" text="Courses">
-               <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <top>
-                        <Label fx:id="label_courseList" prefHeight="17.0" prefWidth="970.0" text="Course List" BorderPane.alignment="CENTER">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc325_project.StudentViewController">
+   <children>
+      <BorderPane layoutX="-14.0" prefHeight="550.0" prefWidth="839.0">
+         <left>
+            <Pane fx:id="pane_box" BorderPane.alignment="CENTER">
+               <children>
+                  <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="#4654eb" height="550.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="216.0" />
+                  <Text fill="WHITE" layoutX="25.0" layoutY="66.0" stroke="BLACK" strokeType="OUTSIDE" text="Thinkr" wrappingWidth="134.21630859375">
+                     <font>
+                        <Font size="48.0" />
+                     </font>
+                  </Text>
+                  <GridPane alignment="CENTER" layoutX="25.0" layoutY="78.0" prefHeight="430.0" prefWidth="183.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <MFXButton fx:id="button_homePage" alignment="CENTER" prefWidth="135.0" text="Home Page" textFill="#4653eb">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="17.0" />
                            </font>
-                        </Label>
-                     </top>
-                     <left>
-                        <VBox prefHeight="385.0" prefWidth="826.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <ListView fx:id="listview_courseList" prefHeight="457.0" prefWidth="1887.0" />
-                           </children>
-                        </VBox>
-                     </left></BorderPane>
-               </content></Tab>
-          <Tab fx:id="tab_calendar" text="Calendar">
-               <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <top>
-                        <Label fx:id="label_calendar" prefHeight="35.0" prefWidth="1279.0" text="Calendar" BorderPane.alignment="CENTER">
+                        </MFXButton>
+                        <MFXButton fx:id="button_courses" alignment="CENTER" prefWidth="135.0" text="Courses" textFill="#4653eb" GridPane.rowIndex="1">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="17.0" />
                            </font>
-                        </Label>
-                     </top>
-                  </BorderPane>
-               </content>
-          </Tab>
-            <Tab fx:id="tab_grades" text="Grades">
-               <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <top>
-                        <Label fx:id="label_grades" prefHeight="35.0" prefWidth="1089.0" text="Grades" BorderPane.alignment="CENTER">
+                        </MFXButton>
+                        <MFXButton fx:id="button_grades" alignment="CENTER" prefWidth="135.0" text="Grades" textFill="#4653eb" GridPane.rowIndex="2">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="17.0" />
                            </font>
-                        </Label>
-                     </top></BorderPane>
-               </content></Tab>
-            <Tab fx:id="tab_registrar" text="Registrar">
-               <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <top>
-                        <Label prefHeight="35.0" prefWidth="1430.0" text="Class List" BorderPane.alignment="CENTER">
+                        </MFXButton>
+                        <MFXButton fx:id="button_registrar" alignment="CENTER" prefWidth="135.0" text="Registrar" textFill="#4653eb" GridPane.rowIndex="4">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="17.0" />
                            </font>
-                        </Label>
-                     </top>
-                     <left>
-                        <TableView fx:id="tableview_classList" prefHeight="385.0" prefWidth="604.0" BorderPane.alignment="CENTER">
-                          <columns>
-                            <TableColumn fx:id="tablecolumn_crn" prefWidth="75.0" text="CRN" />
-                              <TableColumn fx:id="tablecolumn_subject" prefWidth="75.0" text="Subject" />
-                              <TableColumn fx:id="tablecolumn_course" prefWidth="75.0" text="Course" />
-                              <TableColumn fx:id="tablecolumn_section" prefWidth="75.0" text="Section" />
-                              <TableColumn fx:id="tablecolumn_credit" prefWidth="75.0" text="Credit" />
-                              <TableColumn fx:id="tablecolumn_" prefWidth="228.0" text="Title" />
-                          </columns>
-                        </TableView>
-                     </left>
-                     <right>
-                        <HBox fx:id="hbox_classList" prefHeight="385.0" prefWidth="222.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <Button fx:id="button_add" mnemonicParsing="false" onAction="#handleButton_add" prefHeight="25.0" prefWidth="115.0" text="Add" />
-                              <Button fx:id="button_remove" mnemonicParsing="false" onAction="#handleButton_remove" prefHeight="25.0" prefWidth="115.0" text="Remove" />
-                           </children>
-                        </HBox>
-                     </right></BorderPane>
-               </content></Tab>
-            <Tab fx:id="tab_settings" text="Settings">
-               <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <top>
-                        <Label fx:id="label_profileSettings" alignment="TOP_LEFT" prefHeight="47.0" prefWidth="826.0" text="Profile Settings" BorderPane.alignment="CENTER">
+                        </MFXButton>
+                        <MFXButton fx:id="button_calender" alignment="CENTER" prefWidth="135.0" text="Calender" textFill="#4653eb" GridPane.rowIndex="3">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="17.0" />
                            </font>
-                        </Label>
-                     </top>
-                     <left>
-                        <VBox prefHeight="375.0" prefWidth="826.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <HBox fx:id="hbox_name" prefHeight="49.0" prefWidth="826.0">
-                                 <children>
-                                    <Label fx:id="label_nameSettings" alignment="CENTER" prefHeight="19.0" prefWidth="90.0" text="Name">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="textfield_nameSettings" alignment="CENTER" prefHeight="0.0" prefWidth="277.0" />
-                                 </children>
-                              </HBox>
-                              <HBox fx:id="hbox_name1" prefHeight="49.0" prefWidth="826.0">
-                                 <children>
-                                    <Label fx:id="label_userSettings" alignment="CENTER" prefHeight="22.0" prefWidth="90.0" text="User">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="textfield_userSettings" alignment="CENTER" prefHeight="0.0" prefWidth="277.0" />
-                                 </children>
-                              </HBox>
-                              <HBox fx:id="hbox_name2" prefHeight="49.0" prefWidth="826.0">
-                                 <children>
-                                    <Label fx:id="label_passwordSettings" alignment="CENTER" prefHeight="10.0" prefWidth="90.0" text="Password">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="textfield_passwordSettings" alignment="CENTER" prefHeight="0.0" prefWidth="277.0" />
-                                 </children>
-                              </HBox>
-                              <HBox fx:id="hbox_name3" prefHeight="49.0" prefWidth="826.0">
-                                 <children>
-                                    <Label fx:id="label_dobSettings" alignment="CENTER" prefHeight="4.0" prefWidth="90.0" text="Date of Birth">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="textfield_dobSettings" alignment="CENTER" prefHeight="0.0" prefWidth="277.0" />
-                                 </children>
-                              </HBox>
-                              <HBox fx:id="hbox_name4" prefHeight="49.0" prefWidth="826.0">
-                                 <children>
-                                    <Label fx:id="label_phoneSettings" alignment="CENTER" prefHeight="0.0" prefWidth="90.0" text="Phone">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="textfield_phoneSettings" alignment="CENTER" prefHeight="0.0" prefWidth="277.0" />
-                                 </children>
-                              </HBox>
-                              <HBox fx:id="hbox_name5" prefHeight="49.0" prefWidth="826.0">
-                                 <children>
-                                    <Label fx:id="label_emailSettings" alignment="CENTER" prefHeight="0.0" prefWidth="90.0" text="Email">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="textfield_emailSettings" alignment="CENTER" prefHeight="0.0" prefWidth="277.0" />
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                     </left>
-                  </BorderPane>
-               </content></Tab>
-        </tabs>
-      </TabPane>
-   </center>
-   <top>
-      <HBox prefHeight="56.0" prefWidth="825.0" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fx:id="imageview_studentPicture" fitHeight="101.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="label_studentName" prefHeight="101.0" prefWidth="763.0" text="Student Name">
-               <font>
-                  <Font size="44.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-   </top>
-</BorderPane>
+                        </MFXButton>
+                        <MFXButton fx:id="button_settings" alignment="CENTER" prefWidth="135.0" text="Settings" textFill="#4653eb" GridPane.rowIndex="5">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </MFXButton>
+                     </children>
+                  </GridPane>
+               </children>
+            </Pane>
+         </left>
+         <right>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <MFXDatePicker layoutX="12.0" layoutY="30.0" prefHeight="29.0" prefWidth="176.0" style="-fx-border-color: #4653eb;" />
+                  <MFXNotificationCenter layoutX="14.0" layoutY="211.0" prefHeight="22.0" prefWidth="22.0" style="-fx-region-background: #4653eb;" />
+                  <MFXListView layoutX="23.0" layoutY="267.0" prefHeight="260.0" prefWidth="155.0" style="-fx-border-color: #4653eb;" />
+                  <Text fill="WHITE" layoutX="76.0" layoutY="248.0" stroke="BLACK" strokeType="OUTSIDE" text="Reminders" wrappingWidth="134.21630859375">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </right>
+         <center>
+            <Pane prefHeight="26.0" prefWidth="423.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TabPane layoutY="331.0" prefHeight="219.0" prefWidth="446.0" tabClosingPolicy="UNAVAILABLE">
+                     <tabs>
+                        <Tab text="Courses">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="101.0" prefWidth="265.0" />
+                           </content>
+                        </Tab>
+                        <Tab text="Notifications ">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="110.0" prefWidth="302.0" />
+                           </content>
+                        </Tab>
+                        <Tab text="News">
+                           <content>
+                              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="99.0" prefWidth="279.0" />
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </children></Pane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
