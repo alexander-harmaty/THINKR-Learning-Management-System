@@ -19,7 +19,7 @@ import javafx.scene.shape.Rectangle;
 public class StudentViewController {
 
     @FXML
-    private MFXButton button_calender;
+    private MFXButton button_calendar;
 
     @FXML
     private MFXButton button_courses;
@@ -28,7 +28,7 @@ public class StudentViewController {
     private MFXButton button_grades;
 
     @FXML
-    private MFXButton button_homePage;
+    private MFXButton button_home;
 
     @FXML
     private MFXButton button_registrar;
@@ -41,5 +41,34 @@ public class StudentViewController {
 
     @FXML
     private Rectangle rectangle;
+    
+    @FXML
+    void handleButton_calendar(ActionEvent event) {
 
+    }
+
+    @FXML
+    void handleButton_courses(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleButton_home(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleButton_settings(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void handleButton_grades(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void handleButton_registrar(ActionEvent event) {
+
+    }
 }
