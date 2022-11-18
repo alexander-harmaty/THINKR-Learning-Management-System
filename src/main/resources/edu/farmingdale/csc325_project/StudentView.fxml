@@ -39,7 +39,7 @@
                   <Font size="26.0" />
                </font>
             </MFXButton>
-            <MFXButton fx:id="button_calender" alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" onAction="#handleButton_calender" prefHeight="50.0" style="-fx-background-radius: 20,20 20,20;" text="Calender" textFill="#4653eb">
+            <MFXButton fx:id="button_calendar" alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" onAction="#handleButton_calendar" prefHeight="50.0" style="-fx-background-radius: 20,20 20,20;" text="Calendar" textFill="#4653eb">
                <font>
                   <Font size="26.0" />
                </font>
