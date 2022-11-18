@@ -41,5 +41,34 @@ public class StudentViewController {
 
     @FXML
     private Rectangle rectangle;
+    
+    @FXML
+    void handleButton_calender(ActionEvent event) {
 
+    }
+
+    @FXML
+    void handleButton_courses(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleButton_home(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleButton_settings(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void handleButton_grades(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void handleButton_registrar(ActionEvent event) {
+
+    }
 }
