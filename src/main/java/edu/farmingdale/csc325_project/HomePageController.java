@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 public class HomePageController implements Initializable{
 
@@ -64,26 +65,33 @@ public class HomePageController implements Initializable{
         switch(App.currentUser.type) {
             case "STUDENT":
                 
-                button_home = new MFXButton("Home", 190, 55);
-                button_courses = new MFXButton("Courses", 190, 55);
-                button_grades = new MFXButton("Grades", 190, 55);
-                button_calendar = new MFXButton("Calendar", 190, 55);
-                button_registrar = new MFXButton("Registrar", 190, 55);
-                button_settings = new MFXButton("Settings", 190, 55);
+                button_home = new MFXButton("Home");
+                button_courses = new MFXButton("Courses");
+                button_grades = new MFXButton("Grades");
+                button_calendar = new MFXButton("Calendar");
+                button_registrar = new MFXButton("Registrar");
+                button_settings = new MFXButton("Settings");
                 
-                VBox_navButtons.getChildren().addAll(
-                        button_home, button_courses, button_grades,
-                        button_calendar, button_registrar, button_settings
-                );
+                MFXButton buttons[] = {button_home, button_courses, button_grades, button_calendar, button_registrar, button_settings};
+                
+                for (MFXButton button : buttons) {
+                    Font font = new Font("System", 26);
+                    button.setFont(font);
+                    button.setPrefHeight(50);
+                    button.setMaxWidth(Double.MAX_VALUE);
+                    button.setMaxHeight(50);
+                    VBox_navButtons.getChildren().add(button);
+                }
                 
                 break;
+
             case "PROFESSOR":
                 
-                button_home = new MFXButton("Home", 190, 55);
-                button_courses = new MFXButton("Courses", 190, 55);
-                button_grades = new MFXButton("Grades", 190, 55);
-                button_calendar = new MFXButton("Calendar", 190, 55);
-                button_settings = new MFXButton("Settings", 190, 55);
+                button_home = new MFXButton("Home");
+                button_courses = new MFXButton("Courses");
+                button_grades = new MFXButton("Grades");
+                button_calendar = new MFXButton("Calendar");
+                button_settings = new MFXButton("Settings");
                 
                 VBox_navButtons.getChildren().addAll(
                         button_home, button_courses, button_grades,
@@ -93,10 +101,10 @@ public class HomePageController implements Initializable{
                 break;
             case "ADMIN":
                 
-                button_home = new MFXButton("Home", 190, 55);
-                button_registrar = new MFXButton("Registrar", 190, 55);
-                button_accounts = new MFXButton("Accounts", 190, 55);
-                button_settings = new MFXButton("Settings", 190, 55);
+                button_home = new MFXButton("Home");
+                button_registrar = new MFXButton("Registrar");
+                button_accounts = new MFXButton("Accounts");
+                button_settings = new MFXButton("Settings");
                 
                 VBox_navButtons.getChildren().addAll(
                         button_home, button_registrar, 
