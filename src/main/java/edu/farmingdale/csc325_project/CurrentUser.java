@@ -27,19 +27,6 @@ public class CurrentUser extends User {
         this.status = "";
         this.type = "";
     }
-
-    public CurrentUser(User user) {
-        this.userID = user.getUserID();
-        this.DOB = user.getDOB();
-        this.email = user.getEmail();
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
-        this.password = "PROTECTED";
-        this.status = user.getStatus();
-        this.type = user.getType();
-    }
-    
-    
     
     public CurrentUser(String userID, String DOB, String email, String firstName, String lastName, String status, String type) {
         this.userID = userID;
