@@ -21,25 +21,25 @@ public class HomePageController implements Initializable{
     private VBox VBox_navButtons;
     
     @FXML
-    private MFXButton button_home = new MFXButton("Home");
+    protected final MFXButton button_home = new MFXButton("Home");
     
     @FXML
-    private MFXButton button_courses = new MFXButton("Courses");
+    protected final MFXButton button_courses = new MFXButton("Courses");
     
     @FXML
-    private MFXButton button_grades = new MFXButton("Grades");
+    protected final MFXButton button_grades = new MFXButton("Grades");
     
     @FXML
-    private MFXButton button_calendar = new MFXButton("Calendar");
+    protected final MFXButton button_calendar = new MFXButton("Calendar");
     
     @FXML
-    private MFXButton button_registrar = new MFXButton("Registrar");
+    protected final MFXButton button_registrar = new MFXButton("Registrar");
     
     @FXML
-    private MFXButton button_accounts = new MFXButton("Accounts");
+    protected final MFXButton button_accounts = new MFXButton("Accounts");
     
     @FXML
-    private MFXButton button_settings = new MFXButton("Settings");
+    protected final MFXButton button_settings = new MFXButton("Settings");
     
     @FXML
     void handleButton_home(ActionEvent event) {
@@ -78,6 +78,10 @@ public class HomePageController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        updateMenu();
+    }
+    
+    protected void updateMenu() {
         VBox_navButtons.getChildren().clear();
         
         List<MFXButton> buttons = new ArrayList<>();
