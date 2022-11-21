@@ -13,12 +13,16 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.PopupWindow;
+import javafx.stage.Stage;
 
 public class HomePageController implements Initializable {
 
@@ -48,11 +52,19 @@ public class HomePageController implements Initializable {
     
     @FXML
     protected final MFXButton button_settings = new MFXButton("Settings");
-    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         updateMenu();
+    }
+    
+    void showCourseListPopup() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CourseListPopup"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Course List");
+        stage.setScene(new Scene(root));
+        stage.show();
     }
     
     protected void updateMenu() {
@@ -64,7 +76,7 @@ public class HomePageController implements Initializable {
             case "STUDENT":
                 
                 button_courses.setOnAction(event -> {
-                    try { App.setRoot("Course"); } 
+                    try { showCourseListPopup(); } 
                     catch (IOException ex) {}
                 });
                 
