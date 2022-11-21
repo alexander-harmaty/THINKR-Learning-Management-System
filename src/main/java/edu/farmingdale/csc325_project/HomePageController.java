@@ -108,7 +108,7 @@ public class HomePageController implements Initializable{
                 
                 buttons.add(button_home);
                 buttons.add(button_registrar);
-                buttons.add(button_settings);
+                buttons.add(button_accounts);
                 buttons.add(button_settings);
                 
                 break;
