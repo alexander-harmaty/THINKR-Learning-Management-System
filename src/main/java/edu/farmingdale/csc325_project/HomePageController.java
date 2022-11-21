@@ -1,18 +1,24 @@
 package edu.farmingdale.csc325_project;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
-public class HomePageController implements Initializable{
+public class HomePageController implements Initializable {
 
     @FXML
     private VBox VBox_navBar;
@@ -41,40 +47,6 @@ public class HomePageController implements Initializable{
     @FXML
     protected final MFXButton button_settings = new MFXButton("Settings");
     
-    @FXML
-    void handleButton_home(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleButton_settings(ActionEvent event) {
-        
-    }
-    
-    @FXML
-    void handleButton_calendar(ActionEvent event) {
-        
-    }
-    
-    @FXML
-    void handleButton_courses(ActionEvent event) {
-        
-    }
-    
-    @FXML
-    void handleButton_grades(ActionEvent event) {
-        
-    }
-    
-    @FXML
-    void handleButton_registrar(ActionEvent event) {
-        
-    }
-    
-    @FXML
-    void handleButton_accounts(ActionEvent event) {
-        
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -88,6 +60,11 @@ public class HomePageController implements Initializable{
         
         switch(App.currentUser.type) {
             case "STUDENT":
+                
+                button_courses.setOnAction(event -> {
+                    try { App.setRoot("Course"); } 
+                    catch (IOException ex) {}
+                });
                 
                 buttons.add(button_home);
                 buttons.add(button_courses);
