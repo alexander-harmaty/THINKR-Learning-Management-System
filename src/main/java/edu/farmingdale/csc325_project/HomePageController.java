@@ -17,6 +17,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
+import javafx.stage.PopupWindow;
 
 public class HomePageController implements Initializable {
 
@@ -111,4 +113,5 @@ public class HomePageController implements Initializable {
         
     }
 
+    
 }
