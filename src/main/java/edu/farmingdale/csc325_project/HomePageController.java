@@ -59,12 +59,16 @@ public class HomePageController implements Initializable {
     }
     
     void showCourseListPopup() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CourseListPopup"));
-        Parent root = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.setTitle("Course List");
-        stage.setScene(new Scene(root));
-        stage.show();
+        
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CourseListPopup.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Course List");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {}
+        
     }
     
     protected void updateMenu() {
@@ -80,6 +84,26 @@ public class HomePageController implements Initializable {
                     catch (IOException ex) {}
                 });
                 
+//                button_grades.setOnAction(event -> {
+//                    try { App.setRoot("Grades.fxml"); } 
+//                    catch (IOException ex) {}
+//                });
+//                
+//                button_calendar.setOnAction(event -> {
+//                    try { App.setRoot("Calendar.fxml"); } 
+//                    catch (IOException ex) {}
+//                });
+//                
+//                button_registrar.setOnAction(event -> {
+//                    try { App.setRoot("Registrar.fxml"); } 
+//                    catch (IOException ex) {}
+//                });
+//                
+//                button_settings.setOnAction(event -> {
+//                    try { App.setRoot("Settings.fxml"); } 
+//                    catch (IOException ex) {}
+//                });
+                
                 buttons.add(button_home);
                 buttons.add(button_courses);
                 buttons.add(button_grades);
@@ -91,6 +115,26 @@ public class HomePageController implements Initializable {
 
             case "PROFESSOR":
                 
+                button_courses.setOnAction(event -> {
+                    try { showCourseListPopup(); } 
+                    catch (IOException ex) {}
+                });
+                
+//                button_grades.setOnAction(event -> {
+//                    try { App.setRoot("Grades.fxml"); } 
+//                    catch (IOException ex) {}
+//                });
+//                
+//                button_calendar.setOnAction(event -> {
+//                    try { App.setRoot("Calendar.fxml"); } 
+//                    catch (IOException ex) {}
+//                });
+//                
+//                button_settings.setOnAction(event -> {
+//                    try { App.setRoot("Settings.fxml"); } 
+//                    catch (IOException ex) {}
+//                });
+                
                 buttons.add(button_home);
                 buttons.add(button_courses);
                 buttons.add(button_grades);
@@ -100,6 +144,21 @@ public class HomePageController implements Initializable {
                 break;
                 
             case "ADMIN":
+                
+//                button_registrar.setOnAction(event -> {
+//                    try { App.setRoot("Registrar.fxml"); } 
+//                    catch (IOException ex) {}
+//                });
+//                
+//                button_accounts.setOnAction(event -> {
+//                    try { App.setRoot("Accounts.fxml"); } 
+//                    catch (IOException ex) {}
+//                });
+//                
+//                button_settings.setOnAction(event -> {
+//                    try { App.setRoot("Settings.fxml"); } 
+//                    catch (IOException ex) {}
+//                });
                 
                 buttons.add(button_home);
                 buttons.add(button_registrar);
