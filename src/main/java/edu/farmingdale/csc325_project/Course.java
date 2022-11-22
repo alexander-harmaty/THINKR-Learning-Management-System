@@ -19,11 +19,11 @@ public class Course {
     protected String building;
     protected String professor;
     protected String section;
-     String students;
+    protected String[] students;
     protected String subject;
     protected String title;
 
-    public Course(int CRN, int code, int credits, int room, String building, String professor, String section, String students, String subject, String title) {
+    public Course(int CRN, int code, int credits, int room, String building, String professor, String section, String[] students, String subject, String title) {
         this.CRN = CRN;
         this.code = code;
         this.credits = credits;
@@ -45,7 +45,7 @@ public class Course {
         this.building = (String)document.get("building");
         this.professor = (String)document.get("professor");
         this.section = (String)document.get("section");
-        this.students = (String)document.get("students");
+        this.students = (String[])document.get("students");
         this.subject = (String)document.get("subject");
         this.title = (String)document.get("title");
     }

@@ -31,22 +31,29 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class CourseListPopupController implements Initializable{
 
     @FXML
-    private MFXTableView<?> tableView_popup;
+    private MFXTableView<Course> tableView_popup;
     
      @FXML
-    private MFXTableColumn<?> CRNCol;
+    private MFXTableColumn<Integer> CRNCol;
      
      @FXML
-    private MFXTableColumn<?> codeCol;
+    private MFXTableColumn<Integer> codeCol;
      
     @FXML
-    private MFXTableColumn<?> subjectCol;
+    private MFXTableColumn<String> subjectCol;
     
      @FXML
-    private MFXTableColumn<?> titleCol;
+    private MFXTableColumn<String> titleCol;
      
-     private ObservableList<Course> listOfCourses = FXCollections.observableArrayList();
+    private ObservableList<Course> listOfCourses = FXCollections.observableArrayList();
+    
+    private Course course;
 
+    public ObservableList<Course> getListOfCourses()
+    {
+        return listOfCourses;
+    }
+     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
      
@@ -67,17 +74,18 @@ public class CourseListPopupController implements Initializable{
                     for (QueryDocumentSnapshot document : documents) 
                     {
                         //copy document array into students
-                        String[] students =  (String[]) (document.getData().get("students")); 
+                        course = new Course(document);
                         
-                        for(String student: students)
+                        for(String student: course.students)
                         {
                             if(App.currentUser.userID == student)
                             {
-                                
+                                listOfCourses.add(course);
                             }
                         }
                         
                     }
+                   tableView_popup.setItems(listOfCourses);
                     
                 }
             } catch (InterruptedException ex) {
