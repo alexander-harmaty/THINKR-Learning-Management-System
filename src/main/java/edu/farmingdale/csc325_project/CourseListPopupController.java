@@ -22,6 +22,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 
@@ -31,19 +33,19 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class CourseListPopupController implements Initializable{
 
     @FXML
-    private MFXTableView<Course> tableView_popup;
+    private TableView<Course> tableView_popup;
     
      @FXML
-    private MFXTableColumn<Integer> CRNCol;
+    private TableColumn<Course, Integer> CRNCol;
      
      @FXML
-    private MFXTableColumn<Integer> codeCol;
+    private TableColumn<Course, Integer> codeCol;
      
     @FXML
-    private MFXTableColumn<String> subjectCol;
+    private TableColumn<Course, String> subjectCol;
     
      @FXML
-    private MFXTableColumn<String> titleCol;
+    private TableColumn<Course, String> titleCol;
      
     private ObservableList<Course> listOfCourses = FXCollections.observableArrayList();
     
@@ -58,7 +60,10 @@ public class CourseListPopupController implements Initializable{
     public void initialize(URL url, ResourceBundle rb) {
      
         
-       // CRNCol.cellFactoryProperty();
+        CRNCol.setCellFactoryProperty(new PropertyValueFactory<>("CRN"));
+        codeCol.setCellFactoryProperty(new PropertyValueFactory<>("code"));
+        subjectCol.setCellFactoryProperty(new PropertyValueFactory<>("subject"));
+        titleCol.setCellFactoryProperty(new PropertyValueFactory<>("title"));
         
         
         ApiFuture<QuerySnapshot> future =  App.fstore.collection("course").get();
