@@ -4,6 +4,7 @@
  */
 package edu.farmingdale.csc325_project;
 
+import com.google.cloud.firestore.QueryDocumentSnapshot;
 import java.io.IOException;
 
 /**
@@ -35,6 +36,19 @@ public class Course {
         this.title = title;
     }
     
+    public Course(QueryDocumentSnapshot document)
+    {
+        this.CRN = (int) document.get("CRN");
+        this.code = (int) document.get("code");
+        this.credits = (int) document.get("credits");
+        this.room = (int) document.get("room");
+        this.building = (String)document.get("building");
+        this.professor = (String)document.get("professor");
+        this.section = (String)document.get("section");
+        this.students = (String)document.get("students");
+        this.subject = (String)document.get("subject");
+        this.title = (String)document.get("title");
+    }
     public int getCRN() {
         return CRN;
     }
