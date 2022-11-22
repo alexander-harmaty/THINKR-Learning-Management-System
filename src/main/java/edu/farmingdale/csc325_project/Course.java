@@ -40,10 +40,10 @@ public class Course {
     
     public Course(QueryDocumentSnapshot document)
     {
-//        this.CRN = Integer.valueOf((String) document.getData().get("CRN"));
-//        this.code = (int) document.getData().get("code");
-//        this.credits = (int) document.getData().get("credits");
-//        this.room = (int) document.getData().get("room");
+        this.CRN =  Integer.parseInt(document.getData().get("CRN").toString());
+        this.code = Integer.parseInt(document.getData().get("code").toString());
+        this.credits = Integer.parseInt(document.getData().get("credits").toString());
+        this.room = Integer.parseInt(document.getData().get("room").toString());
         this.building = (String)document.getData().get("building");
         this.professor = (String)document.getData().get("professor");
         this.section = (String)document.getData().get("section");
