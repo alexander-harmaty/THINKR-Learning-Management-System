@@ -19,7 +19,7 @@ public class Course {
     protected String building;
     protected String professor;
     protected String section;
-    protected String students;
+     String students;
     protected String subject;
     protected String title;
 
@@ -49,6 +49,7 @@ public class Course {
         this.subject = (String)document.get("subject");
         this.title = (String)document.get("title");
     }
+    
     public int getCRN() {
         return CRN;
     }
