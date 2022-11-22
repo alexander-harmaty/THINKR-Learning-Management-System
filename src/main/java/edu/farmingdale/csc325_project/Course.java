@@ -106,11 +106,11 @@ public class Course {
         this.section = section;
     }
 
-    public String getStudents() {
+    public String[] getStudents() {
         return students;
     }
 
-    public void setStudents(String students) {
+    public void setStudents(String[] students) {
         this.students = students;
     }
 

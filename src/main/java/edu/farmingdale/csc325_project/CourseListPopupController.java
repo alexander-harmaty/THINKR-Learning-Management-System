@@ -60,10 +60,10 @@ public class CourseListPopupController implements Initializable{
     public void initialize(URL url, ResourceBundle rb) {
      
         
-        CRNCol.setCellFactoryProperty(new PropertyValueFactory<>("CRN"));
-        codeCol.setCellFactoryProperty(new PropertyValueFactory<>("code"));
-        subjectCol.setCellFactoryProperty(new PropertyValueFactory<>("subject"));
-        titleCol.setCellFactoryProperty(new PropertyValueFactory<>("title"));
+        CRNCol.setCellValueFactory(new PropertyValueFactory<>("CRN"));
+        codeCol.setCellValueFactory(new PropertyValueFactory<>("code"));
+        subjectCol.setCellValueFactory(new PropertyValueFactory<>("subject"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         
         
         ApiFuture<QuerySnapshot> future =  App.fstore.collection("course").get();
