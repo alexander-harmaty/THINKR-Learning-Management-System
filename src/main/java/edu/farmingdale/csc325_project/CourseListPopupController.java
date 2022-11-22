@@ -84,7 +84,7 @@ public class CourseListPopupController implements Initializable{
                         
                         for(String student: course.students)
                         {
-                            if(App.currentUser.userID == student)
+                            if(App.currentUser.userID.equals(student))
                             {
                                 listOfCourses.add(course);
                             }

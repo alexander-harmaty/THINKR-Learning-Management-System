@@ -7,6 +7,7 @@ package edu.farmingdale.csc325_project;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import java.io.IOException;
+import java.util.List;
 
 /**
  *
@@ -20,11 +21,11 @@ public class Course {
     protected String building;
     protected String professor;
     protected String section;
-    protected String[] students;
+    protected List<String> students;
     protected String subject;
     protected String title;
 
-    public Course(int CRN, int code, int credits, int room, String building, String professor, String section, String[] students, String subject, String title) {
+    public Course(int CRN, int code, int credits, int room, String building, String professor, String section, List<String> students, String subject, String title) {
         this.CRN = CRN;
         this.code = code;
         this.credits = credits;
@@ -39,14 +40,14 @@ public class Course {
     
     public Course(QueryDocumentSnapshot document)
     {
-        this.CRN = Integer.valueOf((String) document.getData().get("CRN"));
+//        this.CRN = Integer.valueOf((String) document.getData().get("CRN"));
 //        this.code = (int) document.getData().get("code");
 //        this.credits = (int) document.getData().get("credits");
 //        this.room = (int) document.getData().get("room");
         this.building = (String)document.getData().get("building");
         this.professor = (String)document.getData().get("professor");
         this.section = (String)document.getData().get("section");
-        this.students = (String[])document.getData().get("students");
+        this.students = (List<String>)document.getData().get("students");
         this.subject = (String)document.getData().get("subject");
         this.title = (String)document.getData().get("title");
     }
@@ -107,11 +108,11 @@ public class Course {
         this.section = section;
     }
 
-    public String[] getStudents() {
+    public List<String> getStudents() {
         return students;
     }
 
-    public void setStudents(String[] students) {
+    public void setStudents(List<String> students) {
         this.students = students;
     }
 
