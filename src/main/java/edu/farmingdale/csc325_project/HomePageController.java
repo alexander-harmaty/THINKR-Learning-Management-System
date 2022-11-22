@@ -61,7 +61,7 @@ public class HomePageController implements Initializable {
     void showCourseListPopup() throws IOException {
         
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CourseListPopup"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CourseListPopup.fxml"));
             Parent root = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle("Course List");

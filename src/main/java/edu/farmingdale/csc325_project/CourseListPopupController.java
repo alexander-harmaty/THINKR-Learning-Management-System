@@ -66,7 +66,7 @@ public class CourseListPopupController implements Initializable{
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         
         
-        ApiFuture<QuerySnapshot> future =  App.fstore.collection("course").get();
+        ApiFuture<QuerySnapshot> future =  App.fstore.collection("courses").get();
             // future.get() blocks on response
             List<QueryDocumentSnapshot> documents;
             
@@ -78,8 +78,9 @@ public class CourseListPopupController implements Initializable{
                 {
                     for (QueryDocumentSnapshot document : documents) 
                     {
-                        //copy document array into students
+                        //DocumentReference currentDocument = document.getReference();
                         course = new Course(document);
+                       // this.code = (int) document.getData().get("code");
                         
                         for(String student: course.students)
                         {

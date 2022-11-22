@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXTableView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc325_project.CourseListPopupController">
-   <center>
-      <MFXTableView fx:id="tableView_popup" BorderPane.alignment="CENTER" />
-   </center>
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
+   <center>
+      <TableView fx:id="tableView_popup" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="CRNCol" prefWidth="75.0" text="C1" />
+          <TableColumn fx:id="codeCol" prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="subjectCol" prefWidth="49.0" text="Column X" />
+            <TableColumn fx:id="titleCol" prefWidth="75.0" text="Column X" />
+        </columns>
+      </TableView>
+   </center>
 </BorderPane>
