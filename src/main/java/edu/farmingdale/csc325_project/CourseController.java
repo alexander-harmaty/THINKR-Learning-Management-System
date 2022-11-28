@@ -35,6 +35,6 @@ public class CourseController extends HomePageController implements Initializabl
     
     public void readCourseList()
     {
-        
+        App.currentUser.type();
     }
 }

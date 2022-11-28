@@ -18,6 +18,7 @@ public class App extends Application {
     
     //creates instance of currentUser
     static CurrentUser currentUser;
+    static Course currentCourse;
     
     public static Firestore fstore;
     private static FirestoreContext contextFirebase;
