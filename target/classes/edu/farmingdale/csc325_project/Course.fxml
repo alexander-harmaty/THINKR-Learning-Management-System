@@ -64,7 +64,7 @@
                </font>
             </Text>
             <MFXTableView fx:id="tableView_Announce" prefHeight="188.0" prefWidth="611.0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Course List " wrappingWidth="728.4382934570312">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Assignments " wrappingWidth="728.4382934570312">
                <font>
                   <Font size="24.0" />
                </font>
