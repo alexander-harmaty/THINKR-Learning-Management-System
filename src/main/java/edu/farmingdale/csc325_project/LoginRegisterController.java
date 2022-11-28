@@ -202,9 +202,7 @@ public class LoginRegisterController implements Initializable {
                 
         String inputEmail = textField_existing_email.getText();
         String inputPass = textField_existing_pass.getText();
-        String docEmail;
-        String docPass;
-        String docType;
+        String docUID, docDOB, docEmail, docFirstName, docLastName, docPass, docType;
         Boolean userFound = false;
         
         if (!"".equals(inputEmail) && !"".equals(inputPass))
@@ -224,27 +222,23 @@ public class LoginRegisterController implements Initializable {
                     {
                         docEmail = String.valueOf(document.getData().get("email"));
                         docPass = String.valueOf(document.getData().get("password"));
-                        docType = String.valueOf(document.getData().get("type"));
                         
                         if (docEmail.equals(inputEmail) && docPass.equals(inputPass)) 
                         {
-                            userFound = true;
-                            App.currentUser = new CurrentUser();
+                            docUID = document.getId();
+                            docDOB = String.valueOf(document.getData().get("DOB"));
+                            docFirstName = String.valueOf(document.getData().get("firstName"));
+                            docLastName = String.valueOf(document.getData().get("lastName"));
+                            docType = String.valueOf(document.getData().get("type"));
+                            
+                            App.currentUser = new CurrentUser(
+                                    docUID, docDOB, docEmail, 
+                                    docFirstName, docLastName, "", docType
+                            );
 
-                            switch(docType) 
-                            {
-                                case "STUDENT":           
-                                    App.setRoot("StudentView");
-                                    break;
-                                case "PROFESSOR":
-                                    App.setRoot("ProfessorView");
-                                    break;
-                                case "ADMIN":
-                                    App.setRoot("AdminView");
-                                    break;
-                                default:
-                                    break;
-                            }
+                            userFound = true;
+                            
+                            App.setRoot("HomePage");
                             
                         }
                     }
