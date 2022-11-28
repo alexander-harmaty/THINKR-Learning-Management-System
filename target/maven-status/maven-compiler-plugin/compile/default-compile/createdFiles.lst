@@ -1,0 +1,12 @@
+edu/farmingdale/csc325_project/ProfessorViewController.class
+edu/farmingdale/csc325_project/CurrentUser.class
+edu/farmingdale/csc325_project/AdminViewController.class
+edu/farmingdale/csc325_project/StudentViewController.class
+edu/farmingdale/csc325_project/LoginRegisterController.class
+edu/farmingdale/csc325_project/FirestoreContext.class
+edu/farmingdale/csc325_project/HomePageController.class
+edu/farmingdale/csc325_project/User.class
+edu/farmingdale/csc325_project/App.class
+edu/farmingdale/csc325_project/DBConnection.class
+edu/farmingdale/csc325_project/CourseController.class
+edu/farmingdale/csc325_project/Course.class

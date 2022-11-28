@@ -118,9 +118,9 @@ public class HomePageController implements Initializable {
                     
                 }
             } catch (InterruptedException ex) {
-            Logger.getLogger(CourseListPopupController.class.getName()).log(Level.SEVERE, null, ex);
+            
         } catch (ExecutionException ex) {
-            Logger.getLogger(CourseListPopupController.class.getName()).log(Level.SEVERE, null, ex);
+           
         }
             
         tableView_popup.setVisible(false);
