@@ -59,11 +59,10 @@ public class CourseListPopupController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
      
-        
-        CRNCol.setCellValueFactory(new PropertyValueFactory<>("CRN"));
-        codeCol.setCellValueFactory(new PropertyValueFactory<>("code"));
         subjectCol.setCellValueFactory(new PropertyValueFactory<>("subject"));
+        codeCol.setCellValueFactory(new PropertyValueFactory<>("code"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        CRNCol.setCellValueFactory(new PropertyValueFactory<>("CRN"));
         
         
         ApiFuture<QuerySnapshot> future =  App.fstore.collection("courses").get();
