@@ -55,10 +55,10 @@
                         <TextArea prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                      <children>
-                        <MFXButton />
-                        <MFXButton />
+                        <MFXButton fx:id="button_upload" text="Upload" />
+                        <MFXButton fx:id="button_save" text="Save and Submit" />
                      </children>
                   </HBox>
                </children>
