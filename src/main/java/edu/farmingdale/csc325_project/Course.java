@@ -24,8 +24,9 @@ public class Course {
     protected List<String> students;
     protected String subject;
     protected String title;
+    protected List<String> assignments;
 
-    public Course(int CRN, int code, int credits, int room, String building, String professor, String section, List<String> students, String subject, String title) {
+    public Course(int CRN, int code, int credits, int room, String building, String professor, String section, List<String> students, String subject, String title,List<String> assignments) {
         this.CRN = CRN;
         this.code = code;
         this.credits = credits;
@@ -36,6 +37,7 @@ public class Course {
         this.students = students;
         this.subject = subject;
         this.title = title;
+        this.assignments = assignments;
     }
     
     public Course(QueryDocumentSnapshot document)
@@ -50,7 +52,10 @@ public class Course {
         this.students = (List<String>)document.getData().get("students");
         this.subject = (String)document.getData().get("subject");
         this.title = (String)document.getData().get("title");
+        this.assignments=(List<String>)document.getData().get("assignments");
     }
+
+    
     
     public int getCRN() {
         return CRN;
@@ -130,6 +135,14 @@ public class Course {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+    
+    public List<String> getAssignments() {
+        return assignments;
+    }
+
+    public void setAssignments(List<String> assignments) {
+        this.assignments = assignments;
     }
             
 }

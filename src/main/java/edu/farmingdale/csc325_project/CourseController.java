@@ -31,6 +31,10 @@ public class CourseController extends HomePageController implements Initializabl
     public void initialize(URL url, ResourceBundle rb) {
         updateMenu();
     
-   
+    }
+    
+    public void readCourseList()
+    {
+        
     }
 }
