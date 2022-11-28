@@ -21,6 +21,17 @@ public class Assignment {
     protected String grade; 
     protected String professor; 
     protected List<String> students;
+
+    public Assignment(int ID, String assignDate, String details, String grade, String professor, List<String> students) {
+        this.ID = ID;
+        this.assignDate = assignDate;
+        this.details = details;
+        this.grade = grade;
+        this.professor = professor;
+        this.students = students;
+    }
+    
+    
     
     
     
