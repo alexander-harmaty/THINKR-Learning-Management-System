@@ -35,17 +35,11 @@ public class CourseListPopupController implements Initializable{
     @FXML
     private TableView<Course> tableView_popup;
     
-     @FXML
-    private TableColumn<Course, Integer> CRNCol;
-     
-     @FXML
-    private TableColumn<Course, Integer> codeCol;
+    @FXML
+    private TableColumn<Course, Integer> CRNCol, codeCol;
      
     @FXML
-    private TableColumn<Course, String> subjectCol;
-    
-     @FXML
-    private TableColumn<Course, String> titleCol;
+    private TableColumn<Course, String> subjectCol, titleCol;
      
     private ObservableList<Course> listOfCourses = FXCollections.observableArrayList();
     
@@ -96,12 +90,8 @@ public class CourseListPopupController implements Initializable{
             } catch (InterruptedException ex) {
             Logger.getLogger(CourseListPopupController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ExecutionException ex) {
-            Logger.getLogger(CourseListPopupController.class.getName()).log(Level.SEVERE, null, ex);         
-    
-//                } catch (CloneNotSupportedException ex) {
-//            Logger.getLogger(CourseListPopupController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-    }
+            Logger.getLogger(CourseListPopupController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
             

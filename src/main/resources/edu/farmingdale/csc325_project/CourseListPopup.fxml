@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc325_project.CourseListPopupController">
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc325_project.CourseListPopupController">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
@@ -15,10 +15,10 @@
    <center>
       <TableView fx:id="tableView_popup" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="CRNCol" prefWidth="75.0" text="C1" />
-          <TableColumn fx:id="codeCol" prefWidth="75.0" text="C2" />
-            <TableColumn fx:id="subjectCol" prefWidth="49.0" text="Column X" />
-            <TableColumn fx:id="titleCol" prefWidth="75.0" text="Column X" />
+            <TableColumn fx:id="subjectCol" minWidth="-1.0" prefWidth="75.0" text="Subject" />
+          <TableColumn fx:id="codeCol" minWidth="-1.0" prefWidth="75.0" text="Code" />
+            <TableColumn fx:id="titleCol" minWidth="-1.0" prefWidth="75.0" text="Title" />
+          <TableColumn fx:id="CRNCol" minWidth="-1.0" prefWidth="75.0" text="CRN" />
         </columns>
       </TableView>
    </center>

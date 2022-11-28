@@ -3,6 +3,8 @@
 <?import com.calendarfx.view.YearMonthView?>
 <?import io.github.palexdev.materialfx.controls.MFXNotificationCenter?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -51,4 +53,14 @@
          </padding>
       </VBox>
    </right>
+   <center>
+      <TableView fx:id="tableView_popup" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" visible="false" BorderPane.alignment="CENTER">
+         <columns>
+            <TableColumn fx:id="subjectCol" minWidth="-1.0" prefWidth="75.0" text="Subject" />
+            <TableColumn fx:id="codeCol" minWidth="-1.0" prefWidth="75.0" text="Code" />
+            <TableColumn fx:id="titleCol" minWidth="-Infinity" prefWidth="175.0" text="Title" />
+            <TableColumn fx:id="CRNCol" minWidth="-1.0" prefWidth="75.0" text="CRN" />
+         </columns>
+      </TableView>
+   </center>
 </BorderPane>
