@@ -15,25 +15,79 @@ import java.util.List;
  */
 public class Assignment {
     
-    protected int ID; 
-    protected String assignDate; 
-    protected String details; 
-    protected String grade; 
-    protected String professor; 
-    protected List<String> students;
+    protected String title; 
+    protected String dueDate; 
+    protected String assignedDate; 
+    protected String detailsText; 
+    protected String detailsFile;
+    protected List<String> submissions;
+    protected List<String> course; 
+ 
+    
 
-    public Assignment(int ID, String assignDate, String details, String grade, String professor, List<String> students) {
-        this.ID = ID;
-        this.assignDate = assignDate;
-        this.details = details;
-        this.grade = grade;
-        this.professor = professor;
-        this.students = students;
+    public Assignment(String title, String dueDate, String assignedDate, String detailsText, String detailsFile, List<String> submissions, List<String> course) {
+        this.title = title;
+        this.dueDate = dueDate;
+        this.assignedDate = assignedDate;
+        this.detailsText = detailsText;
+        this.detailsFile = detailsFile;
+        this.submissions = submissions;
+        this.course = course;
+    } 
+    
+    
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate  = dueDate;
+    }
+
+    public String getAssignedDate() {
+        return assignedDate;
+    }
+
+    public void setAssignedDate(String assignedDate) {
+        this.assignedDate = assignedDate;
+    }
+
+    public String getDetailsText() {
+        return detailsText;
+    }
+
+    public void setDetailsText(String detailsText) {
+        this.detailsText = detailsText;
+    }
+
+    public String getDetailsFile() {
+        return detailsFile;
+    }
+
+    public void setDetailsFile(String detailsFile) {
+        this.detailsFile = detailsFile;
     }
     
-    
-    
-    
-    
-    
+    public List<String> getSubmissions() {
+        return submissions;
+    }
+
+    public void setSubmissions(List<String> submissions) {
+        this.submissions = submissions;
+    }
+    public List<String> getCourse() {
+        return course;
+    }
+
+    public void setCourse(List<String> course) {
+        this.course = course;
+    }
 }
