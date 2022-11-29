@@ -25,16 +25,17 @@ public class CourseController extends HomePageController implements Initializabl
     private MFXTableView<?> tableView_Announce;
 
     @FXML
-    private MFXTableView<?> tableView_Course;
+    private MFXTableView<?> tableView_assignments;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         updateMenu();
+        
+        readCourseList();
     
     }
     
-    public void readCourseList()
-    {
-        App.currentUser.type();
+    public void readCourseList() {
+        label_classTitle.setText(App.currentCourse.title);
     }
 }

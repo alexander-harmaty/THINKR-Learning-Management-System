@@ -55,7 +55,19 @@ public class Course {
         this.assignments=(List<String>)document.getData().get("assignments");
     }
 
-    
+    public Course(Course course) {
+        this.CRN = course.CRN;
+        this.code = course.code;
+        this.credits = course.credits;
+        this.room = course.room;
+        this.building = course.building;
+        this.professor = course.professor;
+        this.section = course.section;
+        this.students = course.students;
+        this.subject = course.subject;
+        this.title = course.title;
+        this.assignments = course.assignments;
+    }
     
     public int getCRN() {
         return CRN;

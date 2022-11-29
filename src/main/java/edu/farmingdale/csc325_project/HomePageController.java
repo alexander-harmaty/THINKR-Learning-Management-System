@@ -27,6 +27,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
@@ -83,47 +85,78 @@ public class HomePageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         updateMenu();
+        readCourseList();
+        tableView_popup.setVisible(false);
         
         subjectCol.setCellValueFactory(new PropertyValueFactory<>("subject"));
         codeCol.setCellValueFactory(new PropertyValueFactory<>("code"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         CRNCol.setCellValueFactory(new PropertyValueFactory<>("CRN"));
         
-        ApiFuture<QuerySnapshot> future =  App.fstore.collection("courses").get();
-            // future.get() blocks on response
-            List<QueryDocumentSnapshot> documents;
-            
-            try 
-            {
-                documents = future.get().getDocuments();
-            
-                if(!documents.isEmpty())
-                {
-                    for (QueryDocumentSnapshot document : documents) 
-                    {
-                        //DocumentReference currentDocument = document.getReference();
-                        course = new Course(document);
-                       // this.code = (int) document.getData().get("code");
-                        
-                        for(String student: course.students)
+        tableView_popup.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                
+                if(event.getButton().equals(MouseButton.PRIMARY)) {
+                    if(event.getClickCount() == 2) {
+                        int selectedCRN = tableView_popup.getSelectionModel().getSelectedItem().getCRN();
+                
+                        ApiFuture<QuerySnapshot> future =  App.fstore.collection("courses").get();
+                        List<QueryDocumentSnapshot> documents;
+
+                        try 
                         {
-                            if(App.currentUser.userID.equals(student))
+                            documents = future.get().getDocuments();
+
+                            if(!documents.isEmpty())
                             {
-                                listOfCourses.add(course);
+                                for (QueryDocumentSnapshot document : documents) 
+                                {
+                                    course = new Course(document);
+
+                                    if(course.getCRN() == selectedCRN) {
+                                        App.currentCourse = new Course(course);
+                                        App.setRoot("Course");
+                                    }
+                                }
                             }
-                        }
-                        
+                        } catch (InterruptedException | ExecutionException | IOException ex) {}
                     }
-                   tableView_popup.setItems(listOfCourses);
-                    
                 }
-            } catch (InterruptedException ex) {
-            
-        } catch (ExecutionException ex) {
-           
-        }
-            
-        tableView_popup.setVisible(false);
+            }
+        });
+    }
+    
+    void readCourseList() {
+        ApiFuture<QuerySnapshot> future =  App.fstore.collection("courses").get();
+        // future.get() blocks on response
+        List<QueryDocumentSnapshot> documents;
+
+        try 
+        {
+            documents = future.get().getDocuments();
+
+            if(!documents.isEmpty())
+            {
+                for (QueryDocumentSnapshot document : documents) 
+                {
+                    //DocumentReference currentDocument = document.getReference();
+                    course = new Course(document);
+                   // this.code = (int) document.getData().get("code");
+
+                    for(String student: course.students)
+                    {
+                        if(App.currentUser.userID.equals(student))
+                        {
+                            listOfCourses.add(course);
+                        }
+                    }
+
+                }
+               tableView_popup.setItems(listOfCourses);
+
+            }
+        } catch (InterruptedException | ExecutionException ex) {}
     }
     
     void showCourseListPopup() throws IOException {
