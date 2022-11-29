@@ -5,6 +5,8 @@
 <?import io.github.palexdev.materialfx.controls.MFXTableView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -69,11 +71,12 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <MFXTableView fx:id="tableView_assignments" prefHeight="324.0" prefWidth="730.0" style="-fx-border-color: #4653eb;">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </MFXTableView>
+            <TableView fx:id="tableView_assignments" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="324.0" prefWidth="730.0">
+              <columns>
+                <TableColumn fx:id="tableColumn_due" prefWidth="100.0" text="Due" />
+                <TableColumn fx:id="tableColumn_title" prefWidth="630.0" text="Title" />
+              </columns>
+            </TableView>
          </children>
          <opaqueInsets>
             <Insets />
