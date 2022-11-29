@@ -63,7 +63,7 @@ public class AssignmentController implements Initializable {
 
     @FXML
     private MFXTextField textField_title;
-    
+
     @FXML
     protected final Label label_title = new Label();
 
@@ -76,7 +76,7 @@ public class AssignmentController implements Initializable {
     void handleButton_upload(ActionEvent event) {
 
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         updateVBox();
@@ -84,35 +84,28 @@ public class AssignmentController implements Initializable {
 
     protected void updateVBox() {
         VBox_left.getChildren().clear();
-        
-        List<Label> vbLeft = new ArrayList<>();
-        
-        switch(App.currentUser.type) {
-            case "STUDENT":  
+
+        switch (App.currentUser.type) {
+            case "STUDENT":
                 label_title.setText(App.currentAssignment.title);
                 Font font = new Font("System", 20);
                 label_title.setFont(font);
                 label_title.setPrefHeight(40);
                 label_title.setPrefWidth(268);
 
-                vbLeft.add(label_title);
-                
+                VBox_left.getChildren().add(label_title);
+
                 break;
-                
+
             case "PROFESSOR":
-                
-                
-                
+
                 break;
-                
+
             default:
-                
+
                 break;
         }
-        
-        
-}
-    
-}
 
+    }
 
+}
