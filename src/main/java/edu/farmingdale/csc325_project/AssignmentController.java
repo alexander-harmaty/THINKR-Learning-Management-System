@@ -121,6 +121,15 @@ public class AssignmentController implements Initializable {
     protected void updateAssignment() {
         VBox_left.getChildren().clear();
         VBox_right.getChildren().clear();
+        HBox_buttons.getChildren().clear();
+       
+        textField_title.setText(App.currentAssignment.title);
+        Font ti = new Font("System", 20);
+        textField_title.setFont(ti);
+        textField_title.setPrefHeight(40);
+        textField_title.setPrefWidth(268);
+        textField_title.setAlignment(Pos.CENTER);
+        textField_title.setStyle("-fx-border-color:" + "#4653eb");
         
         label_title.setText(App.currentAssignment.title);
         Font font = new Font("System", 20);
@@ -129,10 +138,20 @@ public class AssignmentController implements Initializable {
         label_title.setPrefWidth(268);
         label_title.setAlignment(Pos.CENTER);
         label_title.setStyle("-fx-border-color:" + "#4653eb");
+        
+        
         switch (App.currentUser.type) {
             
             case "STUDENT":
                 VBox_left.getChildren().add(label_title);
+                VBox_left.getChildren().add(textField_grade);
+                VBox_left.getChildren().add(textField_dueDate);
+                VBox_left.getChildren().add(textArea_studentComment);
+                VBox_left.getChildren().add(label_title);
+                
+                HBox_buttons.getChildren().add(button_uploadFile);
+                HBox_buttons.getChildren().add(button_save);
+                
 
                 break;
 
