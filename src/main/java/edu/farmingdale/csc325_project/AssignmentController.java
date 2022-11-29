@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 
@@ -84,21 +85,25 @@ public class AssignmentController implements Initializable {
 
     protected void updateVBox() {
         VBox_left.getChildren().clear();
-
+        VBox_right.getChildren().clear();
+        
+        label_title.setText(App.currentAssignment.title);
+        Font font = new Font("System", 20);
+        label_title.setFont(font);
+        label_title.setPrefHeight(40);
+        label_title.setPrefWidth(268);
+        label_title.setAlignment(Pos.CENTER);
+        label_title.setStyle("-fx-border-color:" + "#4653eb");
         switch (App.currentUser.type) {
+            
             case "STUDENT":
-                label_title.setText(App.currentAssignment.title);
-                Font font = new Font("System", 20);
-                label_title.setFont(font);
-                label_title.setPrefHeight(40);
-                label_title.setPrefWidth(268);
-
                 VBox_left.getChildren().add(label_title);
 
                 break;
 
             case "PROFESSOR":
-
+                
+                
                 break;
 
             default:
