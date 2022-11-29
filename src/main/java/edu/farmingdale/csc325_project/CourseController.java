@@ -4,6 +4,7 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import io.github.palexdev.materialfx.controls.MFXTableView;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 
 import javafx.scene.layout.VBox;
 import org.controlsfx.control.action.ActionUtils;
@@ -83,12 +86,6 @@ public class CourseController extends HomePageController implements Initializabl
                              listOfAssignments.add(assignment);
                         }
                     }
-//                            //Integer.parseInt(assignment.getCourse().toString()));
-//                    for (int CRN : courseIDs) {
-//                        if (App.currentCourse.getCRN() == CRN) {
-//                            listOfAssignments.add(assignment);
-//                        }
-//                    }
 
                 }
                 tableView_assignments.setItems(listOfAssignments);
@@ -107,4 +104,8 @@ public class CourseController extends HomePageController implements Initializabl
         label_classTitle.setText(App.currentCourse.title);
 
     }
+    
+            
 }
+
+

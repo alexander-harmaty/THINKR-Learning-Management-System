@@ -89,7 +89,7 @@ public class AssignmentController implements Initializable {
         
         switch(App.currentUser.type) {
             case "STUDENT":  
-                label_title.setText("t");
+                label_title.setText(App.currentAssignment.title);
                 Font font = new Font("System", 20);
                 label_title.setFont(font);
                 label_title.setPrefHeight(40);
