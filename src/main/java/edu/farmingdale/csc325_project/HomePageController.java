@@ -99,7 +99,7 @@ public class HomePageController implements Initializable {
                 
                 if(event.getButton().equals(MouseButton.PRIMARY)) {
                     if(event.getClickCount() == 2) {
-                        int selectedCRN = tableView_popup.getSelectionModel().getSelectedItem().getCRN();
+                        String selectedCRN = tableView_popup.getSelectionModel().getSelectedItem().getCRN();
                 
                         ApiFuture<QuerySnapshot> future =  App.fstore.collection("courses").get();
                         List<QueryDocumentSnapshot> documents;
@@ -114,7 +114,7 @@ public class HomePageController implements Initializable {
                                 {
                                     course = new Course(document);
 
-                                    if(course.getCRN() == selectedCRN) {
+                                    if(course.getCRN().equals( selectedCRN)) {
                                         App.currentCourse = new Course(course);
                                         App.setRoot("Course");
                                     }

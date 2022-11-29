@@ -34,6 +34,17 @@ public class Assignment {
         this.submissions = submissions;
         this.course = course;
     } 
+    public Assignment(QueryDocumentSnapshot document)
+    {
+        
+        this.dueDate = (String)document.getData().get("dueDate");
+        this.assignedDate = (String)document.getData().get("assignedDate");
+        this.detailsText = (String)document.getData().get("detailsText");
+        this.submissions = (List<String>)document.getData().get("submissions");
+        this.detailsFile = (String)document.getData().get("detailsFile");
+        this.title = (String)document.getData().get("title");
+        this.course=(List<String>)document.getData().get("course");
+    }
     
     
     public String getTitle() {

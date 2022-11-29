@@ -14,7 +14,7 @@ import java.util.List;
  * @author skysn
  */
 public class Course {
-    protected int CRN;
+    protected String CRN;
     protected int code;
     protected int credits;
     protected int room;
@@ -26,7 +26,7 @@ public class Course {
     protected String title;
     protected List<String> assignments;
 
-    public Course(int CRN, int code, int credits, int room, String building, String professor, String section, List<String> students, String subject, String title,List<String> assignments) {
+    public Course(String CRN, int code, int credits, int room, String building, String professor, String section, List<String> students, String subject, String title,List<String> assignments) {
         this.CRN = CRN;
         this.code = code;
         this.credits = credits;
@@ -42,7 +42,7 @@ public class Course {
     
     public Course(QueryDocumentSnapshot document)
     {
-        this.CRN =  Integer.parseInt(document.getData().get("CRN").toString());
+        this.CRN = (String) document.getData().get("CRN");
         this.code = Integer.parseInt(document.getData().get("code").toString());
         this.credits = Integer.parseInt(document.getData().get("credits").toString());
         this.room = Integer.parseInt(document.getData().get("room").toString());
@@ -69,11 +69,11 @@ public class Course {
         this.assignments = course.assignments;
     }
     
-    public int getCRN() {
+    public String getCRN() {
         return CRN;
     }
 
-    public void setCRN(int CRN) {
+    public void setCRN(String CRN) {
         this.CRN = CRN;
     }
 
