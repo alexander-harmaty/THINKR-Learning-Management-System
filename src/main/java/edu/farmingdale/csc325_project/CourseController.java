@@ -59,53 +59,67 @@ public class CourseController extends HomePageController implements Initializabl
         return listOfAssignments;
     }
 
-    Assignment assignment;
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        //add buttons to menu based on current user
         updateMenu();
-
-        readCourseList();
+        
+        //set course title label
+        label_classTitle.setText(
+                App.currentCourse.subject + "-" + 
+                App.currentCourse.code + ": " + 
+                App.currentCourse.title
+        );
+        
+        //set columns with cell factory
         tableColumn_due.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
         tableColumn_title.setCellValueFactory(new PropertyValueFactory<>("title"));
+                
+        //set list of assignments
+        readAssignmentsIntoTable();
 
-        ApiFuture<QuerySnapshot> future = App.fstore.collection("assignments").get();
+    }
 
+    public void readAssignmentsIntoTable() {
+        
+        //declare assignment and its documents list
+        Assignment assignment;
         List<QueryDocumentSnapshot> documents;
-
+        
+        //get assignments collection
+        ApiFuture<QuerySnapshot> future = App.fstore.collection("assignments").get();
+        
         try {
+            //add collection into list
             documents = future.get().getDocuments();
 
+            //check if empty
             if (!documents.isEmpty()) {
+                
+                //loop through assignments
                 for (QueryDocumentSnapshot document : documents) {
-
+                    
+                    //use assignment document constructor to hold assignment data
                     assignment = new Assignment(document);
-                    //List<Integer> courseIDs = new ArrayList<>();
-                    for (int i = 0; i < assignment.getCourse().size(); i++){
-                        if (App.currentCourse.getCRN().equals( assignment.getCourse().get(i))) {
-                             listOfAssignments.add(assignment);
+                    
+                    //loop through the course field within assignment 
+                    for (int i = 0; i < assignment.getCourse().size(); i++) {
+                        
+                        //if the CRN of the current course matches any CRN assigned within assignment...
+                        if (App.currentCourse.getCRN().equals(assignment.getCourse().get(i))) {
+                            //add assignment to list
+                            listOfAssignments.add(assignment);
                         }
                     }
-
                 }
+                //set tableview to assignments list
                 tableView_assignments.setItems(listOfAssignments);
-
             }
-        } catch (InterruptedException ex) {
-
-        } catch (ExecutionException ex) {
-
-            Logger.getLogger(CourseController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        } 
+        catch (InterruptedException | ExecutionException ex) {}
     }
 
-    public void readCourseList() {
-        label_classTitle.setText(App.currentCourse.title);
-
-    }
     
-            
+    
 }
-
-

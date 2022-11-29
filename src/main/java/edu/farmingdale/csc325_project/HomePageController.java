@@ -39,154 +39,167 @@ public class HomePageController implements Initializable {
 
     @FXML
     private VBox VBox_navBar;
-    
+
     @FXML
     private VBox VBox_navButtons;
-    
+
     @FXML
     protected final MFXButton button_home = new MFXButton("Home");
-    
+
     @FXML
     protected final MFXButton button_courses = new MFXButton("Courses");
-    
+
     @FXML
     protected final MFXButton button_grades = new MFXButton("Grades");
-    
+
     @FXML
     protected final MFXButton button_calendar = new MFXButton("Calendar");
-    
+
     @FXML
     protected final MFXButton button_registrar = new MFXButton("Registrar");
-    
+
     @FXML
     protected final MFXButton button_accounts = new MFXButton("Accounts");
-    
+
     @FXML
     protected final MFXButton button_settings = new MFXButton("Settings");
-    
+
     @FXML
     private TableView<Course> tableView_popup;
-    
+
     @FXML
     private TableColumn<Course, Integer> CRNCol, codeCol;
-     
+
     @FXML
     private TableColumn<Course, String> subjectCol, titleCol;
-     
-    private ObservableList<Course> listOfCourses = FXCollections.observableArrayList();
-    
-    private Course course;
 
-    public ObservableList<Course> getListOfCourses()
-    {
+    private ObservableList<Course> listOfCourses = FXCollections.observableArrayList();
+
+    public ObservableList<Course> getListOfCourses() {
         return listOfCourses;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        //add buttons to menu based on current user
         updateMenu();
-        readCourseList();
-        tableView_popup.setVisible(false);
-        
+
+        //set columns with cell factory
         subjectCol.setCellValueFactory(new PropertyValueFactory<>("subject"));
         codeCol.setCellValueFactory(new PropertyValueFactory<>("code"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         CRNCol.setCellValueFactory(new PropertyValueFactory<>("CRN"));
+
+        //set list of courses
+        readCoursesIntoTable();
+        tableView_popup.setVisible(false);
         
-        tableView_popup.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                
-                if(event.getButton().equals(MouseButton.PRIMARY)) {
-                    if(event.getClickCount() == 2) {
-                        String selectedCRN = tableView_popup.getSelectionModel().getSelectedItem().getCRN();
-                
-                        ApiFuture<QuerySnapshot> future =  App.fstore.collection("courses").get();
-                        List<QueryDocumentSnapshot> documents;
-
-                        try 
-                        {
-                            documents = future.get().getDocuments();
-
-                            if(!documents.isEmpty())
-                            {
-                                for (QueryDocumentSnapshot document : documents) 
-                                {
-                                    course = new Course(document);
-
-                                    if(course.getCRN().equals( selectedCRN)) {
-                                        App.currentCourse = new Course(course);
-                                        App.setRoot("Course");
-                                    }
-                                }
-                            }
-                        } catch (InterruptedException | ExecutionException | IOException ex) {}
-                    }
-                }
-            }
-        });
+        //set code to switch to course view after double clicking a table selection
+        setOnMousePressed();
+        
     }
-    
-    void readCourseList() {
-        ApiFuture<QuerySnapshot> future =  App.fstore.collection("courses").get();
-        // future.get() blocks on response
-        List<QueryDocumentSnapshot> documents;
 
-        try 
-        {
+    public void readCoursesIntoTable() {
+
+        //declare course and its documents list
+        Course course;
+        List<QueryDocumentSnapshot> documents;
+        
+        //get assignments collection
+        ApiFuture<QuerySnapshot> future = App.fstore.collection("courses").get();
+        
+        try {
+            //add collection into list
             documents = future.get().getDocuments();
 
-            if(!documents.isEmpty())
-            {
-                for (QueryDocumentSnapshot document : documents) 
-                {
-                    //DocumentReference currentDocument = document.getReference();
+            //check if empty
+            if (!documents.isEmpty()) {
+                
+                //loop through assignments
+                for (QueryDocumentSnapshot document : documents) {
+                    
+                    //use course document constructor to hold assignment data
                     course = new Course(document);
-                   // this.code = (int) document.getData().get("code");
 
-                    for(String student: course.students)
-                    {
-                        if(App.currentUser.userID.equals(student))
-                        {
+                    //loop thorugh all courses
+                    for (String student : course.students) {
+                        
+                        //if the currentUser ID is found in any of the courses...
+                        if (App.currentUser.userID.equals(student)) {
+                            //add course to list
                             listOfCourses.add(course);
                         }
                     }
-
                 }
-               tableView_popup.setItems(listOfCourses);
-
+                //set tableview to assignments list
+                tableView_popup.setItems(listOfCourses);
             }
         } catch (InterruptedException | ExecutionException ex) {}
     }
-    
-    void showCourseListPopup() throws IOException {
+
+    public void setOnMousePressed() {
         
-        tableView_popup.setVisible(true);
-        
-//        try {
-//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CourseListPopup.fxml"));
-//            Parent root = (Parent) fxmlLoader.load();
-//            Stage stage = new Stage();
-//            stage.setTitle("Course List");
-//            stage.setScene(new Scene(root));
-//            stage.show();
-//        } catch (Exception e) {}
+        tableView_popup.setOnMousePressed((MouseEvent event) -> {
+            
+            //check for primary mouse clicks
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                
+                //if click is double click...
+                if (event.getClickCount() == 2) {
+                    
+                    //read selected course CRN
+                    String selectedCRN = tableView_popup.getSelectionModel().getSelectedItem().getCRN();
+
+                    //declare course and its list
+                    Course course;
+                    List<QueryDocumentSnapshot> documents;
+                    
+                    //get courses collection
+                    ApiFuture<QuerySnapshot> future = App.fstore.collection("courses").get();
+                 
+                    try {
+                        //add collection into list
+                        documents = future.get().getDocuments();
+
+                        //check if empty
+                        if (!documents.isEmpty()) {
+                            
+                            //loop through courses
+                            for (QueryDocumentSnapshot document : documents) {
+                                
+                                //use assignment document constructor to hold assignment data
+                                course = new Course(document);
+
+                                //if the CRN of any course matches the selected course CRN...
+                                if (course.getCRN().equals(selectedCRN)) {
+                                    //set currentCourse to the selected course
+                                    App.currentCourse = new Course(course);
+                                    //change view to course
+                                    App.setRoot("Course");
+                                }
+                            }
+                        }
+                    } 
+                    catch (InterruptedException | ExecutionException | IOException ex) {}
+                }
+            }
+        });
         
     }
-    
+
     protected void updateMenu() {
         VBox_navButtons.getChildren().clear();
-        
+
         List<MFXButton> buttons = new ArrayList<>();
-        
-        switch(App.currentUser.type) {
+
+        switch (App.currentUser.type) {
             case "STUDENT":
-                
+
                 button_courses.setOnAction(event -> {
-                    try { showCourseListPopup(); } 
-                    catch (IOException ex) {}
+                    tableView_popup.setVisible(true);
                 });
-                
+
 //                button_grades.setOnAction(event -> {
 //                    try { App.setRoot("Grades.fxml"); } 
 //                    catch (IOException ex) {}
@@ -206,23 +219,21 @@ public class HomePageController implements Initializable {
 //                    try { App.setRoot("Settings.fxml"); } 
 //                    catch (IOException ex) {}
 //                });
-                
                 buttons.add(button_home);
                 buttons.add(button_courses);
                 buttons.add(button_grades);
                 buttons.add(button_calendar);
                 buttons.add(button_registrar);
                 buttons.add(button_settings);
-                
+
                 break;
 
             case "PROFESSOR":
-                
+
                 button_courses.setOnAction(event -> {
-                    try { showCourseListPopup(); } 
-                    catch (IOException ex) {}
+                    tableView_popup.setVisible(true);
                 });
-                
+
 //                button_grades.setOnAction(event -> {
 //                    try { App.setRoot("Grades.fxml"); } 
 //                    catch (IOException ex) {}
@@ -237,17 +248,16 @@ public class HomePageController implements Initializable {
 //                    try { App.setRoot("Settings.fxml"); } 
 //                    catch (IOException ex) {}
 //                });
-                
                 buttons.add(button_home);
                 buttons.add(button_courses);
                 buttons.add(button_grades);
                 buttons.add(button_calendar);
                 buttons.add(button_settings);
-                
+
                 break;
-                
+
             case "ADMIN":
-                
+
 //                button_registrar.setOnAction(event -> {
 //                    try { App.setRoot("Registrar.fxml"); } 
 //                    catch (IOException ex) {}
@@ -262,20 +272,19 @@ public class HomePageController implements Initializable {
 //                    try { App.setRoot("Settings.fxml"); } 
 //                    catch (IOException ex) {}
 //                });
-                
                 buttons.add(button_home);
                 buttons.add(button_registrar);
                 buttons.add(button_accounts);
                 buttons.add(button_settings);
-                
+
                 break;
-                
+
             default:
-                
+
                 break;
-                
+
         }
-        
+
         for (MFXButton button : buttons) {
             Font font = new Font("System", 26);
             button.setFont(font);
@@ -284,8 +293,7 @@ public class HomePageController implements Initializable {
             button.setMaxHeight(50);
             VBox_navButtons.getChildren().add(button);
         }
-        
+
     }
 
-    
 }
