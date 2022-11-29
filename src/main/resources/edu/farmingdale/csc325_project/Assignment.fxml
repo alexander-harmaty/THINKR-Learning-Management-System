@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc325_project.AssignmentController">
+<BorderPane prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc325_project.AssignmentController">
    <center>
-      <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+      <HBox fx:id="HBox_holder" alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
             <VBox fx:id="VBox_left" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="308.0" spacing="82.0">
                <children>
@@ -59,4 +59,7 @@
          </children>
       </HBox>
    </center>
+   <bottom>
+      <HBox fx:id="HBox_buttons" prefHeight="29.0" prefWidth="720.0" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>
