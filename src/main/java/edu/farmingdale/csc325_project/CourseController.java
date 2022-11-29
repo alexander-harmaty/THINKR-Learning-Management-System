@@ -160,7 +160,7 @@ public class CourseController extends HomePageController implements Initializabl
                                     //set currentAssignment to the selected course
                                     App.currentAssignment = assignment;
                                     //change view to course
-                                    App.setRoot("Assignment.fxml");
+                                    App.setRoot("Assignment");
                                 }
                             }
                         }
