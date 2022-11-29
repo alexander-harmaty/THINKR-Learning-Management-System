@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 
 /**
@@ -30,43 +31,77 @@ import javafx.scene.text.Font;
 public class AssignmentController implements Initializable {
 
     @FXML
+    private HBox HBox_buttons;
+
+    @FXML
+    private HBox HBox_holder;
+    
+    @FXML
     private VBox VBox_left;
 
     @FXML
     private VBox VBox_right;
 
-    @FXML
-    private MFXButton button_save;
-
-    @FXML
-    private MFXButton button_upload;
-
-    @FXML
-    private MFXCheckbox checkBox_file;
-
-    @FXML
-    private MFXCheckbox checkBox_text;
-
-    @FXML
-    private TextArea textArea_assignmentDetails;
-
-    @FXML
-    private TextArea textArea_professorFeedback;
-
-    @FXML
-    private TextArea textArea_studentComment;
-
-    @FXML
-    private MFXTextField textField_dueDate;
-
-    @FXML
-    private MFXTextField textField_grade;
-
-    @FXML
-    private MFXTextField textField_title;
+//    @FXML
+//    private MFXButton button_save;
+//
+//    @FXML
+//    private MFXButton button_upload;
+//
+//    @FXML
+//    private MFXCheckbox checkBox_file;
+//
+//    @FXML
+//    private MFXCheckbox checkBox_text;
+//
+//    @FXML
+//    private TextArea textArea_assignmentDetails;
+//
+//    @FXML
+//    private TextArea textArea_professorFeedback;
+//
+//    @FXML
+//    private TextArea textArea_studentComment;
+//
+//    @FXML
+//    private MFXTextField textField_dueDate;
+//
+//    @FXML
+//    private MFXTextField textField_grade;
+//
+//    @FXML
+//    private MFXTextField textField_title;
 
     @FXML
     protected final Label label_title = new Label();
+    
+    @FXML
+    protected final MFXTextField textField_title = new MFXTextField();
+    
+    @FXML
+    protected final MFXTextField textField_grade = new MFXTextField();
+    
+    @FXML
+    protected final MFXTextField textField_dueDate = new MFXTextField();
+    
+    @FXML
+    protected final TextArea textArea_studentComment = new TextArea();
+    
+    @FXML
+    protected final TextArea textArea_professorFeedback = new TextArea();
+    
+    @FXML
+    protected final TextArea textArea_assignmentDetails = new TextArea();
+    
+    @FXML
+    protected final MFXButton button_uploadFile = new MFXButton();
+    
+    @FXML
+    protected final MFXButton button_save = new MFXButton();
+    //Professor Post
+    //Student Submit, if submission is there just save
+
+    
 
     @FXML
     void handleButton_save(ActionEvent event) {
@@ -74,16 +109,16 @@ public class AssignmentController implements Initializable {
     }
 
     @FXML
-    void handleButton_upload(ActionEvent event) {
+    void handleButton_uploadFile(ActionEvent event) {
 
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        updateVBox();
+        updateAssignment();
     }
 
-    protected void updateVBox() {
+    protected void updateAssignment() {
         VBox_left.getChildren().clear();
         VBox_right.getChildren().clear();
         
