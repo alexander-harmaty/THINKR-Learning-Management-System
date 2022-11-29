@@ -78,10 +78,12 @@ public class CourseController extends HomePageController implements Initializabl
                 
         //set list of assignments
         readAssignmentsIntoTable();
-
+        
+        //set code to switch to assignment view after double clicking a table selection
+        setOnMousePressed();
     }
 
-    public void readAssignmentsIntoTable() {
+    private void readAssignmentsIntoTable() {
         
         //declare assignment and its documents list
         Assignment assignment;
@@ -118,6 +120,56 @@ public class CourseController extends HomePageController implements Initializabl
             }
         } 
         catch (InterruptedException | ExecutionException ex) {}
+    }
+    
+    private void setOnMousePressed() {
+        
+        tableView_assignments.setOnMousePressed((MouseEvent event) -> {
+            
+            //check for primary mouse clicks
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                
+                //if click is double click...
+                if (event.getClickCount() == 2) {
+                    
+                    //read selected course CRN
+                    String selectedAssignTitle = tableView_assignments.getSelectionModel().getSelectedItem().getTitle();
+
+                    //declare assignment and its list
+                    Assignment assignment;
+                    List<QueryDocumentSnapshot> documents;
+                    
+                    //get assignment collection
+                    ApiFuture<QuerySnapshot> future = App.fstore.collection("assignments").get();
+                 
+                    try {
+                        //add collection into list
+                        documents = future.get().getDocuments();
+
+                        //check if empty
+                        if (!documents.isEmpty()) {
+                            
+                            //loop through assignments
+                            for (QueryDocumentSnapshot document : documents) {
+                                
+                                //use assignment document constructor to hold assignment data
+                                assignment = new Assignment(document);
+
+                                //if the CRN of any course matches the selected course CRN...
+                                if (assignment.getTitle().equals(selectedAssignTitle)) {
+                                    //set currentAssignment to the selected course
+                                    App.currentAssignment = assignment;
+                                    //change view to course
+                                    App.setRoot("Assignment.fxml");
+                                }
+                            }
+                        }
+                    } 
+                    catch (InterruptedException | ExecutionException | IOException ex) {}
+                }
+            }
+        });
+        
     }
     
 }
