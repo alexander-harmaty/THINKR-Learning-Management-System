@@ -119,7 +119,5 @@ public class CourseController extends HomePageController implements Initializabl
         } 
         catch (InterruptedException | ExecutionException ex) {}
     }
-
-    
     
 }
