@@ -1,6 +1,7 @@
 package edu.farmingdale.csc325_project;
 
 import com.google.api.core.ApiFuture;
+import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import io.github.palexdev.materialfx.controls.MFXTableView;
@@ -23,6 +24,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import com.google.cloud.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 import javafx.scene.layout.VBox;
 import org.controlsfx.control.action.ActionUtils;
@@ -38,8 +42,8 @@ public class CourseController extends HomePageController implements Initializabl
     @FXML
     private Label label_classTitle;
 
-    @FXML
-    private MFXTableView<?> tableView_Announce;
+   @FXML
+    private TableView<Announcement> tableView_Announce;
 
     @FXML
     private MFXTableView<?> tableView_Course;
@@ -48,15 +52,26 @@ public class CourseController extends HomePageController implements Initializabl
     private TableView<Assignment> tableView_assignments;
 
     @FXML
-    private TableColumn<Assignment, String> tableColumn_due;
+    private TableColumn<Assignment, Timestamp> tableColumn_due;
 
     @FXML
     private TableColumn<Assignment, String> tableColumn_title;
-
+    
+    @FXML
+    private TableColumn<Announcement,Timestamp> tableColumn_posted;
+    
+    @FXML
+    private TableColumn<Announcement, String> tableColumn_announcements;
+    
     private ObservableList<Assignment> listOfAssignments = FXCollections.observableArrayList();
+    private ObservableList<Announcement> listOfAnnouncements = FXCollections.observableArrayList();
 
     public ObservableList<Assignment> getListOfAssignment() {
         return listOfAssignments;
+    }
+    
+    public ObservableList<Announcement> getListOfAnnouncements() {
+        return listOfAnnouncements;
     }
 
     @Override
@@ -75,9 +90,14 @@ public class CourseController extends HomePageController implements Initializabl
         //set columns with cell factory
         tableColumn_due.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
         tableColumn_title.setCellValueFactory(new PropertyValueFactory<>("title"));
+        
+        tableColumn_posted.setCellValueFactory(new PropertyValueFactory<>("postedDate"));
+        tableColumn_announcements.setCellValueFactory(new PropertyValueFactory<>("announcement"));
+
                 
         //set list of assignments
         readAssignmentsIntoTable();
+        readAnnouncementsIntoTable();
         
         //set code to switch to assignment view after double clicking a table selection
         setOnMousePressed();
@@ -122,6 +142,53 @@ public class CourseController extends HomePageController implements Initializabl
         catch (InterruptedException | ExecutionException ex) {}
     }
     
+    private void readAnnouncementsIntoTable() {
+        
+        //declare announcement and course and its documents list
+        Announcement announcement;
+        List<QueryDocumentSnapshot> documents_announcement;
+       
+        List<String> courseAnnouncementIDs=App.currentCourse.announcements; 
+        
+        //get announcement collection
+        ApiFuture<QuerySnapshot> future = App.fstore.collection("announcements").get();
+      
+        
+        try {
+            //add collection into list
+            documents_announcement = future.get().getDocuments();
+           
+
+            //check if empty
+            if (!documents_announcement.isEmpty()) {
+                
+                //loop through announcements
+                for (QueryDocumentSnapshot document : documents_announcement) {
+                    
+                    
+                    
+                    document.getId();
+                    for(String announcementID: App.currentCourse.announcements)
+                    {
+                        if(announcementID.equals(document.getId()))
+                        {
+                            //use announcements document constructor to hold assignment data
+                            announcement = new Announcement(document);
+                            listOfAnnouncements.add(announcement);
+                        }
+                    }
+                    
+                   
+                }
+                //set tableview to assignments list
+                tableView_Announce.setItems(listOfAnnouncements);
+            }
+        } 
+        catch (InterruptedException | ExecutionException ex) {}
+        
+        
+        
+    }
     private void setOnMousePressed() {
         
         tableView_assignments.setOnMousePressed((MouseEvent event) -> {
