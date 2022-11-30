@@ -7,6 +7,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -27,20 +29,25 @@ public class GradesController extends HomePageController implements Initializabl
     private VBox VBox_navButtons;
 
     @FXML
-    private TableColumn<Assignment, String> tableColumn_assignment;
+    private TableColumn<?, String> tableColumn_assignment;
 
     @FXML
-    private TableColumn<Assignment, String> tableColumn_course;
+    private TableColumn<?, String> tableColumn_course;
 
     @FXML
-    private TableColumn<Assignment, String> tableColumn_dueDate;
+    private TableColumn<?, String> tableColumn_dueDate;
 
     @FXML
-    private TableColumn<Assignment, Integer> tableColumn_grade;
+    private TableColumn<Submission, Integer> tableColumn_grade;
 
     @FXML
-    private TableView<Assignment> tableView_grades;
+    private TableView<Submission> tableView_grades;
 
+    private ObservableList<Submission> listOfSubmissions = FXCollections.observableArrayList();
+
+    public ObservableList<Submission> getListOfSubmissions() {
+        return listOfSubmissions;
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -48,8 +55,44 @@ public class GradesController extends HomePageController implements Initializabl
         tableColumn_course.setCellValueFactory(new PropertyValueFactory<>("course"));
         tableColumn_grade.setCellValueFactory(new PropertyValueFactory<>("grade"));
 
-        readSubmissionsIntoTable();
+        readGradesIntoTable();
     }
     
+    private void readGradesIntoTable() {
+        
+        
+        Submission submission;
+        List<QueryDocumentSnapshot> documents;
+        
+        
+        ApiFuture<QuerySnapshot> future = App.fstore.collection("submissions").get();
+        
+        try {
+            
+            documents = future.get().getDocuments();
+
+            
+            if (!documents.isEmpty()) {
+                
+                
+                for (QueryDocumentSnapshot document : documents) {
+                    
+                  
+                    submission = new Submission(document);
+                    
+                    
+                    if (App.currentUser.userID.equals(submission.student)){
+                     
+                        listOfSubmissions.add(submission);
+                    }
+                    
+            
+                }
+                
+                tableView_grades.setItems(listOfSubmissions);
+            }
+        } 
+        catch (InterruptedException | ExecutionException ex) {}
+    }
     
 }

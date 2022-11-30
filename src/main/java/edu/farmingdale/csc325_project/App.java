@@ -20,6 +20,7 @@ public class App extends Application {
     static CurrentUser currentUser;
     static Course currentCourse;
     static Assignment currentAssignment;
+    static Submission currentSubmission;
     
     public static Firestore fstore;
     private static FirestoreContext contextFirebase;
