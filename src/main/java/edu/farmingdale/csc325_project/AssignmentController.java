@@ -79,25 +79,25 @@ public class AssignmentController implements Initializable {
     protected final MFXTextField textField_title = new MFXTextField();
     
     @FXML
-    protected final MFXTextField textField_grade = new MFXTextField();
+    protected final MFXTextField textField_grade = new MFXTextField("Grade");
     
     @FXML
     protected final MFXTextField textField_dueDate = new MFXTextField();
     
     @FXML
-    protected final TextArea textArea_studentComment = new TextArea();
+    protected final TextArea textArea_studentComment = new TextArea("Student Comment");
     
     @FXML
-    protected final TextArea textArea_professorFeedback = new TextArea();
+    protected final TextArea textArea_professorFeedback = new TextArea("Professor Feedback");
     
     @FXML
-    protected final TextArea textArea_assignmentDetails = new TextArea();
+    protected final TextArea textArea_assignmentDetails = new TextArea("Assignment Details");
     
     @FXML
-    protected final MFXButton button_uploadFile = new MFXButton();
+    protected final MFXButton button_uploadFile = new MFXButton("Upload");
     
     @FXML
-    protected final MFXButton button_save = new MFXButton();
+    protected final MFXButton button_save = new MFXButton("Save");
     //Professor Post
     //Student Submit, if submission is there just save
 
