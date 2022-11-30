@@ -26,8 +26,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import com.google.cloud.Timestamp;
+import io.github.palexdev.materialfx.controls.MFXTableColumn;
+import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
+import io.github.palexdev.materialfx.filter.IntegerFilter;
+import io.github.palexdev.materialfx.filter.StringFilter;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
+import javafx.geometry.Pos;
 
 import javafx.scene.layout.VBox;
 import org.controlsfx.control.action.ActionUtils;
@@ -53,16 +59,7 @@ public class CourseController extends HomePageController implements Initializabl
     private TableView<Announcement> tableView_Announce;
 
     @FXML
-    private MFXTableView<?> tableView_Course;
-
-    @FXML
-    private TableView<Assignment> tableView_assignments;
-
-    @FXML
-    private TableColumn<Assignment, Timestamp> tableColumn_due;
-
-    @FXML
-    private TableColumn<Assignment, String> tableColumn_title;
+    private MFXTableView<Assignment> tableView_Assignments;
     
     @FXML
     private TableColumn<Announcement,Timestamp> tableColumn_posted;
@@ -97,12 +94,9 @@ public class CourseController extends HomePageController implements Initializabl
         );
         
         //set columns with cell factory
-        tableColumn_due.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
-        tableColumn_title.setCellValueFactory(new PropertyValueFactory<>("title"));
-        
+        setupAssignmentTable();
         tableColumn_posted.setCellValueFactory(new PropertyValueFactory<>("postedDate"));
         tableColumn_announcements.setCellValueFactory(new PropertyValueFactory<>("announcement"));
-
                 
         //set list of assignments
         readAssignmentsIntoTable();
@@ -110,6 +104,25 @@ public class CourseController extends HomePageController implements Initializabl
         
         //set code to switch to assignment view after double clicking a table selection
         setOnMousePressed();
+    }
+    
+    private void setupAssignmentTable() {
+        MFXTableColumn<Assignment> tableColumn_due = new MFXTableColumn<>("Due Date", true, Comparator.comparing(Assignment::getDueDate));
+        MFXTableColumn<Assignment> tableColumn_title = new MFXTableColumn<>("Title", true, Comparator.comparing(Assignment::getTitle));
+
+        //tableColumn_due.setRowCellFactory(assignment -> new MFXTableRowCell<>(Assignment::getDueDate));
+        tableColumn_title.setRowCellFactory(assignment -> new MFXTableRowCell<>(Assignment::getTitle) {{
+                setAlignment(Pos.CENTER_RIGHT);
+        }});
+        tableColumn_title.setAlignment(Pos.CENTER_RIGHT);
+        
+        //tableView_Assignments.getTableColumns().addAll(tableColumn_title);
+
+        tableView_Assignments.getTableColumns().addAll(tableColumn_due, tableColumn_title);
+        tableView_Assignments.getFilters().addAll(
+                        //new StringFilter<>("Due Date", Assignment::getDueDate),
+                        new StringFilter<>("Title", Assignment::getTitle)
+        );
     }
 
     private void readAssignmentsIntoTable() {
@@ -145,7 +158,7 @@ public class CourseController extends HomePageController implements Initializabl
                     }
                 }
                 //set tableview to assignments list
-                tableView_assignments.setItems(listOfAssignments);
+                tableView_Assignments.setItems(listOfAssignments);
             }
         } 
         catch (InterruptedException | ExecutionException ex) {}
@@ -198,9 +211,14 @@ public class CourseController extends HomePageController implements Initializabl
         
         
     }
+    
     private void setOnMousePressed() {
         
-        tableView_assignments.setOnMousePressed((MouseEvent event) -> {
+        tableView_Assignments.setOnMousePressed((MouseEvent event) -> {
+            
+            //declare assignment and its list
+            Assignment assignment;
+            List<QueryDocumentSnapshot> documents;
             
             //check for primary mouse clicks
             if (event.getButton().equals(MouseButton.PRIMARY)) {
@@ -209,11 +227,9 @@ public class CourseController extends HomePageController implements Initializabl
                 if (event.getClickCount() == 2) {
                     
                     //read selected course CRN
-                    String selectedAssignTitle = tableView_assignments.getSelectionModel().getSelectedItem().getTitle();
-
-                    //declare assignment and its list
-                    Assignment assignment;
-                    List<QueryDocumentSnapshot> documents;
+                    
+                    String selectedAssignTitle = tableView_Assignments.getSelectionModel().getSelectedValues().get(0).getTitle();
+                                                //tableView_Assignments.getSelectionModel().getSelectedItem().getTitle();
                     
                     //get assignment collection
                     ApiFuture<QuerySnapshot> future = App.fstore.collection("assignments").get();
