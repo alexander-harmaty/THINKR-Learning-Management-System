@@ -21,16 +21,16 @@ public class Submission {
     protected String studentComment; 
     protected boolean submitted; 
     protected Timestamp submittedDate;
-    protected String proffessorFeedback;
+    protected String teacherFeedback;
 
-    public Submission(String ID, int grade, String student, String studentComment, boolean submitted, Timestamp submittedDate, String proffessorFeedback) {
+    public Submission(String ID, int grade, String student, String studentComment, boolean submitted, Timestamp submittedDate, String teacherFeedback) {
         this.ID = ID;
         this.grade = grade;
         this.student = student;
         this.studentComment = studentComment;
         this.submitted = submitted;
         this.submittedDate = submittedDate;
-        this.proffessorFeedback = proffessorFeedback;
+        this.teacherFeedback = teacherFeedback;
     }
     
     public Submission(QueryDocumentSnapshot document)
@@ -42,7 +42,7 @@ public class Submission {
         this.studentComment = (String)document.getData().get("studentComment");
         this.submitted = (Boolean)document.getData().get("detailsFile");
         this.submittedDate = (Timestamp)document.getData().get("title");
-        this.proffessorFeedback=(String)document.getData().get("course");
+        this.teacherFeedback =(String)document.getData().get("course");
     }
 
     public String getID() {
@@ -93,12 +93,12 @@ public class Submission {
         this.submittedDate = submittedDate;
     }
 
-    public String getProffessorFeedback() {
-        return proffessorFeedback;
+    public String getTeacherFeedback() {
+        return teacherFeedback;
     }
 
-    public void setProffessorFeedback(String proffessorFeedback) {
-        this.proffessorFeedback = proffessorFeedback;
+    public void setTeacherFeedback (String teacherFeedback) {
+        this.teacherFeedback = teacherFeedback;
     }
     
     
