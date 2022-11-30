@@ -134,6 +134,34 @@ public class AssignmentController implements Initializable {
         textField_title.setAlignment(Pos.CENTER);
         textField_title.setStyle("-fx-border-color:" + "#4653eb");
 
+        Font tj = new Font("System", 12);
+        textField_grade.setFont(tj);
+        textField_grade.setPrefHeight(38);
+        textField_grade.setPrefWidth(290);
+        textField_grade.setAlignment(Pos.CENTER_LEFT);
+        textField_grade.setStyle("-fx-border-color:" + "#4653eb");
+
+        datePicker_dueDate.setFont(tj);
+        datePicker_dueDate.setPrefHeight(38);
+        datePicker_dueDate.setPrefWidth(290);
+        datePicker_dueDate.setAlignment(Pos.CENTER_LEFT);
+        datePicker_dueDate.setStyle("-fx-border-color:" + "#4653eb");
+
+        textArea_assignmentDetails.setFont(tj);
+        textArea_assignmentDetails.setPrefHeight(194);
+        textArea_assignmentDetails.setPrefWidth(268);
+        textArea_assignmentDetails.setStyle("-fx-border-color:" + "#4653eb");
+
+        textArea_studentComment.setFont(tj);
+        textArea_studentComment.setPrefHeight(200);
+        textArea_studentComment.setPrefWidth(200);
+        textArea_studentComment.setStyle("-fx-border-color:" + "#4653eb");
+
+        textArea_professorFeedback.setFont(tj);
+        textArea_professorFeedback.setPrefHeight(200);
+        textArea_professorFeedback.setPrefWidth(200);
+        textArea_professorFeedback.setStyle("-fx-border-color:" + "#4653eb");
+
         label_title.setText(App.currentAssignment.title);
         Font font = new Font("System", 20);
         label_title.setFont(font);
@@ -150,14 +178,23 @@ public class AssignmentController implements Initializable {
                 VBox_left.getChildren().add(datePicker_dueDate);
                 VBox_right.getChildren().add(textArea_studentComment);
                 VBox_left.getChildren().add(textArea_assignmentDetails);
+                VBox_right.getChildren().add(textArea_professorFeedback);
 
-                //VBox_left.getChildren().add(label_title);
                 HBox_buttons.getChildren().add(button_uploadFile);
                 HBox_buttons.getChildren().add(button_save);
 
                 break;
 
             case "PROFESSOR":
+                VBox_left.getChildren().add(textField_title);
+                VBox_right.getChildren().add(textField_grade);
+                VBox_left.getChildren().add(datePicker_dueDate);
+                VBox_right.getChildren().add(textArea_studentComment);
+                VBox_left.getChildren().add(textArea_assignmentDetails);
+                VBox_right.getChildren().add(textArea_professorFeedback);
+
+                HBox_buttons.getChildren().add(button_uploadFile);
+                HBox_buttons.getChildren().add(button_post);
 
                 break;
 
