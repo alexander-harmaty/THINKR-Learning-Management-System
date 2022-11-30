@@ -18,6 +18,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import io.github.palexdev.materialfx.controls.MFXButton;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -38,6 +39,12 @@ public class CourseController extends HomePageController implements Initializabl
 
     @FXML
     private VBox VBox_navButtons;
+    
+    @FXML
+    private MFXButton button_addAnnounce;
+    
+    @FXML
+    private MFXButton button_createAssihgnment;
 
     @FXML
     private Label label_classTitle;
@@ -62,6 +69,8 @@ public class CourseController extends HomePageController implements Initializabl
     
     @FXML
     private TableColumn<Announcement, String> tableColumn_announcements;
+    
+    
     
     private ObservableList<Assignment> listOfAssignments = FXCollections.observableArrayList();
     private ObservableList<Announcement> listOfAnnouncements = FXCollections.observableArrayList();
@@ -236,6 +245,16 @@ public class CourseController extends HomePageController implements Initializabl
                 }
             }
         });
+        
+    }
+    
+    private void createAssignment()
+    {
+        
+    }
+    
+    private void createAnnouncement()
+    {
         
     }
     
