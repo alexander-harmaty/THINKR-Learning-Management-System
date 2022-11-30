@@ -1,6 +1,7 @@
 package edu.farmingdale.csc325_project;
 
 import com.google.api.core.ApiFuture;
+import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import io.github.palexdev.materialfx.controls.MFXTableView;
@@ -48,7 +49,7 @@ public class CourseController extends HomePageController implements Initializabl
     private TableView<Assignment> tableView_assignments;
 
     @FXML
-    private TableColumn<Assignment, String> tableColumn_due;
+    private TableColumn<Assignment, Timestamp> tableColumn_due;
 
     @FXML
     private TableColumn<Assignment, String> tableColumn_title;

@@ -26,7 +26,7 @@ public class Assignment {
  
     
 
-    public Assignment(String title, Timestamp  dueDate, Timestamp assignedDate, String detailsText, String detailsFile, List<String> submissions, List<String> course) {
+    public Assignment(String title, Timestamp dueDate, Timestamp assignedDate, String detailsText, String detailsFile, List<String> submissions, List<String> course) {
         this.title = title;
         this.dueDate = dueDate;
         this.assignedDate = assignedDate;

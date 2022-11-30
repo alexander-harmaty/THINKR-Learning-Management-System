@@ -107,16 +107,6 @@ public class AssignmentController implements Initializable {
     //Professor Post
     //Student Submit, if submission is there just save
 
-    @FXML
-    void handleButton_save(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleButton_uploadFile(ActionEvent event) {
-
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         updateAssignment();
