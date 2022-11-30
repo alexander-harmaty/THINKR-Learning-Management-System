@@ -127,10 +127,11 @@ public class HomePageController implements Initializable {
 //                    catch (IOException ex) {}
 //                });
 //                
-//                button_logout.setOnAction(event -> {
-//                    try { App.setRoot("Settings.fxml"); } 
-//                    catch (IOException ex) {}
-//                });
+                button_logout.setOnAction(event -> {
+                    try { App.currentUser.logOut(); } 
+                    catch (IOException ex) {}
+                });
+                
                 buttons.add(button_home);
                 buttons.add(button_courses);
                 buttons.add(button_grades);
