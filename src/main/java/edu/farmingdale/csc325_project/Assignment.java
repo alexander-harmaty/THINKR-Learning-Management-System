@@ -4,6 +4,7 @@
  */
 package edu.farmingdale.csc325_project;
 
+import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import java.io.IOException;
@@ -16,8 +17,8 @@ import java.util.List;
 public class Assignment {
     
     protected String title; 
-    protected String dueDate; 
-    protected String assignedDate; 
+    protected Timestamp dueDate; 
+    protected Timestamp  assignedDate; 
     protected String detailsText; 
     protected String detailsFile;
     protected List<String> submissions;
@@ -25,7 +26,7 @@ public class Assignment {
  
     
 
-    public Assignment(String title, String dueDate, String assignedDate, String detailsText, String detailsFile, List<String> submissions, List<String> course) {
+    public Assignment(String title, Timestamp  dueDate, Timestamp assignedDate, String detailsText, String detailsFile, List<String> submissions, List<String> course) {
         this.title = title;
         this.dueDate = dueDate;
         this.assignedDate = assignedDate;
@@ -37,8 +38,8 @@ public class Assignment {
     public Assignment(QueryDocumentSnapshot document)
     {
         
-        this.dueDate = (String)document.getData().get("dueDate");
-        this.assignedDate = (String)document.getData().get("assignedDate");
+        this.dueDate = (Timestamp)document.getData().get("dueDate");
+        this.assignedDate = (Timestamp)document.getData().get("assignedDate");
         this.detailsText = (String)document.getData().get("detailsText");
         this.submissions = (List<String>)document.getData().get("submissions");
         this.detailsFile = (String)document.getData().get("detailsFile");
@@ -55,19 +56,19 @@ public class Assignment {
         this.title = title;
     }
 
-    public String getDueDate() {
+    public Timestamp getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(String dueDate) {
+    public void setDueDate(Timestamp dueDate) {
         this.dueDate  = dueDate;
     }
 
-    public String getAssignedDate() {
+    public Timestamp getAssignedDate() {
         return assignedDate;
     }
 
-    public void setAssignedDate(String assignedDate) {
+    public void setAssignedDate(Timestamp assignedDate) {
         this.assignedDate = assignedDate;
     }
 

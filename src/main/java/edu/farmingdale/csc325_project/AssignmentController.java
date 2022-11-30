@@ -146,11 +146,12 @@ public class AssignmentController implements Initializable {
 
             case "STUDENT":
                 VBox_left.getChildren().add(label_title);
-                VBox_left.getChildren().add(textField_grade);
+                VBox_right.getChildren().add(textField_grade);
                 VBox_left.getChildren().add(datePicker_dueDate);
-                VBox_left.getChildren().add(textArea_studentComment);
-                VBox_left.getChildren().add(label_title);
+                VBox_right.getChildren().add(textArea_studentComment);
+                VBox_left.getChildren().add(textArea_assignmentDetails);
 
+                //VBox_left.getChildren().add(label_title);
                 HBox_buttons.getChildren().add(button_uploadFile);
                 HBox_buttons.getChildren().add(button_save);
 
