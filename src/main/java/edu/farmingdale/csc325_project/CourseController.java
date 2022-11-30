@@ -44,16 +44,13 @@ public class CourseController extends HomePageController implements Initializabl
     private MFXButton button_addAnnounce;
     
     @FXML
-    private MFXButton button_createAssihgnment;
+    private MFXButton button_createAssignment;
 
     @FXML
     private Label label_classTitle;
 
    @FXML
     private TableView<Announcement> tableView_Announce;
-
-    @FXML
-    private MFXTableView<?> tableView_Course;
 
     @FXML
     private TableView<Assignment> tableView_assignments;
