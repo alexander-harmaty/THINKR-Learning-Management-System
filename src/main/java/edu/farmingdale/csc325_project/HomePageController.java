@@ -55,12 +55,14 @@ public class HomePageController implements Initializable {
     @FXML
     protected final MFXButton button_calendar = new MFXButton("Calendar");
 
-
     @FXML
     protected final MFXButton button_accounts = new MFXButton("Accounts");
 
     @FXML
     protected final MFXButton button_settings = new MFXButton("Settings");
+
+    @FXML
+    protected final MFXButton button_logout = new MFXButton("Logout");
 
     @FXML
     private TableView<Course> tableView_popup;
@@ -167,7 +169,6 @@ public class HomePageController implements Initializable {
 
             case "ADMIN":
 
-
                 button_accounts.setOnAction(event -> {
                     try {
                         App.setRoot("Accounts.fxml");
@@ -182,8 +183,7 @@ public class HomePageController implements Initializable {
                     }
                 });
                 buttons.add(button_home);
-                buttons.add(button_accounts);
-                buttons.add(button_settings);
+                buttons.add(button_logout);
 
                 break;
 
