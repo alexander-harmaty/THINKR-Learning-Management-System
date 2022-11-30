@@ -53,7 +53,7 @@
       </VBox>
    </right>
    <center>
-      <VBox fx:id="VBox_center" alignment="CENTER" prefHeight="688.0" prefWidth="790.0" spacing="20.0" BorderPane.alignment="TOP_LEFT">
+      <VBox alignment="CENTER" prefHeight="688.0" prefWidth="790.0" spacing="20.0" BorderPane.alignment="TOP_LEFT">
          <children>
             <Label fx:id="label_classTitle" prefHeight="63.0" prefWidth="752.0" text="Course Name 1">
                <font>
@@ -71,7 +71,7 @@
                 <TableColumn fx:id="tableColumn_announcements" prefWidth="511.0" text="Announcements" />
               </columns>
             </TableView>
-            <MFXButton fx:id="button_addAnnounce" onAction="#handleButton_addAnnouncement" prefHeight="27.0" prefWidth="186.0" text="Add Announcement" />
+            <MFXButton fx:id="button_addAnnounce" prefHeight="27.0" prefWidth="186.0" text="Add Announcement" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Assignments " wrappingWidth="728.4382934570312">
                <font>
                   <Font size="24.0" />
@@ -83,7 +83,7 @@
                 <TableColumn fx:id="tableColumn_title" prefWidth="630.0" text="Title" />
               </columns>
             </TableView>
-            <MFXButton fx:id="button_createAssignment" onAction="#handleButton_createAssignment" text="Create Assignment" />
+            <MFXButton fx:id="button_createAssignment" text="Create Assignment" />
          </children>
          <opaqueInsets>
             <Insets />
