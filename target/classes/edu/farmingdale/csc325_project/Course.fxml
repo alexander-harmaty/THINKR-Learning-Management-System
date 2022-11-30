@@ -53,7 +53,7 @@
       </VBox>
    </right>
    <center>
-      <VBox alignment="CENTER" prefHeight="688.0" prefWidth="790.0" spacing="20.0" BorderPane.alignment="TOP_LEFT">
+      <VBox fx:id="VBox_center" alignment="CENTER" prefHeight="688.0" prefWidth="790.0" spacing="20.0" BorderPane.alignment="TOP_LEFT">
          <children>
             <Label fx:id="label_classTitle" prefHeight="63.0" prefWidth="752.0" text="Course Name 1">
                <font>

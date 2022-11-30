@@ -41,6 +41,9 @@ public class CourseController extends HomePageController implements Initializabl
     private VBox VBox_navButtons;
     
     @FXML
+    private VBox VBox_center;
+    
+    @FXML
     private MFXButton button_addAnnounce;
     
     @FXML
