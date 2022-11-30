@@ -255,4 +255,14 @@ public class CourseController extends HomePageController implements Initializabl
         
     }
     
+    public void handleButton_addAnnouncement()
+    {
+        
+    }
+    
+    public void handleButton_createAssignment()
+    {
+        
+    }
+    
 }
