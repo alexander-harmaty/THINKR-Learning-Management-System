@@ -106,6 +106,7 @@ public class HomePageController implements Initializable {
         List<MFXButton> buttons = new ArrayList<>();
 
         switch (App.currentUser.type) {
+            
             case "STUDENT":
 
                 button_courses.setOnAction(event -> {
@@ -126,7 +127,7 @@ public class HomePageController implements Initializable {
 //                    try { App.setRoot("Registrar.fxml"); } 
 //                    catch (IOException ex) {}
 //                });
-//                
+                
                 button_logout.setOnAction(event -> {
                     try { App.currentUser.logOut(); } 
                     catch (IOException ex) {}
@@ -156,11 +157,12 @@ public class HomePageController implements Initializable {
 //                    try { App.setRoot("Calendar.fxml"); } 
 //                    catch (IOException ex) {}
 //                });
-//                
-//                button_logout.setOnAction(event -> {
-//                    try { App.setRoot("Settings.fxml"); } 
-//                    catch (IOException ex) {}
-//                });
+                
+                button_logout.setOnAction(event -> {
+                    try { App.currentUser.logOut(); } 
+                    catch (IOException ex) {}
+                });
+                
                 buttons.add(button_home);
                 buttons.add(button_courses);
                 buttons.add(button_grades);
@@ -180,11 +182,12 @@ public class HomePageController implements Initializable {
 //                    try { App.setRoot("Accounts.fxml"); } 
 //                    catch (IOException ex) {}
 //                });
-//                
-//                button_logout.setOnAction(event -> {
-//                    try { App.setRoot("Settings.fxml"); } 
-//                    catch (IOException ex) {}
-//                });
+                
+                button_logout.setOnAction(event -> {
+                    try { App.currentUser.logOut(); } 
+                    catch (IOException ex) {}
+                });
+                
                 buttons.add(button_home);
                 buttons.add(button_registrar);
                 buttons.add(button_accounts);
