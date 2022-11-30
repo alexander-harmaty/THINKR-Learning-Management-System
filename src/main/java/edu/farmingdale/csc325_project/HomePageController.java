@@ -62,7 +62,7 @@ public class HomePageController implements Initializable {
     protected final MFXButton button_accounts = new MFXButton("Accounts");
 
     @FXML
-    protected final MFXButton button_settings = new MFXButton("Settings");
+    protected final MFXButton button_logout = new MFXButton("Logout");
 
     @FXML
     private TableView<Course> tableView_popup;
@@ -127,7 +127,7 @@ public class HomePageController implements Initializable {
 //                    catch (IOException ex) {}
 //                });
 //                
-//                button_settings.setOnAction(event -> {
+//                button_logout.setOnAction(event -> {
 //                    try { App.setRoot("Settings.fxml"); } 
 //                    catch (IOException ex) {}
 //                });
@@ -136,7 +136,7 @@ public class HomePageController implements Initializable {
                 buttons.add(button_grades);
                 buttons.add(button_calendar);
                 buttons.add(button_registrar);
-                buttons.add(button_settings);
+                buttons.add(button_logout);
 
                 break;
 
@@ -156,7 +156,7 @@ public class HomePageController implements Initializable {
 //                    catch (IOException ex) {}
 //                });
 //                
-//                button_settings.setOnAction(event -> {
+//                button_logout.setOnAction(event -> {
 //                    try { App.setRoot("Settings.fxml"); } 
 //                    catch (IOException ex) {}
 //                });
@@ -164,7 +164,7 @@ public class HomePageController implements Initializable {
                 buttons.add(button_courses);
                 buttons.add(button_grades);
                 buttons.add(button_calendar);
-                buttons.add(button_settings);
+                buttons.add(button_logout);
 
                 break;
 
@@ -180,14 +180,14 @@ public class HomePageController implements Initializable {
 //                    catch (IOException ex) {}
 //                });
 //                
-//                button_settings.setOnAction(event -> {
+//                button_logout.setOnAction(event -> {
 //                    try { App.setRoot("Settings.fxml"); } 
 //                    catch (IOException ex) {}
 //                });
                 buttons.add(button_home);
                 buttons.add(button_registrar);
                 buttons.add(button_accounts);
-                buttons.add(button_settings);
+                buttons.add(button_logout);
 
                 break;
 
