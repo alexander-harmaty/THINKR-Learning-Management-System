@@ -8,7 +8,6 @@ import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 /**
  *
