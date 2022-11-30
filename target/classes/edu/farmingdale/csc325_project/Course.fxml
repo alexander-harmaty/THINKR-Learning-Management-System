@@ -3,6 +3,7 @@
 <?import com.calendarfx.view.YearMonthView?>
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXNotificationCenter?>
+<?import io.github.palexdev.materialfx.controls.MFXTableView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -77,12 +78,7 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <TableView fx:id="tableView_assignments" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="324.0" prefWidth="730.0">
-              <columns>
-                <TableColumn fx:id="tableColumn_due" prefWidth="100.0" text="Due" />
-                <TableColumn fx:id="tableColumn_title" prefWidth="630.0" text="Title" />
-              </columns>
-            </TableView>
+            <MFXTableView fx:id="tableView_assignments" prefHeight="324.0" prefWidth="730.0" />
             <MFXButton fx:id="button_createAssignment" text="Create Assignment" />
          </children>
          <opaqueInsets>
