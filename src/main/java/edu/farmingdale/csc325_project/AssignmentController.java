@@ -35,7 +35,7 @@ public class AssignmentController implements Initializable {
 
     @FXML
     private HBox HBox_holder;
-    
+
     @FXML
     private VBox VBox_left;
 
@@ -71,37 +71,39 @@ public class AssignmentController implements Initializable {
 //
 //    @FXML
 //    private MFXTextField textField_title;
-
     @FXML
     protected final Label label_title = new Label();
-    
+
     @FXML
     protected final MFXTextField textField_title = new MFXTextField();
-    
+
     @FXML
     protected final MFXTextField textField_grade = new MFXTextField("Grade");
-    
+
     @FXML
     protected final MFXTextField textField_dueDate = new MFXTextField();
-    
+
     @FXML
     protected final TextArea textArea_studentComment = new TextArea("Student Comment");
-    
+
     @FXML
     protected final TextArea textArea_professorFeedback = new TextArea("Professor Feedback");
-    
+
     @FXML
     protected final TextArea textArea_assignmentDetails = new TextArea("Assignment Details");
-    
+
     @FXML
     protected final MFXButton button_uploadFile = new MFXButton("Upload");
-    
+    @FXML
+    protected final MFXButton button_uploadF = new MFXButton("Upload");
+
     @FXML
     protected final MFXButton button_save = new MFXButton("Save");
+
+    @FXML
+    protected final MFXButton button_post = new MFXButton("Post");
     //Professor Post
     //Student Submit, if submission is there just save
-
-    
 
     @FXML
     void handleButton_save(ActionEvent event) {
@@ -122,7 +124,7 @@ public class AssignmentController implements Initializable {
         VBox_left.getChildren().clear();
         VBox_right.getChildren().clear();
         HBox_buttons.getChildren().clear();
-       
+
         textField_title.setText(App.currentAssignment.title);
         Font ti = new Font("System", 20);
         textField_title.setFont(ti);
@@ -130,7 +132,7 @@ public class AssignmentController implements Initializable {
         textField_title.setPrefWidth(268);
         textField_title.setAlignment(Pos.CENTER);
         textField_title.setStyle("-fx-border-color:" + "#4653eb");
-        
+
         label_title.setText(App.currentAssignment.title);
         Font font = new Font("System", 20);
         label_title.setFont(font);
@@ -138,26 +140,23 @@ public class AssignmentController implements Initializable {
         label_title.setPrefWidth(268);
         label_title.setAlignment(Pos.CENTER);
         label_title.setStyle("-fx-border-color:" + "#4653eb");
-        
-        
+
         switch (App.currentUser.type) {
-            
+
             case "STUDENT":
                 VBox_left.getChildren().add(label_title);
                 VBox_left.getChildren().add(textField_grade);
                 VBox_left.getChildren().add(textField_dueDate);
                 VBox_left.getChildren().add(textArea_studentComment);
                 VBox_left.getChildren().add(label_title);
-                
+
                 HBox_buttons.getChildren().add(button_uploadFile);
                 HBox_buttons.getChildren().add(button_save);
-                
 
                 break;
 
             case "PROFESSOR":
-                
-                
+
                 break;
 
             default:
