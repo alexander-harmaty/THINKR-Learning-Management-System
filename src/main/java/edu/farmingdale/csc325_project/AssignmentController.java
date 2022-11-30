@@ -2,6 +2,7 @@ package edu.farmingdale.csc325_project;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -81,7 +82,7 @@ public class AssignmentController implements Initializable {
     protected final MFXTextField textField_grade = new MFXTextField("Grade");
 
     @FXML
-    protected final MFXTextField textField_dueDate = new MFXTextField();
+    protected final MFXDatePicker datePicker_dueDate = new MFXDatePicker();
 
     @FXML
     protected final TextArea textArea_studentComment = new TextArea("Student Comment");
@@ -93,9 +94,9 @@ public class AssignmentController implements Initializable {
     protected final TextArea textArea_assignmentDetails = new TextArea("Assignment Details");
 
     @FXML
-    protected final MFXButton button_uploadFile = new MFXButton("Upload");
+    protected final MFXButton button_uploadFile = new MFXButton("Upload Details");
     @FXML
-    protected final MFXButton button_uploadF = new MFXButton("Upload");
+    protected final MFXButton button_uploadF = new MFXButton("Upload Submission");
 
     @FXML
     protected final MFXButton button_save = new MFXButton("Save");
@@ -146,7 +147,7 @@ public class AssignmentController implements Initializable {
             case "STUDENT":
                 VBox_left.getChildren().add(label_title);
                 VBox_left.getChildren().add(textField_grade);
-                VBox_left.getChildren().add(textField_dueDate);
+                VBox_left.getChildren().add(datePicker_dueDate);
                 VBox_left.getChildren().add(textArea_studentComment);
                 VBox_left.getChildren().add(label_title);
 
