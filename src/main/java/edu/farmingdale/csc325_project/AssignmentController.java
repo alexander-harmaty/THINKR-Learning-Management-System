@@ -186,7 +186,7 @@ public class AssignmentController implements Initializable {
                 VBox_left.getChildren().add(textArea_assignmentDetails);
                 VBox_right.getChildren().add(textArea_professorFeedback);
 
-                HBox_buttons.getChildren().add(button_uploadFile);
+                HBox_buttons.getChildren().add(button_uploadF);
                 HBox_buttons.getChildren().add(button_save);
 
                 break;
