@@ -1,26 +1,56 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package edu.farmingdale.csc325_project;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.layout.VBox;
 
-/**
- * FXML Controller class
- *
- * @author forha
- */
-public class AdminController implements Initializable {
+public class AdminController {
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+    @FXML
+    private VBox VBox_navBar;
+
+    @FXML
+    private VBox VBox_navButtons;
+
+    @FXML
+    private MFXButton button_date;
+
+    @FXML
+    private MFXButton button_register;
+
+    @FXML
+    private MFXButton button_update;
+
+    @FXML
+    private TableColumn<?, ?> tableColumn_dob;
+
+    @FXML
+    private TableColumn<?, ?> tableColumn_email;
+
+    @FXML
+    private TableColumn<?, ?> tableColumn_firstName;
+
+    @FXML
+    private TableColumn<?, ?> tableColumn_lastName;
+
+    @FXML
+    private TableColumn<?, ?> tableColumn_type;
+
+    @FXML
+    private MFXTextField textField_dob;
+
+    @FXML
+    private MFXTextField textField_email;
+
+    @FXML
+    private MFXTextField textField_firstName;
+
+    @FXML
+    private MFXTextField textField_lastName;
+
+    @FXML
+    private MFXTextField textField_type;
+
 }

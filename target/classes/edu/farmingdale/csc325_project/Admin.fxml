@@ -43,18 +43,18 @@
                      <children>
                         <TableView prefHeight="608.0" prefWidth="405.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Email" />
-                            <TableColumn prefWidth="75.0" text="First Name" />
-                              <TableColumn prefWidth="75.0" text="Last Name" />
-                              <TableColumn prefWidth="75.0" text="DOB" />
-                              <TableColumn prefWidth="75.0" text="Type" />
+                            <TableColumn fx:id="tableColumn_email" prefWidth="75.0" text="Email" />
+                            <TableColumn fx:id="tableColumn_firstName" prefWidth="75.0" text="First Name" />
+                              <TableColumn fx:id="tableColumn_lastName" prefWidth="75.0" text="Last Name" />
+                              <TableColumn fx:id="tableColumn_dob" prefWidth="75.0" text="DOB" />
+                              <TableColumn fx:id="tableColumn_type" prefWidth="75.0" text="Type" />
                           </columns>
                         </TableView>
                         <HBox alignment="CENTER" prefHeight="51.0" prefWidth="405.0" spacing="25.0">
                            <children>
-                              <MFXButton text="Register" />
-                              <MFXButton text="Update" />
-                              <MFXButton text="Date" />
+                              <MFXButton fx:id="button_register" text="Register" />
+                              <MFXButton fx:id="button_update" text="Update" />
+                              <MFXButton fx:id="button_date" text="Date" />
                            </children></HBox>
                      </children>
                   </VBox>
