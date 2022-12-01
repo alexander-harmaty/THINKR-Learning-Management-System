@@ -177,7 +177,7 @@ public class HomePageController implements Initializable {
 
                 button_accounts.setOnAction(event -> {
                     try {
-                        App.setRoot("Accounts.fxml");
+                        App.setRoot("Admin");
                     } catch (IOException ex) {
                     }
                 });

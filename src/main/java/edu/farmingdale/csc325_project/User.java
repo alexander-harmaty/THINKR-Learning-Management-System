@@ -4,6 +4,7 @@
  */
 package edu.farmingdale.csc325_project;
 
+import com.google.cloud.firestore.QueryDocumentSnapshot;
 import java.io.IOException;
 
 /**
@@ -31,16 +32,21 @@ public class User {
         this.type = "";
     }
 
-    public User(String userID, String DOB, String email, String firstName, String lastName, String password, String status, String type) {
-        this.userID = userID;
-        this.DOB = DOB;
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.status = status;
-        this.type = type;
+    public User(QueryDocumentSnapshot document) {
+       
+        this.DOB = String.valueOf(document.getData().get("DOB"));
+        this.email = String.valueOf(document.getData().get("email"));
+        this.firstName = String.valueOf(document.getData().get("firstName"));
+        this.firstName = String.valueOf(document.getData().get("lastName"));
+        this.lastName = String.valueOf(document.getData().get("type"));
+        this.password = String.valueOf(document.getData().get("password"));
+        this.userID = String.valueOf(document.getData().get("userID"));
+        this.status = String.valueOf(document.getData().get("status"));
+
+
     }
+    
+    
 
     public String getUserID() {
         return userID;
