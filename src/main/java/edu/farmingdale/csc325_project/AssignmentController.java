@@ -96,6 +96,7 @@ public class AssignmentController implements Initializable {
 
     @FXML
     protected final MFXButton button_uploadFile = new MFXButton("Upload Details");
+    
     @FXML
     protected final MFXButton button_uploadF = new MFXButton("Upload Submission");
 
@@ -164,6 +165,7 @@ public class AssignmentController implements Initializable {
         button_save.setPrefWidth(USE_COMPUTED_SIZE);
         button_save.setStyle("-fx-text-fill:" + "#4653eb");
         button_save.setAlignment(Pos.CENTER);
+        
         button_post.setFont(tj);
         button_post.setPrefHeight(USE_COMPUTED_SIZE);
         button_post.setPrefWidth(USE_COMPUTED_SIZE);
