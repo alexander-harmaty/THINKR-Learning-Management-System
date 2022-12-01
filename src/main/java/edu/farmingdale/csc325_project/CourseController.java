@@ -307,11 +307,45 @@ public class CourseController extends HomePageController implements Initializabl
     
     public void writeNewAnnouncement()
     {
+       
        DocumentReference docRef = App.fstore.collection("announcements").document(UUID.randomUUID().toString());
        Map<String, Object> data = new HashMap<>();
        data.put("announcement", newAnnouncement.getText());
-       data.put("postedDate", LocalDate.now());
+      // data.put("postedDate", LocalDate.now());
        ApiFuture<WriteResult> result = docRef.set(data);
+       
+       Announcement announcement;
+                    List<QueryDocumentSnapshot> documents;
+                    
+                    //get assignment collection
+                    ApiFuture<QuerySnapshot> future = App.fstore.collection("announcements").get();
+       
+       try {
+                        //add collection into list
+                        documents = future.get().getDocuments();
+
+                        //check if empty
+                        if (!documents.isEmpty()) {
+                            
+                            //loop through assignments
+                            for (QueryDocumentSnapshot document : documents) {
+                                
+                                //use assignment document constructor to hold assignment data
+                                announcement = new Announcement(document);
+
+                                //if the CRN of any course matches the selected course CRN...
+                                if (announcement.getAnnouncement().equals(newAnnouncement.getText())) {
+                                    //set currentAssignment to the selected course
+                                    String announceID = docRef.getId();
+                                    App.currentCourse.announcements.add(announceID) ;
+                                    //change view to course
+                                    
+                                }
+                            }
+                        }
+                    } 
+                    catch (InterruptedException | ExecutionException  ex) {}
+       
        VBox_center.getChildren().remove(4);
        VBox_center.getChildren().remove(5);
        
