@@ -41,7 +41,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </padding>
                      <children>
-                        <TableView prefHeight="496.0" prefWidth="405.0">
+                        <TableView prefHeight="608.0" prefWidth="405.0">
                           <columns>
                             <TableColumn prefWidth="75.0" text="Email" />
                             <TableColumn prefWidth="75.0" text="First Name" />
@@ -50,7 +50,7 @@
                               <TableColumn prefWidth="75.0" text="Type" />
                           </columns>
                         </TableView>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                        <HBox alignment="CENTER" prefHeight="51.0" prefWidth="405.0" spacing="25.0">
                            <children>
                               <MFXButton text="Register" />
                               <MFXButton text="Update" />
@@ -58,19 +58,22 @@
                            </children></HBox>
                      </children>
                   </VBox>
-                  <VBox prefHeight="720.0" prefWidth="405.0" spacing="55.0">
+                  <VBox prefHeight="720.0" prefWidth="405.0" spacing="45.0">
                      <children>
-                        <MFXTextField prefHeight="50.0" prefWidth="375.0" />
-                        <MFXTextField prefHeight="50.0" prefWidth="375.0" />
-                        <MFXTextField prefHeight="50.0" prefWidth="375.0" />
-                        <MFXTextField prefHeight="50.0" prefWidth="375.0" />
-                        <MFXTextField prefHeight="50.0" prefWidth="375.0" />
+                        <MFXTextField fx:id="textField_email" prefHeight="50.0" prefWidth="375.0" />
+                        <MFXTextField fx:id="textField_firstName" prefHeight="50.0" prefWidth="375.0" />
+                        <MFXTextField fx:id="textField_lastName" prefHeight="50.0" prefWidth="375.0" />
+                        <MFXTextField fx:id="textField_dob" prefHeight="50.0" prefWidth="375.0" />
+                        <MFXTextField fx:id="textField_type" prefHeight="50.0" prefWidth="375.0" />
                      </children>
                      <padding>
                         <Insets left="15.0" top="15.0" />
                      </padding>
                   </VBox>
                </children>
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
             </HBox>
          </center>
       </BorderPane>
