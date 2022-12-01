@@ -311,7 +311,7 @@ public class CourseController extends HomePageController implements Initializabl
        DocumentReference docRef = App.fstore.collection("announcements").document(UUID.randomUUID().toString());
        Map<String, Object> data = new HashMap<>();
        data.put("announcement", newAnnouncement.getText());
-      // data.put("postedDate", LocalDate.now());
+       data.put("postedDate", Timestamp.now());
        ApiFuture<WriteResult> result = docRef.set(data);
        
        Announcement announcement;
@@ -347,7 +347,8 @@ public class CourseController extends HomePageController implements Initializabl
                     catch (InterruptedException | ExecutionException  ex) {}
        
        VBox_center.getChildren().remove(4);
-       VBox_center.getChildren().remove(5);
+       VBox_center.getChildren().remove(4);
+       
        
        
     }
