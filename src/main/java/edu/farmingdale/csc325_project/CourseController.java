@@ -106,6 +106,20 @@ public class CourseController extends HomePageController implements Initializabl
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        switch(App.currentUser.type)
+        {
+            case "STUDENT":
+                button_addAnnounce.setVisible(false);
+                button_createAssignment.setVisible(false);
+                break; 
+                
+                
+            case "PROFESSOR":
+                button_addAnnounce.setVisible(true);
+                button_createAssignment.setVisible(true);
+                break; 
+        }
+
         //add buttons to menu based on current user
         updateMenu();
         
@@ -174,7 +188,7 @@ public class CourseController extends HomePageController implements Initializabl
     }
     
     private void readAnnouncementsIntoTable() {
-        
+        tableView_Announce.getItems().clear();
         //declare announcement and course and its documents list
         Announcement announcement;
         List<QueryDocumentSnapshot> documents_announcement;
@@ -196,9 +210,6 @@ public class CourseController extends HomePageController implements Initializabl
                 //loop through announcements
                 for (QueryDocumentSnapshot document : documents_announcement) {
                     
-                    
-                    
-                    document.getId();
                     for(String announcementID: App.currentCourse.announcements)
                     {
                         if(announcementID.equals(document.getId()))
@@ -314,37 +325,37 @@ public class CourseController extends HomePageController implements Initializabl
        data.put("postedDate", Timestamp.now());
        ApiFuture<WriteResult> result = docRef.set(data);
        
-       Announcement announcement;
-                    List<QueryDocumentSnapshot> documents;
-                    
-                    //get assignment collection
-                    ApiFuture<QuerySnapshot> future = App.fstore.collection("announcements").get();
        
-       try {
-                        //add collection into list
-                        documents = future.get().getDocuments();
+        Course course;
+        List<QueryDocumentSnapshot> documents;
+        List<String> announcements;
 
-                        //check if empty
-                        if (!documents.isEmpty()) {
-                            
-                            //loop through assignments
-                            for (QueryDocumentSnapshot document : documents) {
-                                
-                                //use assignment document constructor to hold assignment data
-                                announcement = new Announcement(document);
-
-                                //if the CRN of any course matches the selected course CRN...
-                                if (announcement.getAnnouncement().equals(newAnnouncement.getText())) {
-                                    //set currentAssignment to the selected course
-                                    String announceID = docRef.getId();
-                                    App.currentCourse.announcements.add(announceID) ;
-                                    //change view to course
-                                    
-                                }
-                            }
-                        }
-                    } 
-                    catch (InterruptedException | ExecutionException  ex) {}
+        //get assignment collection
+        ApiFuture<QuerySnapshot> future = App.fstore.collection("courses").get();
+        try {
+            documents = future.get().getDocuments();
+            
+            if(!documents.isEmpty())
+            {
+                for(QueryDocumentSnapshot document: documents)
+                {
+                    course = new Course(document);
+                    
+                    if(course.CRN.equals(App.currentCourse.CRN))
+                    {
+                        announcements = App.currentCourse.announcements;
+                        announcements.add(docRef.getId());
+                        DocumentReference courseRef = App.fstore.collection("courses").document(document.getId());
+                        ApiFuture<WriteResult> courseResult = courseRef.update("announcement",announcements);
+                        
+                        readAnnouncementsIntoTable();
+                    }
+                }
+            }
+        } catch (Exception e) {
+        }
+                 
+       
        
        VBox_center.getChildren().remove(4);
        VBox_center.getChildren().remove(4);
@@ -352,6 +363,7 @@ public class CourseController extends HomePageController implements Initializabl
        
        
     }
+    
     
     public void writeNewAssignment()
     {
