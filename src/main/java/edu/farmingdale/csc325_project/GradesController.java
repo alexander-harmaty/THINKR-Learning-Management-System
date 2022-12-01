@@ -1,6 +1,7 @@
 package edu.farmingdale.csc325_project;
 
 import com.google.api.core.ApiFuture;
+import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import java.net.URL;
@@ -29,13 +30,13 @@ public class GradesController extends HomePageController implements Initializabl
     private VBox VBox_navButtons;
 
     @FXML
-    private TableColumn<?, String> tableColumn_assignment;
+    private TableColumn<Submission, String> tableColumn_assignment;
 
     @FXML
-    private TableColumn<?, String> tableColumn_course;
+    private TableColumn<Submission, String> tableColumn_course;
 
     @FXML
-    private TableColumn<?, String> tableColumn_dueDate;
+    private TableColumn<Submission, Timestamp> tableColumn_submittedDate;
 
     @FXML
     private TableColumn<Submission, Integer> tableColumn_grade;
@@ -50,14 +51,17 @@ public class GradesController extends HomePageController implements Initializabl
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        tableColumn_dueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+        
+        tableColumn_assignment.setCellValueFactory(new PropertyValueFactory<>("assignment"));
+        tableColumn_submittedDate.setCellValueFactory(new PropertyValueFactory<>("submittedDate"));
         tableColumn_course.setCellValueFactory(new PropertyValueFactory<>("course"));
         tableColumn_grade.setCellValueFactory(new PropertyValueFactory<>("grade"));
 
         readGradesIntoTable();
+        updateMenu();
     }
     
+       
     private void readGradesIntoTable() {
         
         
