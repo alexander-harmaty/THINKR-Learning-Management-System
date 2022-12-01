@@ -26,8 +26,19 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import com.google.cloud.Timestamp;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.WriteResult;
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
+import javafx.event.EventType;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 
 import javafx.scene.layout.VBox;
 import org.controlsfx.control.action.ActionUtils;
@@ -44,6 +55,9 @@ public class CourseController extends HomePageController implements Initializabl
     private VBox VBox_center;
     
     @FXML
+    private VBox VBox_copy;
+    
+    @FXML
     private MFXButton button_addAnnounce;
     
     @FXML
@@ -51,6 +65,9 @@ public class CourseController extends HomePageController implements Initializabl
 
     @FXML
     private Label label_classTitle;
+    
+    @FXML 
+    private TextArea newAnnouncement = new TextArea();
 
    @FXML
     private TableView<Announcement> tableView_Announce;
@@ -69,6 +86,9 @@ public class CourseController extends HomePageController implements Initializabl
     
     @FXML
     private TableColumn<Announcement, String> tableColumn_announcements;
+    
+    @FXML
+    private MFXButton button_confirm = new MFXButton("Confirm");
     
     
     
@@ -110,6 +130,8 @@ public class CourseController extends HomePageController implements Initializabl
         
         //set code to switch to assignment view after double clicking a table selection
         setOnMousePressed();
+        //handleButton_addAnnouncement();
+        
     }
 
     private void readAssignmentsIntoTable() {
@@ -248,22 +270,55 @@ public class CourseController extends HomePageController implements Initializabl
         
     }
     
-    private void createAssignment()
-    {
-        
-    }
-    
-    private void createAnnouncement()
-    {
-        
-    }
-    
+    @FXML
     public void handleButton_addAnnouncement()
     {
         
+        ObservableList<Node> children = VBox_center.getChildren();
+        
+        
+        newAnnouncement.setMinWidth(611);
+        newAnnouncement.setMinHeight(188);
+
+        
+        VBox_center.getChildren().add(4, newAnnouncement);
+        VBox_center.getChildren().add(5, button_confirm);
+        
+        button_confirm.setOnAction(event -> {
+                    writeNewAnnouncement();
+         
+                });
+        
+        
+        
+        
+        
+                
     }
     
-    public void handleButton_createAssignment()
+    @FXML
+    public void handleButton_createAssignment() throws IOException
+    {
+        App.setRoot("Assignment");
+        
+      
+    }
+    
+    
+    public void writeNewAnnouncement()
+    {
+       DocumentReference docRef = App.fstore.collection("announcements").document(UUID.randomUUID().toString());
+       Map<String, Object> data = new HashMap<>();
+       data.put("announcement", newAnnouncement.getText());
+       data.put("postedDate", LocalDate.now());
+       ApiFuture<WriteResult> result = docRef.set(data);
+       VBox_center.getChildren().remove(4);
+       VBox_center.getChildren().remove(5);
+       
+       
+    }
+    
+    public void writeNewAssignment()
     {
         
     }
