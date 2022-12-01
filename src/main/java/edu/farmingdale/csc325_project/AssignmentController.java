@@ -157,16 +157,18 @@ public class AssignmentController implements Initializable {
         button_uploadFile.setPrefHeight(USE_COMPUTED_SIZE);
         button_uploadFile.setPrefWidth(USE_COMPUTED_SIZE);
         button_uploadFile.setStyle("-fx-text-fill:" + "#4653eb");
+        button_uploadFile.setAlignment(Pos.CENTER);
 
         button_save.setFont(tj);
         button_save.setPrefHeight(USE_COMPUTED_SIZE);
         button_save.setPrefWidth(USE_COMPUTED_SIZE);
         button_save.setStyle("-fx-text-fill:" + "#4653eb");
-
+        button_save.setAlignment(Pos.CENTER);
         button_post.setFont(tj);
         button_post.setPrefHeight(USE_COMPUTED_SIZE);
         button_post.setPrefWidth(USE_COMPUTED_SIZE);
         button_post.setStyle("-fx-text-fill:" + "#4653eb");
+        button_post.setAlignment(Pos.CENTER);
 
         label_title.setText(App.currentAssignment.title);
         Font font = new Font("System", 20);
