@@ -41,7 +41,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </padding>
                      <children>
-                        <TableView prefHeight="608.0" prefWidth="405.0">
+                        <TableView fx:id="tableView_userTable" prefHeight="608.0" prefWidth="405.0">
                           <columns>
                             <TableColumn fx:id="tableColumn_email" prefWidth="75.0" text="Email" />
                             <TableColumn fx:id="tableColumn_firstName" prefWidth="75.0" text="First Name" />
