@@ -35,7 +35,7 @@ public class AdminController extends HomePageController implements Initializable
     private VBox VBox_navButtons;
 
     @FXML
-    private MFXButton button_date;
+    private MFXButton button_delete;
 
     @FXML
     private MFXButton button_register;
@@ -72,7 +72,7 @@ public class AdminController extends HomePageController implements Initializable
 
     @FXML
     private MFXTextField textField_lastName;
-    
+
     private String currentID = "";
 
     @FXML
@@ -103,7 +103,13 @@ public class AdminController extends HomePageController implements Initializable
                 currentID = tableView_userTable.getSelectionModel().getSelectedItem().getUserID();
             }
         });
-
+        textField_dob.clear();
+        textField_email.clear();
+        textField_firstName.clear();
+        textField_lastName.clear();
+        textField_type.clear();
+        tableView_userTable.getItems().clear();
+        readRecords();
     }
 
     @FXML
@@ -146,7 +152,7 @@ public class AdminController extends HomePageController implements Initializable
     public void writeRecord() throws InterruptedException, ExecutionException {
 
         if (!"".equals(textField_dob.getText()) || !"".equals(textField_email.getText()) || !"".equals(textField_firstName.getText()) || !"".equals(textField_lastName.getText()) || !"".equals(textField_type.getText())) {
-            DocumentReference docRef = App.fstore.collection("References").document(UUID.randomUUID().toString());
+            DocumentReference docRef = App.fstore.collection("users").document(UUID.randomUUID().toString());
             // Add document data  with id "alovelace" using a hashmap
             Map<String, Object> data = new HashMap<>();
             data.put("DOB", textField_dob.getText());
@@ -158,7 +164,7 @@ public class AdminController extends HomePageController implements Initializable
             //asynchronously write data
             ApiFuture<WriteResult> result = docRef.set(data);
             // ...
-            System.out.println("Update time : " + result.get().getUpdateTime());
+
         }
 
     }
@@ -182,7 +188,6 @@ public class AdminController extends HomePageController implements Initializable
 
                     listOfUsers.add(user);
 
-                    tableView_userTable.setItems(listOfUsers);
                 }
             } else {
                 System.out.println("No data");
@@ -190,33 +195,30 @@ public class AdminController extends HomePageController implements Initializable
 
         } catch (InterruptedException | ExecutionException ex) {
         }
-
+        tableView_userTable.setItems(listOfUsers);
     }
 
     public void updateRecord() throws InterruptedException, ExecutionException {
 
         if (!"".equals(textField_dob.getText()) || !"".equals(textField_email.getText()) || !"".equals(textField_firstName.getText()) || !"".equals(textField_lastName.getText()) || !"".equals(textField_type.getText())) {
-            DocumentReference docRef = App.fstore.collection("References").document(currentID);
-            // Update 
+            DocumentReference docRef = App.fstore.collection("users").document(currentID);
+
             Map<String, Object> updates = new HashMap<>();
             updates.put("DOB", textField_dob.getText());
             updates.put("email", textField_email.getText());
             updates.put("firstName", textField_firstName.getText());
             updates.put("lastName", textField_lastName.getText());
             updates.put("type", textField_type.getText());
-            // Async update document
+
             ApiFuture<WriteResult> writeResult = docRef.update(updates);
-            // ...
-            System.out.println("Update time : " + writeResult.get().getUpdateTime());
+
         }
 
     }
 
     public void removeRecord() throws InterruptedException, ExecutionException {
 
-        //asynchronously delete a document
         ApiFuture<WriteResult> writeResult = App.fstore.collection("users").document(currentID).delete();
-        System.out.println("Update time : " + writeResult.get().getUpdateTime());
 
     }
 }

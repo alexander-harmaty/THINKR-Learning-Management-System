@@ -37,10 +37,10 @@ public class User {
         this.DOB = String.valueOf(document.getData().get("DOB"));
         this.email = String.valueOf(document.getData().get("email"));
         this.firstName = String.valueOf(document.getData().get("firstName"));
-        this.firstName = String.valueOf(document.getData().get("lastName"));
-        this.lastName = String.valueOf(document.getData().get("type"));
+        this.lastName = String.valueOf(document.getData().get("lastName"));
+        this.type = String.valueOf(document.getData().get("type"));
         this.password = String.valueOf(document.getData().get("password"));
-        this.userID = String.valueOf(document.getData().get("userID"));
+        this.userID = String.valueOf(document.getId());
         this.status = String.valueOf(document.getData().get("status"));
 
 

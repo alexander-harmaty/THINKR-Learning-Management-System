@@ -52,9 +52,9 @@
                         </TableView>
                         <HBox alignment="CENTER" prefHeight="51.0" prefWidth="405.0" spacing="25.0">
                            <children>
-                              <MFXButton fx:id="button_register" text="Register" />
-                              <MFXButton fx:id="button_update" text="Update" />
-                              <MFXButton fx:id="button_date" text="Date" />
+                              <MFXButton fx:id="button_register" onAction="#handle_writeRecord" text="Register" />
+                              <MFXButton fx:id="button_update" onAction="#handle_updateRecord" text="Update" />
+                              <MFXButton fx:id="button_delete" onAction="#handle_removeRecord" text="Delete" />
                            </children></HBox>
                      </children>
                   </VBox>
