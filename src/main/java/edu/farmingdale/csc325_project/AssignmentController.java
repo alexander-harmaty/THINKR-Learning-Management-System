@@ -97,6 +97,7 @@ public class AssignmentController implements Initializable {
 
     @FXML
     void handleButton_post(ActionEvent event) {
+        //createAssignment();
 
     }
 
@@ -269,7 +270,8 @@ public class AssignmentController implements Initializable {
        DocumentReference docRef = App.fstore.collection("assignments").document(UUID.randomUUID().toString());
        Map<String, Object> data = new HashMap<>();
        data.put("title", textField_title.getText());
-       data.put("details", textArea_assignmentDetails.getText());
+       data.put("dueDate", datePicker_dueDate.getCurrentDate());
+       data.put("detailsText", textArea_assignmentDetails.getText());
        
        ApiFuture<WriteResult> result = docRef.set(data);
    } 
