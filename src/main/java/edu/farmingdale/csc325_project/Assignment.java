@@ -40,7 +40,7 @@ public class Assignment {
     {
         
         this.dueDate = (Timestamp)document.getData().get("dueDate");
-        this.assignedDate = (Timestamp)document.getData().get("assignedDate");
+        this.assignedDate = (Timestamp)document.getData().get("assignDate");
         this.detailsText = (String)document.getData().get("detailsText");
         this.submissions = (List<String>)document.getData().get("submissions");
         this.detailsFile = (String)document.getData().get("detailsFile");
