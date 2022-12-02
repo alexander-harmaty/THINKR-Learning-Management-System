@@ -1,5 +1,8 @@
 package edu.farmingdale.csc325_project;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.WriteResult;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
@@ -16,8 +19,11 @@ import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.UUID;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -257,5 +263,15 @@ public class AssignmentController implements Initializable {
         }
 
     }
+    
+   public void createAssignment()
+   {
+       DocumentReference docRef = App.fstore.collection("assignments").document(UUID.randomUUID().toString());
+       Map<String, Object> data = new HashMap<>();
+       data.put("title", textField_title.getText());
+       data.put("details", textArea_assignmentDetails.getText());
+       
+       ApiFuture<WriteResult> result = docRef.set(data);
+   } 
 
 }
