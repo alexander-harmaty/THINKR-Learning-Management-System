@@ -4,6 +4,7 @@
  */
 package edu.farmingdale.csc325_project;
 
+import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import java.io.IOException;
@@ -18,7 +19,7 @@ public class Assignment {
     
     protected String title; 
     protected Timestamp dueDate; 
-    protected Timestamp assignedDate; 
+    protected Timestamp  assignedDate; 
     protected String detailsText; 
     protected String detailsFile;
     protected List<String> submissions;
@@ -56,7 +57,8 @@ public class Assignment {
         this.title = title;
     }
 
-    public  Timestamp getDueDate() {
+
+    public Timestamp getDueDate() {
         return dueDate;
     }
 

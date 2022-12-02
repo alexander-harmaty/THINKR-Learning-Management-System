@@ -55,8 +55,6 @@ public class HomePageController implements Initializable {
     @FXML
     protected final MFXButton button_calendar = new MFXButton("Calendar");
 
-    @FXML
-    protected final MFXButton button_registrar = new MFXButton("Registrar");
 
     @FXML
     protected final MFXButton button_accounts = new MFXButton("Accounts");
@@ -94,12 +92,12 @@ public class HomePageController implements Initializable {
         //set list of courses
         readCoursesIntoTable();
         tableView_popup.setVisible(false);
-        
+
         //set code to switch to course view after double clicking a table selection
         setOnMousePressed();
-        
+
     }
-    
+
     protected void updateMenu() {
         VBox_navButtons.getChildren().clear();
 
@@ -135,7 +133,6 @@ public class HomePageController implements Initializable {
                 buttons.add(button_courses);
                 buttons.add(button_grades);
                 buttons.add(button_calendar);
-                buttons.add(button_registrar);
                 buttons.add(button_settings);
 
                 break;
@@ -170,22 +167,21 @@ public class HomePageController implements Initializable {
 
             case "ADMIN":
 
-//                button_registrar.setOnAction(event -> {
-//                    try { App.setRoot("Registrar.fxml"); } 
-//                    catch (IOException ex) {}
-//                });
-//                
-//                button_accounts.setOnAction(event -> {
-//                    try { App.setRoot("Accounts.fxml"); } 
-//                    catch (IOException ex) {}
-//                });
-//                
-//                button_settings.setOnAction(event -> {
-//                    try { App.setRoot("Settings.fxml"); } 
-//                    catch (IOException ex) {}
-//                });
+
+                button_accounts.setOnAction(event -> {
+                    try {
+                        App.setRoot("Accounts.fxml");
+                    } catch (IOException ex) {
+                    }
+                });
+
+                button_settings.setOnAction(event -> {
+                    try {
+                        App.setRoot("Settings.fxml");
+                    } catch (IOException ex) {
+                    }
+                });
                 buttons.add(button_home);
-                buttons.add(button_registrar);
                 buttons.add(button_accounts);
                 buttons.add(button_settings);
 
@@ -213,26 +209,26 @@ public class HomePageController implements Initializable {
         //declare course and its documents list
         Course course;
         List<QueryDocumentSnapshot> documents;
-        
+
         //get assignments collection
         ApiFuture<QuerySnapshot> future = App.fstore.collection("courses").get();
-        
+
         try {
             //add collection into list
             documents = future.get().getDocuments();
 
             //check if empty
             if (!documents.isEmpty()) {
-                
+
                 //loop through assignments
                 for (QueryDocumentSnapshot document : documents) {
-                    
+
                     //use course document constructor to hold assignment data
                     course = new Course(document);
 
                     //loop thorugh all courses
                     for (String student : course.students) {
-                        
+
                         //if the currentUser ID is found in any of the courses...
                         if (App.currentUser.userID.equals(student)) {
                             //add course to list
@@ -243,39 +239,40 @@ public class HomePageController implements Initializable {
                 //set tableview to assignments list
                 tableView_popup.setItems(listOfCourses);
             }
-        } catch (InterruptedException | ExecutionException ex) {}
+        } catch (InterruptedException | ExecutionException ex) {
+        }
     }
 
     private void setOnMousePressed() {
-        
+
         tableView_popup.setOnMousePressed((MouseEvent event) -> {
-            
+
             //check for primary mouse clicks
             if (event.getButton().equals(MouseButton.PRIMARY)) {
-                
+
                 //if click is double click...
                 if (event.getClickCount() == 2) {
-                    
+
                     //read selected course CRN
                     String selectedCRN = tableView_popup.getSelectionModel().getSelectedItem().getCRN();
 
                     //declare course and its list
                     Course course;
                     List<QueryDocumentSnapshot> documents;
-                    
+
                     //get courses collection
                     ApiFuture<QuerySnapshot> future = App.fstore.collection("courses").get();
-                 
+
                     try {
                         //add collection into list
                         documents = future.get().getDocuments();
 
                         //check if empty
                         if (!documents.isEmpty()) {
-                            
+
                             //loop through courses
                             for (QueryDocumentSnapshot document : documents) {
-                                
+
                                 //use assignment document constructor to hold assignment data
                                 course = new Course(document);
 
@@ -288,12 +285,12 @@ public class HomePageController implements Initializable {
                                 }
                             }
                         }
-                    } 
-                    catch (InterruptedException | ExecutionException | IOException ex) {}
+                    } catch (InterruptedException | ExecutionException | IOException ex) {
+                    }
                 }
             }
         });
-        
+
     }
-    
+
 }
