@@ -284,7 +284,6 @@ public class CourseController extends HomePageController implements Initializabl
     @FXML
     public void handleButton_addAnnouncement()
     {
-        
         ObservableList<Node> children = VBox_center.getChildren();
         
         
@@ -298,24 +297,16 @@ public class CourseController extends HomePageController implements Initializabl
         button_confirm.setOnAction(event -> {
                     writeNewAnnouncement();
          
-                });
-        
-        
-        
-        
-        
-                
+                });    
     }
     
     @FXML
     public void handleButton_createAssignment() throws IOException
     {
         App.setRoot("Assignment");
-        
-      
+
     }
-    
-    
+
     public void writeNewAnnouncement()
     {
        
