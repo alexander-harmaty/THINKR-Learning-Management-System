@@ -87,6 +87,12 @@ public class AdminController extends HomePageController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         updateMenu();
+        switch(App.currentUser.type){
+
+            case "ADMIN":
+                button_accounts.setVisible(false);
+                break; 
+        }
         tableColumn_dob.setCellValueFactory(new PropertyValueFactory<>("DOB"));
         tableColumn_email.setCellValueFactory(new PropertyValueFactory<>("email"));
         tableColumn_firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
