@@ -16,7 +16,7 @@ import javafx.scene.layout.VBox;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-
+import com.google.cloud.Timestamp;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +30,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 import javafx.scene.text.Font;
+
+import java.time.Instant;
+import java.util.Date;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 /**
  * FXML Controller class
@@ -255,6 +261,11 @@ public class AssignmentController implements Initializable {
 
                 HBox_buttons.getChildren().add(button_uploadFile);
                 HBox_buttons.getChildren().add(button_post);
+                
+                 button_post.setOnAction(event -> {
+                    createAssignment();
+         
+                });    
 
                 break;
 
@@ -265,15 +276,23 @@ public class AssignmentController implements Initializable {
 
     }
     
-   public void createAssignment()
+  public void createAssignment()
    {
+       ZonedDateTime zdt = datePicker_dueDate.getCurrentDate().atStartOfDay(ZoneId.of("America/New_York"));
+       Instant i = zdt.toInstant();
+       Date d = Date.from(i);
+       Timestamp ts = Timestamp.of(d);
+   
        DocumentReference docRef = App.fstore.collection("assignments").document(UUID.randomUUID().toString());
        Map<String, Object> data = new HashMap<>();
        data.put("title", textField_title.getText());
-       data.put("dueDate", datePicker_dueDate.getCurrentDate());
+       data.put("dueDate", ts);
        data.put("detailsText", textArea_assignmentDetails.getText());
+      
+       
        
        ApiFuture<WriteResult> result = docRef.set(data);
+       
    } 
 
 }
