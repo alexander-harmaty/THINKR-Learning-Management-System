@@ -288,6 +288,8 @@ public class AssignmentController implements Initializable {
        data.put("title", textField_title.getText());
        data.put("dueDate", ts);
        data.put("detailsText", textArea_assignmentDetails.getText());
+       data.put("assignDate", Timestamp.now());
+       data.put("course", App.currentCourse.CRN);
       
        
        
