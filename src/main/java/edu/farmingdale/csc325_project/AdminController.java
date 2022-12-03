@@ -42,7 +42,10 @@ public class AdminController extends HomePageController implements Initializable
 
     @FXML
     private MFXButton button_update;
-    
+
+    @FXML
+    private MFXButton button_clear;
+
     @FXML
     private TableColumn<User, String> tableColumn_dob;
 
@@ -87,12 +90,8 @@ public class AdminController extends HomePageController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         updateMenu();
-        switch(App.currentUser.type){
+        VBox_navButtons.getChildren().remove(0);
 
-            case "ADMIN":
-                button_accounts.setVisible(false);
-                break; 
-        }
         tableColumn_dob.setCellValueFactory(new PropertyValueFactory<>("DOB"));
         tableColumn_email.setCellValueFactory(new PropertyValueFactory<>("email"));
         tableColumn_firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -154,6 +153,23 @@ public class AdminController extends HomePageController implements Initializable
         removeRecord();
         handle_readRecords(event);
 
+    }
+
+    @FXML
+    private void handle_clearRecord(ActionEvent event) throws InterruptedException, ExecutionException {
+
+        clearRecord();
+        handle_readRecords(event);
+    }
+
+    public void clearRecord() {
+        textField_dob.clear();
+        textField_email.clear();
+        textField_firstName.clear();
+        textField_lastName.clear();
+        textField_type.clear();
+        tableView_userTable.getItems().clear();
+        readRecords();
     }
 
     public void writeRecord() throws InterruptedException, ExecutionException {
