@@ -51,48 +51,50 @@ public class GradesController extends HomePageController implements Initializabl
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        //set column with cell factory
         tableColumn_assignment.setCellValueFactory(new PropertyValueFactory<>("assignment"));
         tableColumn_submittedDate.setCellValueFactory(new PropertyValueFactory<>("submittedDate"));
         tableColumn_course.setCellValueFactory(new PropertyValueFactory<>("course"));
         tableColumn_grade.setCellValueFactory(new PropertyValueFactory<>("grade"));
-
+       
+        //set list of grades
         readGradesIntoTable();
+        //adds buttons to menu based on user
         updateMenu();
     }
     
        
     private void readGradesIntoTable() {
         
-        
+        //declare submission and its document list
         Submission submission;
         List<QueryDocumentSnapshot> documents;
         
-        
+        //get submissions collection
         ApiFuture<QuerySnapshot> future = App.fstore.collection("submissions").get();
         
         try {
-            
+            //add collection into list
             documents = future.get().getDocuments();
 
-            
+            //checks if document is empty
             if (!documents.isEmpty()) {
                 
-                
+                //loop through submissions
                 for (QueryDocumentSnapshot document : documents) {
                     
-                  
+                    //use submission doucment constructor to hold a submission
                     submission = new Submission(document);
                     
-                    
+                    //if the currentUser ID is found in the submissions
                     if (App.currentUser.userID.equals(submission.student)){
-                     
+                        //add to the list of submissions
                         listOfSubmissions.add(submission);
                     }
                     
             
                 }
-                
+                //set the tableview to submission list
                 tableView_grades.setItems(listOfSubmissions);
             }
         } 
