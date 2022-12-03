@@ -7,6 +7,7 @@ import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
@@ -42,6 +43,13 @@ public class AdminController extends HomePageController implements Initializable
 
     @FXML
     private MFXButton button_update;
+    
+     @FXML
+    private MFXButton button_home;
+
+    @FXML
+    private MFXButton button_logout;
+
 
     @FXML
     private TableColumn<User, String> tableColumn_dob;
@@ -82,6 +90,17 @@ public class AdminController extends HomePageController implements Initializable
 
     public ObservableList<User> getListOfUsers() {
         return listOfUsers;
+    }
+    
+     @FXML
+    void handleButton_home(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleButton_logout(ActionEvent event) {
+    
+             
     }
 
     @Override

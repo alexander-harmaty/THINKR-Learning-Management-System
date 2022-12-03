@@ -23,7 +23,19 @@
                         <Font name="System Bold Italic" size="52.0" />
                      </font>
                   </Text>
-                  <VBox fx:id="VBox_navButtons" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" />
+                  <VBox fx:id="VBox_navButtons" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                     <children>
+                        <MFXButton fx:id="button_home" maxHeight="50.0" maxWidth="1.7976931348623157E308" onAction="#handleButton_home" prefHeight="50.0" text="Home">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </MFXButton>
+                        <MFXButton fx:id="button_logout" maxHeight="50.0" maxWidth="1.7976931348623157E308" onAction="#handleButton_logout" prefHeight="50.0" text="Home">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </MFXButton>
+                     </children></VBox>
                </children>
                <padding>
                   <Insets left="20.0" right="20.0" top="20.0" />
