@@ -1,7 +1,6 @@
 package edu.farmingdale.csc325_project;
 
 import com.google.api.core.ApiFuture;
-import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.WriteResult;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -19,11 +18,6 @@ import javafx.scene.layout.VBox;
  */
 
 import java.net.URL;
-import java.time.Instant;
-import java.util.Date;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -101,6 +95,11 @@ public class AssignmentController implements Initializable {
 
     }
 
+    @FXML
+    void handleButton_post(ActionEvent event) {
+        //createAssignment();
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -256,11 +255,6 @@ public class AssignmentController implements Initializable {
 
                 HBox_buttons.getChildren().add(button_uploadFile);
                 HBox_buttons.getChildren().add(button_post);
-                
-                button_post.setOnAction(event -> {
-                    createAssignment();
-         
-                });    
 
                 break;
 
@@ -273,21 +267,13 @@ public class AssignmentController implements Initializable {
     
    public void createAssignment()
    {
-       ZonedDateTime zdt = datePicker_dueDate.getCurrentDate().atStartOfDay(ZoneId.of("America/New_York"));
-       Instant i = zdt.toInstant();
-       Date d = Date.from(i);
-       Timestamp ts = Timestamp.of(d);
-   
        DocumentReference docRef = App.fstore.collection("assignments").document(UUID.randomUUID().toString());
        Map<String, Object> data = new HashMap<>();
        data.put("title", textField_title.getText());
-       data.put("dueDate", ts);
+       data.put("dueDate", datePicker_dueDate.getCurrentDate());
        data.put("detailsText", textArea_assignmentDetails.getText());
-      
-       
        
        ApiFuture<WriteResult> result = docRef.set(data);
-       
    } 
 
 }
