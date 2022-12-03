@@ -90,28 +90,27 @@ public class AssignmentController implements Initializable {
     protected final MFXButton button_post = new MFXButton("Post");
     //Professor Post
     //Student Submit, if submission is there just save
-
-    @FXML
-    void handleButton_uploadFile(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleButton_save(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleButton_post(ActionEvent event) {
-        //createAssignment();
-
-    }
+//
+//    @FXML
+//    void handleButton_uploadFile(ActionEvent event) {
+//
+//    }
+//
+//    @FXML
+//    void handleButton_save(ActionEvent event) {
+//
+//    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         buildAssignment();
     }
 
+    /**
+     * the professor view when creating an assignment, before submission
+     * 
+     * 
+     */
     protected void buildAssignment() {
         VBox_left.getChildren().clear();
         //VBox_right.getChildren().clear();
@@ -176,6 +175,12 @@ public class AssignmentController implements Initializable {
                
         }
     
+    
+  /**
+   * creates a new assignment and adds it to the database 
+   * 
+   * ToDo: add a submission of assignment to every student in the current course
+   */  
   public void createAssignment()
    {
        ZonedDateTime zdt = datePicker_dueDate.getCurrentDate().atStartOfDay(ZoneId.of("America/New_York"));
@@ -188,8 +193,8 @@ public class AssignmentController implements Initializable {
        data.put("title", textField_title.getText());
        data.put("dueDate", ts);
        data.put("detailsText", textArea_assignmentDetails.getText());
-       data.put("assignDate", Timestamp.now());
-       data.put("course", App.currentCourse.CRN);
+       data.put("assignDate", Timestamp.now());//makes the current time the assigned date
+       data.put("course", App.currentCourse.CRN); //ToDo: needs to add course array, right now adds a string only
       
        
        
