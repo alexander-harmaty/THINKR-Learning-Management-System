@@ -110,6 +110,10 @@ public class HomePageController implements Initializable {
 
             case "STUDENT":
 
+                button_home.setOnAction(event -> {
+                    try { App.setRoot("HomePage"); } 
+                    catch (IOException ex) {}
+                });
                 button_courses.setOnAction(event -> {
                     tableView_popup.setVisible(true);
                 });
@@ -117,7 +121,6 @@ public class HomePageController implements Initializable {
                 button_grades.setOnAction(event -> {
                     try { App.setRoot("Grades"); } 
                     catch (IOException ex) {
-                        System.out.println("test");
                     }
                 });
 //                
@@ -148,19 +151,23 @@ public class HomePageController implements Initializable {
 
             case "PROFESSOR":
 
+                button_home.setOnAction(event -> {
+                    try { App.setRoot("HomePage"); } 
+                    catch (IOException ex) {}
+                });
                 button_courses.setOnAction(event -> {
                     tableView_popup.setVisible(true);
                 });
 
-//                button_grades.setOnAction(event -> {
-//                    try { App.setRoot("Grades.fxml"); } 
-//                    catch (IOException ex) {}
-//                });
-//                
-//                button_calendar.setOnAction(event -> {
-//                    try { App.setRoot("Calendar.fxml"); } 
-//                    catch (IOException ex) {}
-//                });
+                button_grades.setOnAction(event -> {
+                    try { App.setRoot("Grades"); } 
+                    catch (IOException ex) {}
+                });
+                
+                button_calendar.setOnAction(event -> {
+                    try { App.setRoot("Calendar"); } 
+                    catch (IOException ex) {}
+                });
                 button_logout.setOnAction(event -> {
                     try {
                         App.currentUser.logOut();

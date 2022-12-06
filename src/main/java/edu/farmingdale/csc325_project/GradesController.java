@@ -1,5 +1,6 @@
 package edu.farmingdale.csc325_project;
 
+import java.util.ArrayList;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
@@ -99,6 +100,23 @@ public class GradesController extends HomePageController implements Initializabl
             }
         } 
         catch (InterruptedException | ExecutionException ex) {}
+    }
+
+    public List<Integer> gradesListBuilder() {
+        List<Integer> grades = new ArrayList<>
+    }
+    
+    public double classAvgCalculator(List<Integer> grades) {
+        int count = grades.size();
+        int sum = 0;
+        for( int i =0; i<grades.size();i++)
+        {
+           int  x = grades.get(i);
+            sum = sum +x; 
+        }
+
+        return sum/count;
+
     }
     
 }
