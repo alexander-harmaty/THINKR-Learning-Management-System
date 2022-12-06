@@ -94,7 +94,6 @@ public class HomePageController implements Initializable {
         else if(App.currentUser.type.equals("PROFESSOR"))
         readProfCoursesIntoTable();
         
-        tableView_popup.setVisible(false);
 
         //set code to switch to course view after double clicking a table selection
         setOnMousePressed();
@@ -113,10 +112,8 @@ public class HomePageController implements Initializable {
                 button_home.setOnAction(event -> {
                     try { App.setRoot("HomePage"); } 
                     catch (IOException ex) {}
-                });
-                button_courses.setOnAction(event -> {
-                    tableView_popup.setVisible(true);
-                });
+                });                 
+                
 
                 button_grades.setOnAction(event -> {
                     try { App.setRoot("Grades"); } 
@@ -141,10 +138,8 @@ public class HomePageController implements Initializable {
                 });
 
                 buttons.add(button_home);
-                buttons.add(button_courses);
                 buttons.add(button_grades);
                 buttons.add(button_calendar);
-
                 buttons.add(button_logout);
 
                 break;
@@ -154,9 +149,6 @@ public class HomePageController implements Initializable {
                 button_home.setOnAction(event -> {
                     try { App.setRoot("HomePage"); } 
                     catch (IOException ex) {}
-                });
-                button_courses.setOnAction(event -> {
-                    tableView_popup.setVisible(true);
                 });
 
                 button_grades.setOnAction(event -> {
@@ -176,7 +168,6 @@ public class HomePageController implements Initializable {
                 });
 
                 buttons.add(button_home);
-                buttons.add(button_courses);
                 buttons.add(button_grades);
                 buttons.add(button_calendar);
                 buttons.add(button_logout);
