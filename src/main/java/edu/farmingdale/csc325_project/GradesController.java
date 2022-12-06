@@ -77,7 +77,7 @@ public class GradesController extends HomePageController implements Initializabl
         //set column with cell factory
         tableColumn_assignment.setCellValueFactory(new PropertyValueFactory<>("assignment"));
         tableColumn_submittedDate.setCellValueFactory(new PropertyValueFactory<>("submittedDate"));
-        tableColumn_course.setCellValueFactory(new PropertyValueFactory<>("course"));
+        tableColumn_course.setCellValueFactory(new PropertyValueFactory<>("CRN"));
         tableColumn_grade.setCellValueFactory(new PropertyValueFactory<>("grade"));
         //set list of classAverages
         readGradesIntoTable();
