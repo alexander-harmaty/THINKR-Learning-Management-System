@@ -50,6 +50,6 @@ public class CurrentUser extends User {
         this.type = "";
         
         //switches user to login controller
-        App.setRoot("LoginRegisterController");
+        App.setRoot("LoginRegister");
     }
 }

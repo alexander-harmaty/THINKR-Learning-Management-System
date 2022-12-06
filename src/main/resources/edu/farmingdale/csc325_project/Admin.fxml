@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.farmingdale.csc325_project.AdminController">
+   <children>
+      <BorderPane prefHeight="720.0" prefWidth="1280.0">
+         <left>
+            <VBox fx:id="VBox_navBar" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="230.0" style="-fx-background-color: #4653eb;">
+               <children>
+                  <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" text="Thinkr" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold Italic" size="52.0" />
+                     </font>
+                  </Text>
+                  <VBox fx:id="VBox_navButtons" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" />
+               </children>
+               <padding>
+                  <Insets left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </VBox>
+         </left>
+         <center>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox prefHeight="720.0" prefWidth="405.0">
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <TableView fx:id="tableView_userTable" prefHeight="608.0" prefWidth="405.0">
+                          <columns>
+                            <TableColumn fx:id="tableColumn_email" prefWidth="75.0" text="Email" />
+                            <TableColumn fx:id="tableColumn_firstName" prefWidth="75.0" text="First Name" />
+                              <TableColumn fx:id="tableColumn_lastName" prefWidth="75.0" text="Last Name" />
+                              <TableColumn fx:id="tableColumn_dob" prefWidth="75.0" text="DOB" />
+                              <TableColumn fx:id="tableColumn_type" prefWidth="75.0" text="Type" />
+                          </columns>
+                        </TableView>
+                        <HBox alignment="CENTER" prefHeight="51.0" prefWidth="405.0" spacing="25.0">
+                           <children>
+                              <MFXButton fx:id="button_register" onAction="#handle_writeRecord" text="Register" />
+                              <MFXButton fx:id="button_update" onAction="#handle_updateRecord" text="Update" />
+                              <MFXButton fx:id="button_delete" onAction="#handle_removeRecord" text="Delete" />
+                              <MFXButton fx:id="button_clear" onAction="#handle_clearRecord" text="Clear" />
+                           </children></HBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="720.0" prefWidth="405.0" spacing="45.0">
+                     <children>
+                        <MFXTextField fx:id="textField_email" floatingText="Email:" prefHeight="50.0" prefWidth="375.0" />
+                        <MFXTextField fx:id="textField_firstName" floatingText="First Name:" prefHeight="50.0" prefWidth="375.0" />
+                        <MFXTextField fx:id="textField_lastName" floatingText="Last Name:" prefHeight="50.0" prefWidth="375.0" />
+                        <MFXTextField fx:id="textField_dob" floatingText="DOB:" prefHeight="50.0" prefWidth="375.0" />
+                        <MFXTextField fx:id="textField_type" floatingText="Type:" prefHeight="50.0" prefWidth="375.0" />
+                     </children>
+                     <padding>
+                        <Insets left="15.0" top="15.0" />
+                     </padding>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </HBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
