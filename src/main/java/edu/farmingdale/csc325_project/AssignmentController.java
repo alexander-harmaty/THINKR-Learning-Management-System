@@ -17,6 +17,8 @@ import javafx.scene.layout.VBox;
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 import com.google.cloud.Timestamp;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,6 +38,7 @@ import java.util.Date;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import org.controlsfx.glyphfont.FontAwesome;
 
 /**
  * FXML Controller class
@@ -108,8 +111,8 @@ public class AssignmentController implements Initializable {
 
     /**
      * the professor view when creating an assignment, before submission
-     * 
-     * 
+     *
+     *
      */
     protected void buildAssignment() {
         VBox_left.getChildren().clear();
@@ -118,88 +121,113 @@ public class AssignmentController implements Initializable {
 
         Font tj = new Font("System", 12);
         Font font = new Font("System", 20);
+
+        textField_title.getText();
+        textField_title.setFont(font);
+        textField_title.setPrefHeight(40);
+        textField_title.setPrefWidth(268);
+        textField_title.setAlignment(Pos.CENTER);
+        textField_title.setStyle("-fx-border-color:" + "#4653eb");
+
+        datePicker_dueDate.setFloatingText("Grades");
+        datePicker_dueDate.setFont(tj);
+        datePicker_dueDate.setPrefHeight(38);
+        datePicker_dueDate.setPrefWidth(290);
+        datePicker_dueDate.setAlignment(Pos.CENTER_LEFT);
+        datePicker_dueDate.setStyle("-fx-border-color:" + "#4653eb");
+
+        textArea_assignmentDetails.setPromptText("Assignment Details");
+        textArea_assignmentDetails.setFont(tj);
+        textArea_assignmentDetails.setPrefHeight(194);
+        textArea_assignmentDetails.setPrefWidth(268);
+        textArea_assignmentDetails.setStyle("-fx-border-color:" + "#4653eb");
+
+        button_uploadFile.setFont(tj);
+        button_uploadFile.setPrefHeight(USE_COMPUTED_SIZE);
+        button_uploadFile.setPrefWidth(USE_COMPUTED_SIZE);
+        button_uploadFile.setStyle("-fx-text-fill:" + "#4653eb");
+        button_uploadFile.setAlignment(Pos.CENTER);
+
+        button_save.setFont(tj);
+        button_save.setPrefHeight(USE_COMPUTED_SIZE);
+        button_save.setPrefWidth(USE_COMPUTED_SIZE);
+        button_save.setStyle("-fx-text-fill:" + "#4653eb");
+        button_save.setAlignment(Pos.CENTER);
+
+        button_post.setFont(tj);
+        button_post.setPrefHeight(USE_COMPUTED_SIZE);
+        button_post.setPrefWidth(USE_COMPUTED_SIZE);
+        button_post.setStyle("-fx-text-fill:" + "#4653eb");
+        button_post.setAlignment(Pos.CENTER);
+
+        VBox_left.getChildren().add(textField_title);
+
+        VBox_left.getChildren().add(datePicker_dueDate);
+
+        VBox_left.getChildren().add(textArea_assignmentDetails);
+
+        HBox_buttons.getChildren().add(button_uploadFile);
+        HBox_buttons.getChildren().add(button_post);
+
+        button_post.setOnAction(event -> {
+            createAssignment();
+
+        });
+
+    }
+
+    /**
+     * creates a new assignment and adds it to the database
+     *
+     * ToDo: add a submission of assignment to every student in the current
+     * course
+     */
+    public void createAssignment() {
+        ZonedDateTime zdt = datePicker_dueDate.getCurrentDate().atStartOfDay(ZoneId.of("America/New_York"));
+        Instant instant = zdt.toInstant();
+        Date d = Date.from(instant);
+        Timestamp ts = Timestamp.of(d);
+
         
-                textField_title.getText();
-                textField_title.setFont(font);
-                textField_title.setPrefHeight(40);
-                textField_title.setPrefWidth(268);
-                textField_title.setAlignment(Pos.CENTER);
-                textField_title.setStyle("-fx-border-color:" + "#4653eb");
 
-                datePicker_dueDate.setFloatingText("Grades");
-                datePicker_dueDate.setFont(tj);
-                datePicker_dueDate.setPrefHeight(38);
-                datePicker_dueDate.setPrefWidth(290);
-                datePicker_dueDate.setAlignment(Pos.CENTER_LEFT);
-                datePicker_dueDate.setStyle("-fx-border-color:" + "#4653eb");
-                
-                textArea_assignmentDetails.setPromptText("Assignment Details");
-                textArea_assignmentDetails.setFont(tj);
-                textArea_assignmentDetails.setPrefHeight(194);
-                textArea_assignmentDetails.setPrefWidth(268);
-                textArea_assignmentDetails.setStyle("-fx-border-color:" + "#4653eb");
+        DocumentReference docRef = App.fstore.collection("assignments").document(UUID.randomUUID().toString());
+        Map<String, Object> data = new HashMap<>();
 
-                button_uploadFile.setFont(tj);
-                button_uploadFile.setPrefHeight(USE_COMPUTED_SIZE);
-                button_uploadFile.setPrefWidth(USE_COMPUTED_SIZE);
-                button_uploadFile.setStyle("-fx-text-fill:" + "#4653eb");
-                button_uploadFile.setAlignment(Pos.CENTER);
+        data.put("title", textField_title.getText());
+        data.put("dueDate", ts);
+        data.put("detailsText", textArea_assignmentDetails.getText());
+        data.put("assignDate", Timestamp.now());//makes the current time the assigned date
+        
+        List<String> courses = new ArrayList<>();
+        courses.add(App.currentCourse.CRN);
+        data.put("course", courses);
 
-                button_save.setFont(tj);
-                button_save.setPrefHeight(USE_COMPUTED_SIZE);
-                button_save.setPrefWidth(USE_COMPUTED_SIZE);
-                button_save.setStyle("-fx-text-fill:" + "#4653eb");
-                button_save.setAlignment(Pos.CENTER);
+        List<String> submissions = new ArrayList<>();
+        for (int i = 0; i < App.currentCourse.students.size(); i++) {
 
-                button_post.setFont(tj);
-                button_post.setPrefHeight(USE_COMPUTED_SIZE);
-                button_post.setPrefWidth(USE_COMPUTED_SIZE);
-                button_post.setStyle("-fx-text-fill:" + "#4653eb");
-                button_post.setAlignment(Pos.CENTER);
+            DocumentReference tempRef = App.fstore.collection("submissions").document(UUID.randomUUID().toString());
+            Map<String, Object> tempData = new HashMap<>();
 
-                VBox_left.getChildren().add(textField_title);
-              
-                VBox_left.getChildren().add(datePicker_dueDate);
-                
-                VBox_left.getChildren().add(textArea_assignmentDetails);
-              
-
-                HBox_buttons.getChildren().add(button_uploadFile);
-                HBox_buttons.getChildren().add(button_post);
-                
-                 button_post.setOnAction(event -> {
-                    createAssignment();
-         
-                });    
-
-               
+            tempData.put("assignment", textField_title.getText());
+            tempData.put("CRN", App.currentCourse.CRN);
+            tempData.put("grade", 0);
+            tempData.put("student", App.currentCourse.students.get(i));
+            tempData.put("studentComment", textArea_studentComment.getText());
+            tempData.put("submitted", false);
+            tempData.put("submittedDate", null);
+            tempData.put("teacherFeedback", null);
+            ApiFuture<WriteResult> subResult = tempRef.set(tempData);
+            submissions.add(tempRef.getId());
         }
-    
-    
-  /**
-   * creates a new assignment and adds it to the database 
-   * 
-   * ToDo: add a submission of assignment to every student in the current course
-   */  
-  public void createAssignment()
-   {
-       ZonedDateTime zdt = datePicker_dueDate.getCurrentDate().atStartOfDay(ZoneId.of("America/New_York"));
-       Instant i = zdt.toInstant();
-       Date d = Date.from(i);
-       Timestamp ts = Timestamp.of(d);
-   
-       DocumentReference docRef = App.fstore.collection("assignments").document(UUID.randomUUID().toString());
-       Map<String, Object> data = new HashMap<>();
-       data.put("title", textField_title.getText());
-       data.put("dueDate", ts);
-       data.put("detailsText", textArea_assignmentDetails.getText());
-       data.put("assignDate", Timestamp.now());//makes the current time the assigned date
-       data.put("course", App.currentCourse.CRN); //ToDo: needs to add course array, right now adds a string only
-      
-       
-       
-       ApiFuture<WriteResult> result = docRef.set(data);
-       
-   } 
+        data.put("submissions", submissions);
+
+        //ToDo: needs to add course array, right now adds a string only
+        ApiFuture<WriteResult> result = docRef.set(data);
+        App.currentCourse.assignments.add(docRef.getId());
+        DocumentReference cdata = App.fstore.collection("courses").document(App.currentCourse.getID());
+        
+        ApiFuture<WriteResult> cresult = cdata.update("assignments",App.currentCourse.assignments );
+
+    }
 
 }

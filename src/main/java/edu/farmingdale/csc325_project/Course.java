@@ -26,8 +26,9 @@ public class Course {
     protected String title;
     protected List<String> assignments;
     protected List<String> announcements;
+    protected String ID;
 
-    public Course(String CRN, int code, int credits, int room, String building, String professor, String section, List<String> students, String subject, String title,List<String> assignments,List<String> announcements) {
+    public Course(String CRN, int code, int credits, int room, String building, String professor, String section, List<String> students, String subject, String title,List<String> assignments,List<String> announcements, String id) {
         this.CRN = CRN;
         this.code = code;
         this.credits = credits;
@@ -40,6 +41,7 @@ public class Course {
         this.title = title;
         this.assignments = assignments;
         this.announcements = announcements;
+        this.ID = id;
     }
 
     
@@ -57,6 +59,7 @@ public class Course {
         this.title = (String)document.getData().get("title");
         this.assignments=(List<String>)document.getData().get("assignments");
         this.announcements=(List<String>)document.getData().get("announcement");
+        this.ID = document.getId();
     }
 
     public Course(Course course) {
@@ -72,6 +75,7 @@ public class Course {
         this.title = course.title;
         this.assignments = course.assignments;
         this.announcements = course.announcements;
+        this.ID = course.ID;
     }
     
     public String getCRN() {
@@ -170,5 +174,14 @@ public class Course {
     public void setAnnouncements(List<String> announcements) {
         this.announcements = announcements;
     }
-            
+    
+    public String getID()
+    {
+        return ID;
+    }
+     
+    public void setID(String id)
+    {
+        this.ID = id;
+    }
 }

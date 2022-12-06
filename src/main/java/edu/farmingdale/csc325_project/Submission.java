@@ -15,8 +15,6 @@ import java.util.List;
  */
 public class Submission {
 
-   
-    protected String ID; 
     protected int grade; 
     protected String student; 
     protected String studentComment; 
@@ -24,10 +22,10 @@ public class Submission {
     protected Timestamp submittedDate;
     protected String teacherFeedback;
     protected String assignment;
-    protected String course;
+    protected String CRN;
 
-    public Submission(String ID, int grade, String student, String studentComment, boolean submitted, Timestamp submittedDate, String teacherFeedback, String assignment, String course) {
-        this.ID = ID;
+    public Submission(int grade, String student, String studentComment, boolean submitted, Timestamp submittedDate, String teacherFeedback, String assignment, String course) {
+        
         this.grade = grade;
         this.student = student;
         this.studentComment = studentComment;
@@ -35,30 +33,23 @@ public class Submission {
         this.submittedDate = submittedDate;
         this.teacherFeedback = teacherFeedback;
         this.assignment = assignment;
-        this.course = course;
+        this.CRN = course;
     }
     
     public Submission(QueryDocumentSnapshot document)
     {
-        
-        this.ID = (String)document.getData().get("ID");
+    
         this.grade = Integer.parseInt(document.getData().get("grade").toString());
         this.student = (String)document.getData().get("student");
-        this.studentComment = (String)document.getData().get("student comment");
+        this.studentComment = (String)document.getData().get("studentComment");
         this.submitted = (Boolean)document.getData().get("submitted");
         this.submittedDate = (Timestamp)document.getData().get("submittedDate");
-        this.teacherFeedback =(String)document.getData().get("teacher feedback");
+        this.teacherFeedback =(String)document.getData().get("teacherFeedback");
         this.assignment = (String)document.getData().get("assignment");
-        this.course = (String)document.getData().get("course");
+        this.CRN = (String)document.getData().get("CRN");
     }
 
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String ID) {
-        this.ID = ID;
-    }
+  
 
     public int getGrade() {
         return grade;
@@ -116,12 +107,12 @@ public class Submission {
         this.assignment = assignment;
     }
 
-    public String getCourse() {
-        return course;
+    public String getCRN() {
+        return CRN;
     }
 
-    public void setCourse(String course) {
-        this.course = course;
+    public void setCRN(String CRN) {
+        this.CRN = CRN;
     }
     
     
