@@ -4,7 +4,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -29,9 +28,16 @@
       </VBox>
    </left>
    <center>
-      <HBox fx:id="HBox_t" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" spacing="20.0">
          <children>
-            <TableView fx:id="tableView_grades" maxHeight="600.0" maxWidth="897.0" prefHeight="600.0" prefWidth="897.0" style="-fx-border-color: #4653eb;">
+            <TableView fx:id="tableView_courseAvg" maxHeight="600.0" maxWidth="811.0" prefHeight="568.0" prefWidth="911.0">
+              <columns>
+                <TableColumn fx:id="tableColumn_subject" prefWidth="105.0" text="Subject" />
+                <TableColumn fx:id="tableColumn_course" prefWidth="400.0" text="Course" />
+                  <TableColumn fx:id="tableColumn_avg" prefWidth="306.0" text="Average" />
+              </columns>
+            </TableView>
+            <TableView fx:id="tableView_grades" maxHeight="600.0" maxWidth="911.0" prefHeight="568.0" prefWidth="911.0" style="-fx-border-color: #4653eb;">
               <columns>
                 <TableColumn fx:id="tableColumn_course" minWidth="15.0" prefWidth="172.26660919189453" text="Course" />
                   <TableColumn fx:id="tableColumn_assignment" minWidth="15.0" prefWidth="172.26660919189453" text="Assignment" />
@@ -40,6 +46,9 @@
               </columns>
             </TableView>
          </children>
-      </HBox>
+         <padding>
+            <Insets bottom="20.0" top="20.0" />
+         </padding>
+      </VBox>
    </center>
 </BorderPane>
