@@ -82,6 +82,8 @@ public class AssignmentController implements Initializable {
 
     @FXML
     protected final MFXButton button_post = new MFXButton("Post");
+    //Professor Post
+    //Student Submit, if submission is there just save
 
     @FXML
     void handleButton_uploadFile(ActionEvent event) {
@@ -104,7 +106,6 @@ public class AssignmentController implements Initializable {
     }
 
     protected void buildAssignment() {
-        //Clears VBoxs and HBox_buttons that has uploadFile, save, and post.
         VBox_left.getChildren().clear();
         VBox_right.getChildren().clear();
         HBox_buttons.getChildren().clear();
@@ -116,7 +117,6 @@ public class AssignmentController implements Initializable {
 
             case "STUDENT":
 
-                //Creates what the Student will see.
                 label_title.setText(App.currentAssignment.title);
                 label_title.setFont(font);
                 label_title.setPrefHeight(40);
@@ -187,8 +187,7 @@ public class AssignmentController implements Initializable {
                 break;
 
             case "PROFESSOR":
-                
-                //Creates what the Professor will see.
+
                 textField_title.getText();
                 textField_title.setFont(font);
                 textField_title.setPrefHeight(40);
