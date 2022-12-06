@@ -103,7 +103,11 @@ public class GradesController extends HomePageController implements Initializabl
     }
 
     public List<Integer> gradesListBuilder() {
-        List<Integer> grades = new ArrayList<>
+        List<Integer> grades = new ArrayList<>();
+        for (Submission sub:listOfSubmissions) {
+            grades.add(sub.grade);
+        }
+        return grades;
     }
     
     public double classAvgCalculator(List<Integer> grades) {
