@@ -1,6 +1,7 @@
 package edu.farmingdale.csc325_project;
 
 import com.google.api.core.ApiFuture;
+import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -61,6 +62,15 @@ public class HomePageController implements Initializable {
     @FXML
     protected final MFXButton button_logout = new MFXButton("Logout");
 
+    @FXML
+    private TableColumn<Assignment, Timestamp> tableColumn_due;
+
+    @FXML
+    private TableColumn<Assignment, String> tableColumn_title;
+
+    @FXML
+    private TableView<?> tableView_assignments;
+    
     @FXML
     private TableView<Course> tableView_popup;
 

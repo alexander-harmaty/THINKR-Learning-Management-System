@@ -3,6 +3,7 @@
 <?import com.calendarfx.view.YearMonthView?>
 <?import io.github.palexdev.materialfx.controls.MFXNotificationCenter?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -54,13 +55,40 @@
       </VBox>
    </right>
    <center>
-      <TableView fx:id="tableView_popup" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" BorderPane.alignment="CENTER">
-         <columns>
-            <TableColumn fx:id="subjectCol" minWidth="-1.0" prefWidth="75.0" text="Subject" />
-            <TableColumn fx:id="codeCol" minWidth="-1.0" prefWidth="75.0" text="Code" />
-            <TableColumn fx:id="titleCol" minWidth="-Infinity" prefWidth="175.0" text="Title" />
-            <TableColumn fx:id="CRNCol" minWidth="-1.0" prefWidth="75.0" text="CRN" />
-         </columns>
-      </TableView>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="TOP_LEFT" prefHeight="68.0" prefWidth="701.0" text="Courses">
+               <font>
+                  <Font size="46.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </Label>
+            <TableView fx:id="tableView_popup" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="248.0" prefWidth="500.0">
+               <columns>
+                  <TableColumn fx:id="subjectCol" minWidth="-1.0" prefWidth="75.0" text="Subject" />
+                  <TableColumn fx:id="codeCol" minWidth="-1.0" prefWidth="75.0" text="Code" />
+                  <TableColumn fx:id="titleCol" minWidth="-Infinity" prefWidth="175.0" text="Title" />
+                  <TableColumn fx:id="CRNCol" minWidth="-1.0" prefWidth="75.0" text="CRN" />
+               </columns>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </TableView>
+            <TableView fx:id="tableView_assignments" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="348.0" prefWidth="600.0">
+              <columns>
+                <TableColumn fx:id="tableColumn_due" prefWidth="105.0666595697403" text="Due" />
+                <TableColumn fx:id="tableColumn_title" prefWidth="493.6000289916992" text="Title" />
+              </columns>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </TableView>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
    </center>
 </BorderPane>
