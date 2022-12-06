@@ -119,10 +119,10 @@ public class HomePageController implements Initializable {
 //                    catch (IOException ex) {}
 //                });
 //                
-//                button_calendar.setOnAction(event -> {
-//                    try { App.setRoot("Calendar.fxml"); } 
-//                    catch (IOException ex) {}
-//                });
+                button_calendar.setOnAction(event -> {
+                    try { App.setRoot("Calendar"); } 
+                    catch (IOException ex) {}
+                });
 //                
 //                button_registrar.setOnAction(event -> {
 //                    try { App.setRoot("Registrar.fxml"); } 

@@ -18,8 +18,8 @@ import java.util.List;
 public class Assignment {
     
     protected String title; 
-    protected Timestamp dueDate; 
-    protected Timestamp  assignedDate; 
+    protected Timestamp dueDate;
+    protected Timestamp assignedDate;
     protected String detailsText; 
     protected String detailsFile;
     protected List<String> submissions;
@@ -56,8 +56,7 @@ public class Assignment {
     public void setTitle(String title) {
         this.title = title;
     }
-
-
+    
     public Timestamp getDueDate() {
         return dueDate;
     }
