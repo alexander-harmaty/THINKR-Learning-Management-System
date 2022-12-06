@@ -114,10 +114,12 @@ public class HomePageController implements Initializable {
                     tableView_popup.setVisible(true);
                 });
 
-//                button_grades.setOnAction(event -> {
-//                    try { App.setRoot("Grades.fxml"); } 
-//                    catch (IOException ex) {}
-//                });
+                button_grades.setOnAction(event -> {
+                    try { App.setRoot("Grades"); } 
+                    catch (IOException ex) {
+                        System.out.println("test");
+                    }
+                });
 //                
                 button_calendar.setOnAction(event -> {
                     try { App.setRoot("Calendar"); } 
