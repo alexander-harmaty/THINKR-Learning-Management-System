@@ -89,10 +89,7 @@ public class HomePageController implements Initializable {
         CRNCol.setCellValueFactory(new PropertyValueFactory<>("CRN"));
 
         //set list of courses
-        if(App.currentUser.type.equals("STUDENT"))
-        readStudCoursesIntoTable();
-        else if(App.currentUser.type.equals("PROFESSOR"))
-        readProfCoursesIntoTable();
+        readCoursesIntoTable();
         
 
         //set code to switch to course view after double clicking a table selection
@@ -213,7 +210,7 @@ public class HomePageController implements Initializable {
 
     }
 
-    private void readStudCoursesIntoTable() {
+    private void readCoursesIntoTable() {
 
         //declare course and its documents list
         Course course;
@@ -234,15 +231,31 @@ public class HomePageController implements Initializable {
 
                     //use course document constructor to hold assignment data
                     course = new Course(document);
+                    
+                    switch (App.currentUser.type) {
+                        case "STUDENT":
+                            //loop thorugh all courses
+                            for (String student : course.students) {
 
-                    //loop thorugh all courses
-                    for (String student : course.students) {
+                                //if the currentUser ID is found in any of the courses...
+                                if (App.currentUser.userID.equals(student)) {
+                                    //add course to list
+                                    listOfCourses.add(course);
+                                }
+                            }
+                            break;
+                        case "PROFESSOR":
+                            //loop thorugh all courses
+                            String professor = course.professor;
 
-                        //if the currentUser ID is found in any of the courses...
-                        if (App.currentUser.userID.equals(student)) {
-                            //add course to list
-                            listOfCourses.add(course);
-                        }
+                            //if the currentUser ID is found in any of the courses...
+                            if (App.currentUser.userID.equals(professor)) {
+                                //add course to list
+                                listOfCourses.add(course);
+                            }
+                            break;
+                        default:
+                            break;
                     }
                 }
                 //set tableview to assignments list
@@ -250,48 +263,9 @@ public class HomePageController implements Initializable {
             }
         } catch (InterruptedException | ExecutionException ex) {
         }
+        App.currentListOfCourses = listOfCourses;
     }
     
-    private void readProfCoursesIntoTable() {
-
-        //declare course and its documents list
-        Course course;
-        List<QueryDocumentSnapshot> documents;
-
-        //get assignments collection
-        ApiFuture<QuerySnapshot> future = App.fstore.collection("courses").get();
-
-        try {
-            //add collection into list
-            documents = future.get().getDocuments();
-
-            //check if empty
-            if (!documents.isEmpty()) {
-
-                //loop through assignments
-                for (QueryDocumentSnapshot document : documents) {
-
-                    //use course document constructor to hold assignment data
-                    course = new Course(document);
-
-                    //loop thorugh all courses
-                    String professor = course.professor;
-
-                        //if the currentUser ID is found in any of the courses...
-                        if (App.currentUser.userID.equals(professor)) {
-                            //add course to list
-                            listOfCourses.add(course);
-                        }
-                    
-                }
-                //set tableview to assignments list
-                tableView_popup.setItems(listOfCourses);
-            }
-        } catch (InterruptedException | ExecutionException ex) {
-        }
-    }
-    
-
     private void setOnMousePressed() {
 
         tableView_popup.setOnMousePressed((MouseEvent event) -> {

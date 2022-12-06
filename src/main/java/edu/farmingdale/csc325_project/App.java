@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import com.google.cloud.firestore.Firestore;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * JavaFX App
@@ -21,6 +22,7 @@ public class App extends Application {
     static Course currentCourse;
     static Assignment currentAssignment;
     static Submission currentSubmission;
+    static List<Course> currentListOfCourses;
     
     public static Firestore fstore;
     private static FirestoreContext contextFirebase;
