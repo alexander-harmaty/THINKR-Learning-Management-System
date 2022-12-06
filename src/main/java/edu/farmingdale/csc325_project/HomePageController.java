@@ -241,6 +241,7 @@ public class HomePageController implements Initializable {
                                 if (App.currentUser.userID.equals(student)) {
                                     //add course to list
                                     listOfCourses.add(course);
+                                    App.currentListOfCourses.add(course);
                                 }
                             }
                             break;
@@ -252,6 +253,7 @@ public class HomePageController implements Initializable {
                             if (App.currentUser.userID.equals(professor)) {
                                 //add course to list
                                 listOfCourses.add(course);
+                                App.currentListOfCourses.add(course);
                             }
                             break;
                         default:
@@ -263,7 +265,6 @@ public class HomePageController implements Initializable {
             }
         } catch (InterruptedException | ExecutionException ex) {
         }
-        App.currentListOfCourses = listOfCourses;
     }
     
     private void setOnMousePressed() {

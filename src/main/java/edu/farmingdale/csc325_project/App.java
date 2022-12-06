@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import com.google.cloud.firestore.Firestore;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ public class App extends Application {
     static Course currentCourse;
     static Assignment currentAssignment;
     static Submission currentSubmission;
-    static List<Course> currentListOfCourses;
+    static List<Course> currentListOfCourses = new ArrayList<>();
     
     public static Firestore fstore;
     private static FirestoreContext contextFirebase;

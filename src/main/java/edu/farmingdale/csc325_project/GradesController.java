@@ -44,24 +44,51 @@ public class GradesController extends HomePageController implements Initializabl
 
     @FXML
     private TableView<Submission> tableView_grades;
+    
+    @FXML
+    private TableView<CourseGradeInfo> tableView_courseAvg;
+    
+    @FXML
+    private TableColumn<CourseGradeInfo, Double> tableColumn_avg;
+
+    @FXML
+    private TableColumn<CourseGradeInfo, String> tableColumn_course2;
+    
+    @FXML
+    private TableColumn<CourseGradeInfo, String> tableColumn_subject;
+    
+    private ObservableList<CourseGradeInfo> listOfCourseGradeInfo = FXCollections.observableArrayList();
+    
+    private List<CourseGradeInfo> courseGradeInfos = new ArrayList<>();
 
     private ObservableList<Submission> listOfSubmissions = FXCollections.observableArrayList();
+    
+    private List<Submission> submissions = new ArrayList<>();
 
     public ObservableList<Submission> getListOfSubmissions() {
         return listOfSubmissions;
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        //adds buttons to menu based on user
+        updateMenu();
+        
         //set column with cell factory
         tableColumn_assignment.setCellValueFactory(new PropertyValueFactory<>("assignment"));
         tableColumn_submittedDate.setCellValueFactory(new PropertyValueFactory<>("submittedDate"));
         tableColumn_course.setCellValueFactory(new PropertyValueFactory<>("course"));
         tableColumn_grade.setCellValueFactory(new PropertyValueFactory<>("grade"));
-       
-        //set list of grades
+        //set list of classAverages
         readGradesIntoTable();
-        //adds buttons to menu based on user
-        updateMenu();
+        
+        tableColumn_subject.setCellValueFactory(new PropertyValueFactory<>("subjectAndCode"));
+        tableColumn_course2.setCellValueFactory(new PropertyValueFactory<>("title"));
+        tableColumn_avg.setCellValueFactory(new PropertyValueFactory<>("grade"));
+        
+        courseGradeInfos = gradesListBuilder();
+        listOfCourseGradeInfo.addAll(courseGradeInfos);
+        tableView_courseAvg.setItems(listOfCourseGradeInfo);
     }
     
        
@@ -91,6 +118,7 @@ public class GradesController extends HomePageController implements Initializabl
                     if (App.currentUser.userID.equals(submission.student)){
                         //add to the list of submissions
                         listOfSubmissions.add(submission);
+                        submissions.add(submission);
                     }
                     
             
@@ -102,25 +130,38 @@ public class GradesController extends HomePageController implements Initializabl
         catch (InterruptedException | ExecutionException ex) {}
     }
 
-    public List<Integer> gradesListBuilder() {
-        List<Integer> grades = new ArrayList<>();
-        for (Submission sub:listOfSubmissions) {
-            grades.add(sub.grade);
+    public List<CourseGradeInfo> gradesListBuilder() {
+        List<CourseGradeInfo> classAverages = new ArrayList<>();
+        
+        for (Course course : App.currentListOfCourses) {
+            CourseGradeInfo gradeInfo = new CourseGradeInfo();
+            List<Integer> grades = new ArrayList<>();
+            for (Submission sub : submissions) {
+                if(course.CRN.equals(sub.CRN) && sub.student.equals(App.currentUser.userID)) {
+                    grades.add(sub.grade);
+                }
+            }
+            gradeInfo.title = course.title;
+            gradeInfo.subjectAndCode = course.subject + " " + course.section;
+            gradeInfo.grade = classAvgCalculator(grades);
+            classAverages.add(gradeInfo);
         }
-        return grades;
+        return classAverages;
     }
     
     public double classAvgCalculator(List<Integer> grades) {
         int count = grades.size();
-        int sum = 0;
+        if (count == 0) {
+            return 0;
+        } else {
+            int sum = 0;
         for( int i =0; i<grades.size();i++)
         {
            int  x = grades.get(i);
             sum = sum +x; 
         }
-
         return sum/count;
-
+        }
     }
     
 }
