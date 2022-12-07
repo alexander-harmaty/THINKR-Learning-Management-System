@@ -76,15 +76,6 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </TableView>
-            <TableView fx:id="tableView_assignments" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="348.0" prefWidth="600.0">
-              <columns>
-                <TableColumn fx:id="tableColumn_due" prefWidth="105.0666595697403" text="Due" />
-                <TableColumn fx:id="tableColumn_title" prefWidth="493.6000289916992" text="Title" />
-              </columns>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </TableView>
          </children>
          <BorderPane.margin>
             <Insets />
