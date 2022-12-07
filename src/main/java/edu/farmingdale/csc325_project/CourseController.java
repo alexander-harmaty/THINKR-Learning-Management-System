@@ -105,6 +105,7 @@ public class CourseController extends HomePageController implements Initializabl
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    
         
         switch(App.currentUser.type)
         {
@@ -143,7 +144,11 @@ public class CourseController extends HomePageController implements Initializabl
         readAnnouncementsIntoTable();
         
         //set code to switch to assignment view after double clicking a table selection
-        setOnMousePressed();
+       
+        if (App.currentUser.type.equals("STUDENT")){
+            setOnMousePressed();
+        }
+                
         //handleButton_addAnnouncement();
         
     }
@@ -269,7 +274,7 @@ public class CourseController extends HomePageController implements Initializabl
                                     //set currentAssignment to the selected course
                                     App.currentAssignment = assignment;
                                     //change view to course
-                                    App.setRoot("Assignment");
+                                    App.setRoot("Submission");
                                 }
                             }
                         }
