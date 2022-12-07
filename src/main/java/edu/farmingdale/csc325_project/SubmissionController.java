@@ -172,14 +172,15 @@ public class SubmissionController implements Initializable {
                 label_title.setPrefWidth(268);
                 label_title.setAlignment(Pos.CENTER);
                 label_title.setStyle("-fx-border-color:" + "#4653eb");
-
+                
+                textField_dueDate.setFloatingText("Grade");
                 textField_grade.setFont(tj);
                 textField_grade.setPrefHeight(38);
                 textField_grade.setPrefWidth(290);
                 textField_grade.setAlignment(Pos.CENTER_LEFT);
                 textField_grade.setStyle("-fx-border-color:" + "#4653eb");
 
-                textField_dueDate.setFloatingText("Grades");
+                textField_dueDate.setFloatingText("Due Date");
                 textField_dueDate.setFont(tj);
                 textField_dueDate.setPrefHeight(38);
                 textField_dueDate.setPrefWidth(290);
@@ -255,7 +256,7 @@ public class SubmissionController implements Initializable {
                 textField_grade.setAlignment(Pos.CENTER_LEFT);
                 textField_grade.setStyle("-fx-border-color:" + "#4653eb");
 
-                textField_dueDate.setFloatingText("Grades");
+                textField_dueDate.setFloatingText("Due Date");
                 textField_dueDate.setFont(tj);
                 textField_dueDate.setPrefHeight(38);
                 textField_dueDate.setPrefWidth(290);

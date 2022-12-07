@@ -129,7 +129,7 @@ public class AssignmentController implements Initializable {
         textField_title.setAlignment(Pos.CENTER);
         textField_title.setStyle("-fx-border-color:" + "#4653eb");
 
-        datePicker_dueDate.setFloatingText("Grades");
+        datePicker_dueDate.setFloatingText("Due Date");
         datePicker_dueDate.setFont(tj);
         datePicker_dueDate.setPrefHeight(38);
         datePicker_dueDate.setPrefWidth(290);
