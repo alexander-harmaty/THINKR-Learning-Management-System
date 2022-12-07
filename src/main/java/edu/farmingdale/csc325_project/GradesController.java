@@ -29,6 +29,9 @@ public class GradesController extends HomePageController implements Initializabl
 
     @FXML
     private VBox VBox_navButtons;
+    
+    @FXML
+    private VBox VBox_tables;
 
     @FXML
     private TableColumn<Submission, String> tableColumn_assignment;
@@ -70,6 +73,10 @@ public class GradesController extends HomePageController implements Initializabl
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if(App.currentUser.type.equals("PROFESSOR"))
+        {
+            VBox_tables.getChildren().remove(0);
+        }
         
         //adds buttons to menu based on user
         updateMenu();
@@ -79,8 +86,8 @@ public class GradesController extends HomePageController implements Initializabl
         tableColumn_submittedDate.setCellValueFactory(new PropertyValueFactory<>("submittedDate"));
         tableColumn_course.setCellValueFactory(new PropertyValueFactory<>("CRN"));
         tableColumn_grade.setCellValueFactory(new PropertyValueFactory<>("grade"));
-        //set list of classAverages
-        readGradesIntoTable();
+        
+        readSubmissionIntoTable();
         
         tableColumn_subject.setCellValueFactory(new PropertyValueFactory<>("subjectAndCode"));
         tableColumn_course2.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -92,7 +99,7 @@ public class GradesController extends HomePageController implements Initializabl
     }
     
        
-    private void readGradesIntoTable() {
+    private void readSubmissionIntoTable() {
         
         //declare submission and its document list
         Submission submission;
@@ -107,18 +114,25 @@ public class GradesController extends HomePageController implements Initializabl
 
             //checks if document is empty
             if (!documents.isEmpty()) {
-                
+                 
                 //loop through submissions
                 for (QueryDocumentSnapshot document : documents) {
                     
                     //use submission doucment constructor to hold a submission
                     submission = new Submission(document);
-                    
-                    //if the currentUser ID is found in the submissions
-                    if (App.currentUser.userID.equals(submission.student)){
-                        //add to the list of submissions
-                        listOfSubmissions.add(submission);
-                        submissions.add(submission);
+                    switch(App.currentUser.type)
+                    {
+                        case "STUDENT":
+                             //if the currentUser ID is found in the submissions
+                            if (App.currentUser.userID.equals(submission.student)){
+                                //add to the list of submissions
+                                listOfSubmissions.add(submission);
+                                submissions.add(submission);
+
+                            }
+                            
+                            case"PROFESSOR":
+
                     }
                     
             

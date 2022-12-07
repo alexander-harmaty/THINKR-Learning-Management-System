@@ -23,8 +23,10 @@ public class Submission {
     protected String teacherFeedback;
     protected String assignment;
     protected String CRN;
+    protected String ID;
 
-    public Submission(int grade, String student, String studentComment, boolean submitted, Timestamp submittedDate, String teacherFeedback, String assignment, String course) {
+
+    public Submission(int grade, String student, String studentComment, boolean submitted, Timestamp submittedDate, String teacherFeedback, String assignment, String course, String ID) {
         
         this.grade = grade;
         this.student = student;
@@ -34,6 +36,7 @@ public class Submission {
         this.teacherFeedback = teacherFeedback;
         this.assignment = assignment;
         this.CRN = course;
+        this.ID = ID;
     }
     
     public Submission(QueryDocumentSnapshot document)
@@ -47,6 +50,7 @@ public class Submission {
         this.teacherFeedback =(String)document.getData().get("teacherFeedback");
         this.assignment = (String)document.getData().get("assignment");
         this.CRN = (String)document.getData().get("CRN");
+        this.ID = document.getId();
     }
 
   
@@ -116,4 +120,11 @@ public class Submission {
     }
     
     
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 }

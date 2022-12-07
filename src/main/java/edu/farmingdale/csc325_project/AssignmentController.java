@@ -216,6 +216,7 @@ public class AssignmentController implements Initializable {
             tempData.put("submitted", false);
             tempData.put("submittedDate", null);
             tempData.put("teacherFeedback", null);
+            tempData.put("ID", tempRef.getId());
             ApiFuture<WriteResult> subResult = tempRef.set(tempData);
             submissions.add(tempRef.getId());
         }
