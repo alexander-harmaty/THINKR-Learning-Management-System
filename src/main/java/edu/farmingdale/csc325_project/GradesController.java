@@ -3,7 +3,6 @@ package edu.farmingdale.csc325_project;
 import java.util.ArrayList;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.Timestamp;
-import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import java.io.IOException;
@@ -35,7 +34,7 @@ public class GradesController extends HomePageController implements Initializabl
 
     @FXML
     private VBox VBox_navButtons;
-
+    
     @FXML
     private VBox VBox_tables;
 
@@ -53,119 +52,128 @@ public class GradesController extends HomePageController implements Initializabl
 
     @FXML
     private TableView<Submission> tableView_grades;
-
+    
     @FXML
     private TableView<CourseGradeInfo> tableView_courseAvg;
-
+    
     @FXML
     private TableColumn<CourseGradeInfo, Double> tableColumn_avg;
 
     @FXML
     private TableColumn<CourseGradeInfo, String> tableColumn_course2;
-
+    
     @FXML
     private TableColumn<CourseGradeInfo, String> tableColumn_subject;
-
+    
     private ObservableList<CourseGradeInfo> listOfCourseGradeInfo = FXCollections.observableArrayList();
-
+    
     private List<CourseGradeInfo> courseGradeInfos = new ArrayList<>();
 
     private ObservableList<Submission> listOfSubmissions = FXCollections.observableArrayList();
-
+    
     private List<Submission> submissions = new ArrayList<>();
 
     public ObservableList<Submission> getListOfSubmissions() {
         return listOfSubmissions;
     }
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if (App.currentUser.type.equals("PROFESSOR")) {
+        if(App.currentUser.type.equals("PROFESSOR"))
+        {
             VBox_tables.getChildren().remove(0);
         }
-
+        
         //adds buttons to menu based on user
         updateMenu();
-
+        
         //set column with cell factory
         tableColumn_assignment.setCellValueFactory(new PropertyValueFactory<>("assignment"));
         tableColumn_submittedDate.setCellValueFactory(new PropertyValueFactory<>("submittedDate"));
         tableColumn_course.setCellValueFactory(new PropertyValueFactory<>("CRN"));
         tableColumn_grade.setCellValueFactory(new PropertyValueFactory<>("grade"));
-
+        
         readSubmissionIntoTable();
-
+        
         tableColumn_subject.setCellValueFactory(new PropertyValueFactory<>("subjectAndCode"));
         tableColumn_course2.setCellValueFactory(new PropertyValueFactory<>("title"));
         tableColumn_avg.setCellValueFactory(new PropertyValueFactory<>("grade"));
-
+        
         courseGradeInfos = gradesListBuilder();
         listOfCourseGradeInfo.addAll(courseGradeInfos);
         tableView_courseAvg.setItems(listOfCourseGradeInfo);
-
-        if (App.currentUser.type.equals("PROFESSOR")) {
+        
+        if (App.currentUser.type.equals("PROFESSOR")){
             setOnMousePressed();
         }
     }
-
+    
+       
     private void readSubmissionIntoTable() {
+        
+        //declare submission and its document list
+        Submission submission;
+        List<QueryDocumentSnapshot> documents;
+        
+        //get submissions collection
+        ApiFuture<QuerySnapshot> future = App.fstore.collection("submissions").get();
+        
+        try {
+            //add collection into list
+            documents = future.get().getDocuments();
 
-        switch (App.currentUser.type) {
-            case "STUDENT":
-                //if the currentUser ID is found in the submissions
-                Submission submission;
-                List<QueryDocumentSnapshot> documents;
-                // Assignment assignment;
-
-                //get submissions collection
-                ApiFuture<QuerySnapshot> future = App.fstore.collection("submissions").get();
-
-                try {
-                    //add collection into list
-                    documents = future.get().getDocuments();
-
-                    //checks if document is empty
-                    if (!documents.isEmpty()) {
-
-                        //loop through submissions
-                        for (QueryDocumentSnapshot document : documents) {
-
-                            //use submission doucment constructor to hold a submission
-                            submission = new Submission(document);
-                            if (App.currentUser.userID.equals(submission.student)) {
+            //checks if document is empty
+            if (!documents.isEmpty()) {
+                 
+                //loop through submissions
+                for (QueryDocumentSnapshot document : documents) {
+                    
+                    //use submission doucment constructor to hold a submission
+                    submission = new Submission(document);
+                    switch(App.currentUser.type)
+                    {
+                        case "STUDENT":
+                             //if the currentUser ID is found in the submissions
+                            if (App.currentUser.userID.equals(submission.student)){
                                 //add to the list of submissions
                                 listOfSubmissions.add(submission);
                                 submissions.add(submission);
 
                             }
-
-                        }
-                        //set the tableview to submission list
-                        tableView_grades.setItems(listOfSubmissions);
+                            break;
+                        case"PROFESSOR":
+//                            for (int i = 0; i < App.currentListOfCourses.size(); i++) {
+//                                Course course = App.currentListOfCourses.get(i);
+//                                for (int j = 0; j < course.assignments.size(); j++) {
+//                                    Assignment assignment = course.assignments.;
+//                                }
+//                                course.assignments.get(i)
+//                            }
+//                                
+//                            if(submission.assignment.equals)
+                            break;
+                                
                     }
-                } catch (InterruptedException | ExecutionException ex) {
+                    
+            
                 }
-
-                break;
-            case "PROFESSOR":
-               
-
-
-        }
-
-        //declare submission and its document list
+                //set the tableview to submission list
+                tableView_grades.setItems(listOfSubmissions);
+            }
+        } 
+        catch (InterruptedException | ExecutionException ex) {}
     }
-
+    
     private void setOnMousePressed() {
-
+        
         tableView_grades.setOnMousePressed((MouseEvent event) -> {
-
+            
             //check for primary mouse clicks
             if (event.getButton().equals(MouseButton.PRIMARY)) {
-
+                
                 //if click is double click...
                 if (event.getClickCount() == 2) {
-
+                    
                     //read selected course CRN
                     Submission submission = tableView_grades.getSelectionModel().getSelectedItem();
 
@@ -173,10 +181,9 @@ public class GradesController extends HomePageController implements Initializabl
                     try {
                         //change view to course
                         App.setRoot("Submission");
-                    } catch (IOException ex) {
-                    }
+                    } catch (IOException ex) {}
 //                    
-////                    
+//                    
 //                    //declare assignment and its list
 //                    Submission submission;
 //                    List<QueryDocumentSnapshot> documents;
@@ -211,17 +218,17 @@ public class GradesController extends HomePageController implements Initializabl
                 }
             }
         });
-
+        
     }
 
     public List<CourseGradeInfo> gradesListBuilder() {
         List<CourseGradeInfo> classAverages = new ArrayList<>();
-
+        
         for (Course course : App.currentListOfCourses) {
             CourseGradeInfo gradeInfo = new CourseGradeInfo();
             List<Integer> grades = new ArrayList<>();
             for (Submission sub : submissions) {
-                if (course.CRN.equals(sub.CRN) && sub.student.equals(App.currentUser.userID)) {
+                if(course.CRN.equals(sub.CRN) && sub.student.equals(App.currentUser.userID)) {
                     grades.add(sub.grade);
                 }
             }
@@ -232,19 +239,20 @@ public class GradesController extends HomePageController implements Initializabl
         }
         return classAverages;
     }
-
+    
     public double classAvgCalculator(List<Integer> grades) {
         int count = grades.size();
         if (count == 0) {
             return 0;
         } else {
             int sum = 0;
-            for (int i = 0; i < grades.size(); i++) {
-                int x = grades.get(i);
-                sum = sum + x;
-            }
-            return sum / count;
+        for( int i =0; i<grades.size();i++)
+        {
+           int  x = grades.get(i);
+            sum = sum +x; 
+        }
+        return sum/count;
         }
     }
-
+    
 }
