@@ -149,7 +149,7 @@ public class CourseController extends HomePageController implements Initializabl
             setOnMousePressed();
         }
                 
-        //handleButton_addAnnouncement();
+       // handleButton_addAnnouncement();
         
     }
 
@@ -250,11 +250,11 @@ public class CourseController extends HomePageController implements Initializabl
                     String selectedAssignTitle = tableView_assignments.getSelectionModel().getSelectedItem().getTitle();
 
                     //declare assignment and its list
-                    Assignment assignment;
+                    Submission submission;
                     List<QueryDocumentSnapshot> documents;
                     
                     //get assignment collection
-                    ApiFuture<QuerySnapshot> future = App.fstore.collection("assignments").get();
+                    ApiFuture<QuerySnapshot> future = App.fstore.collection("submissions").get();
                  
                     try {
                         //add collection into list
@@ -267,12 +267,12 @@ public class CourseController extends HomePageController implements Initializabl
                             for (QueryDocumentSnapshot document : documents) {
                                 
                                 //use assignment document constructor to hold assignment data
-                                assignment = new Assignment(document);
+                                submission = new Submission(document);
 
                                 //if the CRN of any course matches the selected course CRN...
-                                if (assignment.getTitle().equals(selectedAssignTitle)) {
+                                if (submission.getAssignment().equals(selectedAssignTitle)) {
                                     //set currentAssignment to the selected course
-                                    App.currentAssignment = assignment;
+                                    App.currentSubmission = submission;
                                     //change view to course
                                     App.setRoot("Submission");
                                 }

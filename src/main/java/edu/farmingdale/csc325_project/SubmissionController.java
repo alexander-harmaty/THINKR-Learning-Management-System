@@ -29,6 +29,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -44,6 +45,10 @@ public class SubmissionController implements Initializable {
 
     @FXML
     private HBox HBox_buttons;
+    
+    
+    @FXML
+    private HBox HBox_bottombuttons;
 
     @FXML
     private HBox HBox_holder;
@@ -133,15 +138,15 @@ public class SubmissionController implements Initializable {
                 }
             }
         } 
-        catch(Exception e){
+        catch(InterruptedException | ExecutionException e){
         }
     }
     
     private void updateSubmission(){
         
-        DocumentReference docRef = App.fstore.collection("submission").document(App.currentSubmission.getID());
+        DocumentReference docRef = App.fstore.collection("submissions").document(App.currentSubmission.getID());
        
-        ApiFuture<WriteResult> cresult = docRef.update("submission",App.currentSubmission.assignment);
+        ApiFuture<WriteResult> cresult = docRef.update("studentComment",textArea_studentComment.getText());
         
         
     }
@@ -226,7 +231,11 @@ public class SubmissionController implements Initializable {
                 VBox_right.getChildren().add(textArea_professorFeedback);
 
                 HBox_buttons.getChildren().add(button_uploadF);
-                HBox_buttons.getChildren().add(button_save);
+                HBox_bottombuttons.getChildren().add(button_save);
+                
+                button_save.setOnAction(event->{
+                updateSubmission();   
+                });
 
                 break;
 
