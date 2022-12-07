@@ -270,7 +270,7 @@ public class CourseController extends HomePageController implements Initializabl
                                 submission = new Submission(document);
 
                                 //if the CRN of any course matches the selected course CRN...
-                                if (submission.getAssignment().equals(selectedAssignTitle)) {
+                                if (submission.getAssignment().equals(selectedAssignTitle) && submission.getStudent().equals(App.currentUser.userID)) {
                                     //set currentAssignment to the selected course
                                     App.currentSubmission = submission;
                                     //change view to course

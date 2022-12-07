@@ -147,7 +147,7 @@ public class SubmissionController implements Initializable {
         DocumentReference docRef = App.fstore.collection("submissions").document(App.currentSubmission.getID());
        
         ApiFuture<WriteResult> cresult = docRef.update("studentComment",textArea_studentComment.getText());
-        
+        ApiFuture<WriteResult> cresult2 = docRef.update("submitted",true);
         
     }
     
@@ -166,7 +166,7 @@ public class SubmissionController implements Initializable {
 
             case "STUDENT":
 
-                label_title.setText(App.currentAssignment.title);
+                label_title.setText(App.currentSubmission.assignment);
                 label_title.setFont(font);
                 label_title.setPrefHeight(40);
                 label_title.setPrefWidth(268);
@@ -186,12 +186,12 @@ public class SubmissionController implements Initializable {
                 textField_dueDate.setAlignment(Pos.CENTER_LEFT);
                 textField_dueDate.setStyle("-fx-border-color:" + "#4653eb");
 
-                textArea_assignmentDetails.setPromptText("Assignment Details");
-                textArea_assignmentDetails.setText(App.currentAssignment.detailsText);
-                textArea_assignmentDetails.setFont(tj);
-                textArea_assignmentDetails.setPrefHeight(194);
-                textArea_assignmentDetails.setPrefWidth(268);
-                textArea_assignmentDetails.setStyle("-fx-border-color:" + "#4653eb");
+//                textArea_assignmentDetails.setPromptText("Assignment Details");
+//                textArea_assignmentDetails.setText(App.currentAssignment.detailsText);
+//                textArea_assignmentDetails.setFont(tj);
+//                textArea_assignmentDetails.setPrefHeight(194);
+//                textArea_assignmentDetails.setPrefWidth(268);
+//                textArea_assignmentDetails.setStyle("-fx-border-color:" + "#4653eb");
 
                 textArea_studentComment.setPromptText("Student Comment");
                 textArea_studentComment.setFont(tj);
@@ -227,7 +227,7 @@ public class SubmissionController implements Initializable {
                 VBox_right.getChildren().add(textField_grade);
                 VBox_left.getChildren().add(textField_dueDate);
                 VBox_right.getChildren().add(textArea_studentComment);
-                VBox_left.getChildren().add(textArea_assignmentDetails);
+                //VBox_left.getChildren().add(textArea_assignmentDetails);
                 VBox_right.getChildren().add(textArea_professorFeedback);
 
                 HBox_buttons.getChildren().add(button_uploadF);
