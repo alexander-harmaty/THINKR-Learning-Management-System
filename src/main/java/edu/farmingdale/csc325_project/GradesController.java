@@ -5,10 +5,13 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,6 +19,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -71,6 +76,7 @@ public class GradesController extends HomePageController implements Initializabl
     public ObservableList<Submission> getListOfSubmissions() {
         return listOfSubmissions;
     }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if(App.currentUser.type.equals("PROFESSOR"))
@@ -96,6 +102,10 @@ public class GradesController extends HomePageController implements Initializabl
         courseGradeInfos = gradesListBuilder();
         listOfCourseGradeInfo.addAll(courseGradeInfos);
         tableView_courseAvg.setItems(listOfCourseGradeInfo);
+        
+        if (App.currentUser.type.equals("PROFESSOR")){
+            setOnMousePressed();
+        }
     }
     
        
@@ -130,9 +140,19 @@ public class GradesController extends HomePageController implements Initializabl
                                 submissions.add(submission);
 
                             }
-                            
-                            case"PROFESSOR":
-
+                            break;
+                        case"PROFESSOR":
+//                            for (int i = 0; i < App.currentListOfCourses.size(); i++) {
+//                                Course course = App.currentListOfCourses.get(i);
+//                                for (int j = 0; j < course.assignments.size(); j++) {
+//                                    Assignment assignment = course.assignments.;
+//                                }
+//                                course.assignments.get(i)
+//                            }
+//                                
+//                            if(submission.assignment.equals)
+                            break;
+                                
                     }
                     
             
@@ -142,6 +162,63 @@ public class GradesController extends HomePageController implements Initializabl
             }
         } 
         catch (InterruptedException | ExecutionException ex) {}
+    }
+    
+    private void setOnMousePressed() {
+        
+        tableView_grades.setOnMousePressed((MouseEvent event) -> {
+            
+            //check for primary mouse clicks
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                
+                //if click is double click...
+                if (event.getClickCount() == 2) {
+                    
+                    //read selected course CRN
+                    Submission submission = tableView_grades.getSelectionModel().getSelectedItem();
+
+                    App.currentSubmission = submission;
+                    try {
+                        //change view to course
+                        App.setRoot("Submission");
+                    } catch (IOException ex) {}
+//                    
+//                    
+//                    //declare assignment and its list
+//                    Submission submission;
+//                    List<QueryDocumentSnapshot> documents;
+//                    
+//                    //get assignment collection
+//                    ApiFuture<QuerySnapshot> future = App.fstore.collection("submissions").get();
+//                 
+//                    try {
+//                        //add collection into list
+//                        documents = future.get().getDocuments();
+//
+//                        //check if empty
+//                        if (!documents.isEmpty()) {
+//                            
+//                            //loop through assignments
+//                            for (QueryDocumentSnapshot document : documents) {
+//                                
+//                                //use assignment document constructor to hold assignment data
+//                                submission = new Submission(document);
+//
+//                                //if the CRN of any course matches the selected course CRN...
+//                                if (submission.getAssignment().equals(selectedAssignTitle) && submission.getStudent().equals(App.currentUser.userID)) {
+//                                    //set currentAssignment to the selected course
+//                                    App.currentSubmission = submission;
+//                                    //change view to course
+//                                    App.setRoot("Submission");
+//                                }
+//                            }
+//                        }
+//                    } 
+//                    catch (InterruptedException | ExecutionException | IOException ex) {}
+                }
+            }
+        });
+        
     }
 
     public List<CourseGradeInfo> gradesListBuilder() {
