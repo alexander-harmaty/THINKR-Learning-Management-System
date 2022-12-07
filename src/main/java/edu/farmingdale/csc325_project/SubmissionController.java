@@ -173,7 +173,7 @@ public class SubmissionController implements Initializable {
                 label_title.setAlignment(Pos.CENTER);
                 label_title.setStyle("-fx-border-color:" + "#4653eb");
                 
-                textField_dueDate.setFloatingText("Grade");
+                textField_grade.setFloatingText("Grade");
                 textField_grade.setFont(tj);
                 textField_grade.setPrefHeight(38);
                 textField_grade.setPrefWidth(290);
