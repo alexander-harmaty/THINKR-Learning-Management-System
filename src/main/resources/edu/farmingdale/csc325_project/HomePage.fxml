@@ -47,7 +47,7 @@
                   </Text>
                </children>
             </HBox>
-            <MFXTextField fx:id="textField_password" alignment="CENTER" floatingText="Password" prefHeight="50.0" prefWidth="210.0" style="-fx-border-color: #4653eb;">
+            <MFXTextField fx:id="textField_password" floatingText="Password" prefHeight="50.0" prefWidth="210.0" style="-fx-border-color: #4653eb;">
                <VBox.margin>
                   <Insets top="245.0" />
                </VBox.margin>
