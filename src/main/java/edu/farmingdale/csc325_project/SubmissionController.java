@@ -82,6 +82,9 @@ public class SubmissionController extends HomePageController implements Initiali
     protected final TextArea textArea_assignmentDetails = new TextArea();
 
     @FXML
+    protected final TextArea textArea_submissionDetails = new TextArea();
+
+    @FXML
     protected final MFXButton button_uploadFile = new MFXButton();
 
     @FXML
@@ -95,8 +98,6 @@ public class SubmissionController extends HomePageController implements Initiali
 
     @FXML
     protected final MFXButton button_back = new MFXButton("Back");
-    
-    
 
     Font font;
     Font tj;
@@ -194,6 +195,13 @@ public class SubmissionController extends HomePageController implements Initiali
                 textField_dueDate.setStyle("-fx-border-color:" + "#4653eb");
                 textField_dueDate.setEditable(false);
 
+                textArea_submissionDetails.setPromptText("Submission Details");
+                textArea_submissionDetails.setFont(tj);
+                textArea_submissionDetails.setPrefHeight(194);
+                textArea_submissionDetails.setPrefWidth(268);
+                textArea_submissionDetails.setStyle("-fx-border-color:" + "#4653eb");
+                textArea_submissionDetails.setEditable(true);
+
                 textArea_assignmentDetails.setPromptText("Assignment Details");
                 textArea_assignmentDetails.setText(App.currentAssignment.detailsText);
                 textArea_assignmentDetails.setFont(tj);
@@ -201,7 +209,7 @@ public class SubmissionController extends HomePageController implements Initiali
                 textArea_assignmentDetails.setPrefWidth(268);
                 textArea_assignmentDetails.setStyle("-fx-border-color:" + "#4653eb");
                 textArea_assignmentDetails.setEditable(false);
-                
+
                 textArea_studentComment.setPromptText("Student Comment");
                 textArea_studentComment.setFont(tj);
                 textArea_studentComment.setPrefHeight(200);
@@ -238,6 +246,7 @@ public class SubmissionController extends HomePageController implements Initiali
                 VBox_left.getChildren().add(textField_dueDate);
                 VBox_right.getChildren().add(textArea_studentComment);
                 VBox_left.getChildren().add(textArea_assignmentDetails);
+                VBox_left.getChildren().add(textArea_submissionDetails);
                 VBox_right.getChildren().add(textArea_professorFeedback);
 
                 button_back.setFont(tj);
@@ -287,6 +296,13 @@ public class SubmissionController extends HomePageController implements Initiali
                 textField_dueDate.setStyle("-fx-border-color:" + "#4653eb");
                 textField_dueDate.setEditable(false);
 
+                textArea_submissionDetails.setPromptText("Submission Details");
+                textArea_submissionDetails.setFont(tj);
+                textArea_submissionDetails.setPrefHeight(194);
+                textArea_submissionDetails.setPrefWidth(268);
+                textArea_submissionDetails.setStyle("-fx-border-color:" + "#4653eb");
+                textArea_submissionDetails.setEditable(false);
+
                 textArea_assignmentDetails.setPromptText("Assignment Details");
                 textArea_assignmentDetails.setFont(tj);
                 textArea_assignmentDetails.setPrefHeight(194);
@@ -324,19 +340,19 @@ public class SubmissionController extends HomePageController implements Initiali
                 button_post.setPrefWidth(USE_COMPUTED_SIZE);
                 button_post.setStyle("-fx-text-fill:" + "#4653eb");
                 button_post.setAlignment(Pos.CENTER);
-                
+
                 button_back.setFont(tj);
                 button_back.setPrefHeight(USE_COMPUTED_SIZE);
                 button_back.setPrefWidth(USE_COMPUTED_SIZE);
                 button_back.setStyle("-fx-text-fill:" + "#4653eb");
                 button_back.setAlignment(Pos.CENTER);
 
-
                 VBox_left.getChildren().add(label_title);
                 VBox_right.getChildren().add(textField_grade);
                 VBox_left.getChildren().add(textField_dueDate);
                 VBox_right.getChildren().add(textArea_studentComment);
                 VBox_left.getChildren().add(textArea_assignmentDetails);
+                VBox_left.getChildren().add(textArea_submissionDetails);
                 VBox_right.getChildren().add(textArea_professorFeedback);
 
                 HBox_buttons.getChildren().add(button_uploadFile);
@@ -346,7 +362,7 @@ public class SubmissionController extends HomePageController implements Initiali
                 button_save.setOnAction(event -> {
                     updateSubmission();
                 });
-                
+
                 button_back.setOnAction(event -> {
                     try {
                         App.setRoot("Grades");

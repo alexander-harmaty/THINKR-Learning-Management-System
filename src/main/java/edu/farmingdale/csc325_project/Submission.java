@@ -9,25 +9,26 @@ import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import java.io.IOException;
 import java.util.List;
+
 /**
  *
  * @author trintydarbouze
  */
 public class Submission {
 
-    protected int grade; 
-    protected String student; 
-    protected String studentComment; 
-    protected boolean submitted; 
+    protected int grade;
+    protected String student;
+    protected String studentComment;
+    protected boolean submitted;
     protected Timestamp submittedDate;
     protected String teacherFeedback;
     protected String assignment;
     protected String CRN;
     protected String ID;
+    protected String submissionDetails;
 
+    public Submission(int grade, String student, String studentComment, boolean submitted, Timestamp submittedDate, String teacherFeedback, String assignment, String course, String ID, String submissionDetails ) {
 
-    public Submission(int grade, String student, String studentComment, boolean submitted, Timestamp submittedDate, String teacherFeedback, String assignment, String course, String ID) {
-        
         this.grade = grade;
         this.student = student;
         this.studentComment = studentComment;
@@ -37,23 +38,23 @@ public class Submission {
         this.assignment = assignment;
         this.CRN = course;
         this.ID = ID;
-    }
-    
-    public Submission(QueryDocumentSnapshot document)
-    {
-    
-        this.grade = Integer.parseInt(document.getData().get("grade").toString());
-        this.student = (String)document.getData().get("student");
-        this.studentComment = (String)document.getData().get("studentComment");
-        this.submitted = (Boolean)document.getData().get("submitted");
-        this.submittedDate = (Timestamp)document.getData().get("submittedDate");
-        this.teacherFeedback =(String)document.getData().get("teacherFeedback");
-        this.assignment = (String)document.getData().get("assignment");
-        this.CRN = (String)document.getData().get("CRN");
-        this.ID = document.getId();
+        this.submissionDetails = submissionDetails;
     }
 
-  
+
+    public Submission(QueryDocumentSnapshot document) {
+
+        this.grade = Integer.parseInt(document.getData().get("grade").toString());
+        this.student = (String) document.getData().get("student");
+        this.studentComment = (String) document.getData().get("studentComment");
+        this.submitted = (Boolean) document.getData().get("submitted");
+        this.submittedDate = (Timestamp) document.getData().get("submittedDate");
+        this.teacherFeedback = (String) document.getData().get("teacherFeedback");
+        this.assignment = (String) document.getData().get("assignment");
+        this.CRN = (String) document.getData().get("CRN");
+        this.ID = document.getId();
+        this.submissionDetails = (String) document.getData().get("submissionDetails");
+    }
 
     public int getGrade() {
         return grade;
@@ -99,11 +100,11 @@ public class Submission {
         return teacherFeedback;
     }
 
-    public void setTeacherFeedback (String teacherFeedback) {
+    public void setTeacherFeedback(String teacherFeedback) {
         this.teacherFeedback = teacherFeedback;
     }
-    
-     public String getAssignment() {
+
+    public String getAssignment() {
         return assignment;
     }
 
@@ -118,13 +119,21 @@ public class Submission {
     public void setCRN(String CRN) {
         this.CRN = CRN;
     }
-    
-    
+
     public String getID() {
         return ID;
     }
 
     public void setID(String ID) {
         this.ID = ID;
+    }
+    
+    
+    public String getSubmissionDetails() {
+        return submissionDetails;
+    }
+
+    public void setSubmissionDetails(String submissionDetails) {
+        this.submissionDetails = submissionDetails;
     }
 }

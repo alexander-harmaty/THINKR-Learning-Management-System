@@ -13,7 +13,7 @@
          <children>
             <HBox fx:id="HBox_holder" alignment="CENTER">
                <children>
-                  <VBox fx:id="VBox_left" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="308.0" spacing="82.0">
+                  <VBox fx:id="VBox_left" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="308.0" spacing="45.0">
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
