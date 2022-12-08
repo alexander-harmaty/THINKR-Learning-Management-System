@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
+import io.github.palexdev.materialfx.enums.FloatMode;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,10 +46,10 @@ import org.controlsfx.glyphfont.FontAwesome;
  *
  * @author forha
  */
-public class AssignmentController implements Initializable {
+public class AssignmentController extends HomePageController implements Initializable {
 
     @FXML
-    private HBox HBox_buttons;
+    private HBox HBox_buttons = new HBox();
 
     @FXML
     private HBox HBox_holder;
@@ -91,6 +92,9 @@ public class AssignmentController implements Initializable {
 
     @FXML
     protected final MFXButton button_post = new MFXButton("Post");
+
+    @FXML
+    protected final MFXButton button_back = new MFXButton("Back");
     //Professor Post
     //Student Submit, if submission is there just save
 //
@@ -107,6 +111,7 @@ public class AssignmentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         buildAssignment();
+        updateMenu();
     }
 
     /**
@@ -122,6 +127,8 @@ public class AssignmentController implements Initializable {
         Font tj = new Font("System", 12);
         Font font = new Font("System", 20);
 
+        textField_title.setFloatingText("Assignment Title");
+        textField_title.setFloatMode(FloatMode.BORDER);
         textField_title.getText();
         textField_title.setFont(font);
         textField_title.setPrefHeight(40);
@@ -130,6 +137,7 @@ public class AssignmentController implements Initializable {
         textField_title.setStyle("-fx-border-color:" + "#4653eb");
 
         datePicker_dueDate.setFloatingText("Due Date");
+        datePicker_dueDate.setFloatMode(FloatMode.BORDER);
         datePicker_dueDate.setFont(tj);
         datePicker_dueDate.setPrefHeight(38);
         datePicker_dueDate.setPrefWidth(290);
@@ -160,14 +168,32 @@ public class AssignmentController implements Initializable {
         button_post.setStyle("-fx-text-fill:" + "#4653eb");
         button_post.setAlignment(Pos.CENTER);
 
+        button_back.setFont(tj);
+        button_back.setPrefHeight(USE_COMPUTED_SIZE);
+        button_back.setPrefWidth(USE_COMPUTED_SIZE);
+        button_back.setStyle("-fx-text-fill:" + "#4653eb");
+        button_back.setAlignment(Pos.CENTER);
+
         VBox_left.getChildren().add(textField_title);
 
         VBox_left.getChildren().add(datePicker_dueDate);
 
         VBox_left.getChildren().add(textArea_assignmentDetails);
-
+        VBox_left.getChildren().add(HBox_buttons);
+        VBox_left.setMaxWidth(300);
         HBox_buttons.getChildren().add(button_uploadFile);
         HBox_buttons.getChildren().add(button_post);
+        HBox_buttons.setAlignment(Pos.CENTER);
+        HBox_buttons.getChildren().add(button_back);
+        HBox_buttons.setSpacing(20);
+
+        button_back.setOnAction(event -> {
+            try {
+                App.setRoot("Course");
+            } catch (IOException ex) {
+
+            }
+        });
 
         button_post.setOnAction(event -> {
             createAssignment();
@@ -188,8 +214,6 @@ public class AssignmentController implements Initializable {
         Date d = Date.from(instant);
         Timestamp ts = Timestamp.of(d);
 
-        
-
         DocumentReference docRef = App.fstore.collection("assignments").document(UUID.randomUUID().toString());
         Map<String, Object> data = new HashMap<>();
 
@@ -197,7 +221,7 @@ public class AssignmentController implements Initializable {
         data.put("dueDate", ts);
         data.put("detailsText", textArea_assignmentDetails.getText());
         data.put("assignDate", Timestamp.now());//makes the current time the assigned date
-        
+
         List<String> courses = new ArrayList<>();
         courses.add(App.currentCourse.CRN);
         data.put("course", courses);
@@ -226,8 +250,8 @@ public class AssignmentController implements Initializable {
         ApiFuture<WriteResult> result = docRef.set(data);
         App.currentCourse.assignments.add(docRef.getId());
         DocumentReference cdata = App.fstore.collection("courses").document(App.currentCourse.getID());
-        
-        ApiFuture<WriteResult> cresult = cdata.update("assignments",App.currentCourse.assignments );
+
+        ApiFuture<WriteResult> cresult = cdata.update("assignments", App.currentCourse.assignments);
 
     }
 
