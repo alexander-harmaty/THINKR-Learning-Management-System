@@ -248,6 +248,7 @@ public class CourseController extends HomePageController implements Initializabl
                     
                     //read selected course CRN
                     String selectedAssignTitle = tableView_assignments.getSelectionModel().getSelectedItem().getTitle();
+                    App.currentAssignment = tableView_assignments.getSelectionModel().getSelectedItem();
 
                     //declare assignment and its list
                     Submission submission;

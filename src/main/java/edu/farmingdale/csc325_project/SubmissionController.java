@@ -95,6 +95,8 @@ public class SubmissionController extends HomePageController implements Initiali
 
     @FXML
     protected final MFXButton button_back = new MFXButton("Back");
+    
+    
 
     Font font;
     Font tj;
@@ -192,12 +194,13 @@ public class SubmissionController extends HomePageController implements Initiali
                 textField_dueDate.setStyle("-fx-border-color:" + "#4653eb");
                 textField_dueDate.setEditable(false);
 
-//                textArea_assignmentDetails.setPromptText("Assignment Details");
-//                textArea_assignmentDetails.setText(App.currentAssignment.detailsText);
-//                textArea_assignmentDetails.setFont(tj);
-//                textArea_assignmentDetails.setPrefHeight(194);
-//                textArea_assignmentDetails.setPrefWidth(268);
-//                textArea_assignmentDetails.setStyle("-fx-border-color:" + "#4653eb");
+                textArea_assignmentDetails.setPromptText("Assignment Details");
+                textArea_assignmentDetails.setText(App.currentAssignment.detailsText);
+                textArea_assignmentDetails.setFont(tj);
+                textArea_assignmentDetails.setPrefHeight(194);
+                textArea_assignmentDetails.setPrefWidth(268);
+                textArea_assignmentDetails.setStyle("-fx-border-color:" + "#4653eb");
+                textArea_assignmentDetails.setEditable(false);
                 
                 textArea_studentComment.setPromptText("Student Comment");
                 textArea_studentComment.setFont(tj);
@@ -234,7 +237,7 @@ public class SubmissionController extends HomePageController implements Initiali
                 VBox_right.getChildren().add(textField_grade);
                 VBox_left.getChildren().add(textField_dueDate);
                 VBox_right.getChildren().add(textArea_studentComment);
-                //VBox_left.getChildren().add(textArea_assignmentDetails);
+                VBox_left.getChildren().add(textArea_assignmentDetails);
                 VBox_right.getChildren().add(textArea_professorFeedback);
 
                 button_back.setFont(tj);
