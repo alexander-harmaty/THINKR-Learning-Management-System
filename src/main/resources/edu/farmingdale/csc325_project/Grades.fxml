@@ -43,6 +43,7 @@
                   <TableColumn fx:id="tableColumn_assignment" minWidth="15.0" prefWidth="172.26660919189453" text="Assignment" />
                   <TableColumn fx:id="tableColumn_grade" minWidth="15.0" prefWidth="172.26660919189453" text="Grade" />
                   <TableColumn fx:id="tableColumn_submittedDate" minWidth="15.0" prefWidth="172.26660919189453" text="Submitted Date" />
+                  <TableColumn fx:id="tableColumn_student" prefWidth="115.0" text="Students" />
               </columns>
             </TableView>
          </children>
