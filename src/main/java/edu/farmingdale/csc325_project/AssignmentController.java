@@ -181,7 +181,7 @@ public class AssignmentController extends HomePageController implements Initiali
         VBox_left.getChildren().add(textArea_assignmentDetails);
         VBox_left.getChildren().add(HBox_buttons);
         VBox_left.setMaxWidth(300);
-        HBox_buttons.getChildren().add(button_uploadFile);
+//        HBox_buttons.getChildren().add(button_uploadFile);
         HBox_buttons.getChildren().add(button_post);
         HBox_buttons.setAlignment(Pos.CENTER);
         HBox_buttons.getChildren().add(button_back);
@@ -240,6 +240,7 @@ public class AssignmentController extends HomePageController implements Initiali
             tempData.put("submitted", false);
             tempData.put("submittedDate", null);
             tempData.put("teacherFeedback", null);
+            tempData.put("submissionDetails", null);
             tempData.put("ID", tempRef.getId());
             ApiFuture<WriteResult> subResult = tempRef.set(tempData);
             submissions.add(tempRef.getId());
