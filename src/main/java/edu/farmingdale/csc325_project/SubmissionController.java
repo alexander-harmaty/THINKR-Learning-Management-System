@@ -125,6 +125,7 @@ public class SubmissionController extends HomePageController implements Initiali
         textField_grade.setText(String.valueOf(App.currentSubmission.grade));
         textArea_studentComment.setText(App.currentSubmission.studentComment);
         textArea_professorFeedback.setText(App.currentSubmission.teacherFeedback);
+        textArea_submissionDetails.setText(App.currentSubmission.submissionDetails);
 
         List<QueryDocumentSnapshot> documents;
         ApiFuture<QuerySnapshot> future = App.fstore.collection("assignments").get();
@@ -157,6 +158,7 @@ public class SubmissionController extends HomePageController implements Initiali
         ApiFuture<WriteResult> cresult2 = docRef.update("submitted", true);
         ApiFuture<WriteResult> cresult3 = docRef.update("teacherFeedback", textArea_professorFeedback.getText());
         ApiFuture<WriteResult> cresult4 = docRef.update("grade", textField_grade.getText());
+        ApiFuture<WriteResult> cresult5 = docRef.update("submissionDetails", textArea_submissionDetails.getText());
 
     }
 
