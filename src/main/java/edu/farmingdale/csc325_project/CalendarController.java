@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
@@ -55,10 +57,13 @@ public class CalendarController extends HomePageController implements Initializa
         Entry entry = new Entry("test", inter);
         cal.addEntry(entry);
 
-        readEntriesIntoCalendar();
+        try {
+            readEntriesIntoCalendar();
+        } catch (InterruptedException | ExecutionException ex) {
+        }
     }
 
-    public void readEntriesIntoCalendar() {
+    public void readEntriesIntoCalendar() throws InterruptedException, ExecutionException {
         switch (App.currentUser.type) {
             case "STUDENT":
 
@@ -145,36 +150,41 @@ public class CalendarController extends HomePageController implements Initializa
                     }
                 } catch (InterruptedException | ExecutionException ex) {
                 }
+                calSource.getCalendars().addAll(calendars);
+                calendarView_cal.getCalendarSources().set(0, calSource);
+
                 break;
             case "PROFESSOR":
-//                Assignment assignment2;
-//                List<Calendar> Professorcalendars = new ArrayList<>();
-//                for (Course curcourse : App.currentListOfCourses) {
-//                    Professorcalendars.add(new Calendar(curcourse.subject + "-" + curcourse.code));
-//                    
-//                    List<QueryDocumentSnapshot> documents;
-//                    ApiFuture<QuerySnapshot> future2 = App.fstore.collection("assignments").get();
-//                    
-//                    try {
-//                        documents = future2.get().getDocuments();
-//                        if (!documents.isEmpty()) {
-//                            for (QueryDocumentSnapshot document : documents) {
-//                                assignment2 = new Assignment(document);
-//                                Entry entry2 = entryFactory(assignment2);
-//                                Professorcalendars.
-//                            }
-//                        }
-//                    }
-//                    
-//                    for (String curassignment: curcourse.assignments){
-//                        
-//                    }
-//                   
-//                }
-        }
+                Assignment assignment2;
+                List<Calendar> Professorcalendars = new ArrayList<>();
+                int i = 0;
+                for (Course curcourse : App.currentListOfCourses) {
+                    Professorcalendars.add(new Calendar(curcourse.subject + "-" + curcourse.code));
 
-//        calSource.getCalendars().addAll(calendars);
-//        calendarView_cal.getCalendarSources().set(0, calSource);
+                    List<QueryDocumentSnapshot> documents;
+                    ApiFuture<QuerySnapshot> future2 = App.fstore.collection("assignments").get();
+
+                    try {
+                        documents = future2.get().getDocuments();
+                        if (!documents.isEmpty()) {
+                            for (QueryDocumentSnapshot document : documents) {
+                                assignment2 = new Assignment(document);
+                                for (String course2 : assignment2.course) {
+                                    if (course2.equals(curcourse.CRN)) {
+                                        Entry entry2 = entryFactory(assignment2);
+                                        Professorcalendars.get(i).addEntry(entry2);
+                                    }
+                                }
+
+                            }
+                        }
+                    } catch (InterruptedException | ExecutionException ex) {
+                    }
+
+                }
+                calSource.getCalendars().addAll(Professorcalendars);
+                calendarView_cal.getCalendarSources().set(0, calSource);
+        }
     }
 
     public Entry entryFactory(Assignment assignment) {
