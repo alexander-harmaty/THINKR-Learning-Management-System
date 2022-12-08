@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.calendarfx.view.YearMonthView?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXNotificationCenter?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -45,6 +47,21 @@
                   </Text>
                </children>
             </HBox>
+            <MFXTextField fx:id="textField_password" alignment="CENTER" floatingText="Password" prefHeight="50.0" prefWidth="210.0" style="-fx-border-color: #4653eb;">
+               <VBox.margin>
+                  <Insets top="245.0" />
+               </VBox.margin>
+            </MFXTextField>
+            <MFXTextField fx:id="textField_retypePassword" floatingText="Retype Password" prefHeight="50.0" prefWidth="210.0" style="-fx-border-color: #4653eb;">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </MFXTextField>
+            <MFXButton fx:id="button_resetPassword" onAction="#handleButton_resetPassword" text="Reset Password" textFill="#4653eb">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </MFXButton>
          </children>
          <BorderPane.margin>
             <Insets />
@@ -65,7 +82,7 @@
                   <Insets top="25.0" />
                </VBox.margin>
             </Label>
-            <TableView fx:id="tableView_popup" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="248.0" prefWidth="500.0">
+            <TableView fx:id="tableView_popup" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="248.0" prefWidth="500.0" style="-fx-border-color: #4653eb;">
                <columns>
                   <TableColumn fx:id="subjectCol" minWidth="-1.0" prefWidth="75.0" text="Subject" />
                   <TableColumn fx:id="codeCol" minWidth="-1.0" prefWidth="75.0" text="Code" />

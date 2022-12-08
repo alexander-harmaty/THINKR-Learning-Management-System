@@ -2,9 +2,12 @@ package edu.farmingdale.csc325_project;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.Timestamp;
+import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.WriteResult;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
@@ -45,6 +48,15 @@ public class HomePageController implements Initializable {
     private VBox VBox_navButtons;
 
     @FXML
+    private MFXButton button_resetPassword;
+
+    @FXML
+    private MFXTextField textField_password;
+
+    @FXML
+    private MFXTextField textField_retypePassword;
+
+    @FXML
     protected final MFXButton button_home = new MFXButton("Home");
 
     @FXML
@@ -70,7 +82,7 @@ public class HomePageController implements Initializable {
 
     @FXML
     private TableView<?> tableView_assignments;
-    
+
     @FXML
     private TableView<Course> tableView_popup;
 
@@ -80,6 +92,38 @@ public class HomePageController implements Initializable {
     @FXML
     private TableColumn<Course, String> subjectCol, titleCol;
 
+    @FXML
+    void handleButton_resetPassword(ActionEvent event) {
+
+        if (textField_password.getText().equals(textField_retypePassword.getText())) {
+
+            User user;
+            List<QueryDocumentSnapshot> documents;
+
+            ApiFuture<QuerySnapshot> future = App.fstore.collection("users").get();
+
+            try {
+
+                documents = future.get().getDocuments();
+
+                if (!documents.isEmpty()) {
+                    for (QueryDocumentSnapshot document : documents) {
+                        user = new User(document);
+
+                        if (user.email.equals(App.currentUser.email)) {
+                            DocumentReference docRef = App.fstore.collection("users").document(user.userID);
+                            ApiFuture<WriteResult> result = docRef.update("password", textField_password.getText());
+                        }
+                    }
+                }
+
+            } catch (InterruptedException | ExecutionException e) {
+
+            }
+
+        }
+    }
+
     private ObservableList<Course> listOfCourses = FXCollections.observableArrayList();
 
     public ObservableList<Course> getListOfCourses() {
@@ -88,7 +132,7 @@ public class HomePageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         App.currentListOfCourses.clear();
         //add buttons to menu based on current user
         updateMenu();
@@ -101,7 +145,6 @@ public class HomePageController implements Initializable {
 
         //set list of courses
         readCoursesIntoTable();
-        
 
         //set code to switch to course view after double clicking a table selection
         setOnMousePressed();
@@ -118,20 +161,24 @@ public class HomePageController implements Initializable {
             case "STUDENT":
 
                 button_home.setOnAction(event -> {
-                    try { App.setRoot("HomePage"); } 
-                    catch (IOException ex) {}
-                });                 
-                
+                    try {
+                        App.setRoot("HomePage");
+                    } catch (IOException ex) {
+                    }
+                });
 
                 button_grades.setOnAction(event -> {
-                    try { App.setRoot("Grades"); } 
-                    catch (IOException ex) {
+                    try {
+                        App.setRoot("Grades");
+                    } catch (IOException ex) {
                     }
                 });
 //                
                 button_calendar.setOnAction(event -> {
-                    try { App.setRoot("Calendar"); } 
-                    catch (IOException ex) {}
+                    try {
+                        App.setRoot("Calendar");
+                    } catch (IOException ex) {
+                    }
                 });
 //                
 //                button_registrar.setOnAction(event -> {
@@ -155,18 +202,24 @@ public class HomePageController implements Initializable {
             case "PROFESSOR":
 
                 button_home.setOnAction(event -> {
-                    try { App.setRoot("HomePage"); } 
-                    catch (IOException ex) {}
+                    try {
+                        App.setRoot("HomePage");
+                    } catch (IOException ex) {
+                    }
                 });
 
                 button_grades.setOnAction(event -> {
-                    try { App.setRoot("Grades"); } 
-                    catch (IOException ex) {}
+                    try {
+                        App.setRoot("Grades");
+                    } catch (IOException ex) {
+                    }
                 });
-                
+
                 button_calendar.setOnAction(event -> {
-                    try { App.setRoot("Calendar"); } 
-                    catch (IOException ex) {}
+                    try {
+                        App.setRoot("Calendar");
+                    } catch (IOException ex) {
+                    }
                 });
                 button_logout.setOnAction(event -> {
                     try {
@@ -183,7 +236,6 @@ public class HomePageController implements Initializable {
                 break;
 
             case "ADMIN":
-
 
                 button_logout.setOnAction(event -> {
                     try {
@@ -234,9 +286,7 @@ public class HomePageController implements Initializable {
 
                     //use course document constructor to hold assignment data
                     course = new Course(document);
-                    
-                    
-                    
+
                     switch (App.currentUser.type) {
                         case "STUDENT":
                             //loop thorugh all courses
@@ -271,7 +321,7 @@ public class HomePageController implements Initializable {
         } catch (InterruptedException | ExecutionException ex) {
         }
     }
-    
+
     private void setOnMousePressed() {
 
         tableView_popup.setOnMousePressed((MouseEvent event) -> {
