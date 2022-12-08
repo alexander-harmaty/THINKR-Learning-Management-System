@@ -88,7 +88,8 @@ public class HomePageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
+        App.currentListOfCourses.clear();
         //add buttons to menu based on current user
         updateMenu();
 
@@ -241,6 +242,8 @@ public class HomePageController implements Initializable {
 
                     //use course document constructor to hold assignment data
                     course = new Course(document);
+                    
+                    
                     
                     switch (App.currentUser.type) {
                         case "STUDENT":
