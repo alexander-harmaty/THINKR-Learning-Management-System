@@ -30,6 +30,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -90,7 +92,9 @@ public class SubmissionController extends HomePageController implements Initiali
 
     @FXML
     protected final MFXButton button_post = new MFXButton("Post");
-    //Professor Post
+
+    @FXML
+    protected final MFXButton button_back = new MFXButton("Back");
 
     Font font;
     Font tj;
@@ -232,13 +236,27 @@ public class SubmissionController extends HomePageController implements Initiali
                 //VBox_left.getChildren().add(textArea_assignmentDetails);
                 VBox_right.getChildren().add(textArea_professorFeedback);
 
+                button_back.setFont(tj);
+                button_back.setPrefHeight(USE_COMPUTED_SIZE);
+                button_back.setPrefWidth(USE_COMPUTED_SIZE);
+                button_back.setStyle("-fx-text-fill:" + "#4653eb");
+                button_back.setAlignment(Pos.CENTER);
+
                 HBox_buttons.getChildren().add(button_uploadF);
                 HBox_bottombuttons.getChildren().add(button_save);
+                HBox_bottombuttons.getChildren().add(button_back);
 
                 button_save.setOnAction(event -> {
                     updateSubmission();
                 });
 
+                button_back.setOnAction(event -> {
+                    try {
+                        App.setRoot("Course");
+                    } catch (IOException ex) {
+
+                    }
+                });
                 break;
 
             case "PROFESSOR":
@@ -301,6 +319,13 @@ public class SubmissionController extends HomePageController implements Initiali
                 button_post.setPrefWidth(USE_COMPUTED_SIZE);
                 button_post.setStyle("-fx-text-fill:" + "#4653eb");
                 button_post.setAlignment(Pos.CENTER);
+                
+                button_back.setFont(tj);
+                button_back.setPrefHeight(USE_COMPUTED_SIZE);
+                button_back.setPrefWidth(USE_COMPUTED_SIZE);
+                button_back.setStyle("-fx-text-fill:" + "#4653eb");
+                button_back.setAlignment(Pos.CENTER);
+
 
                 VBox_left.getChildren().add(label_title);
                 VBox_right.getChildren().add(textField_grade);
@@ -311,9 +336,18 @@ public class SubmissionController extends HomePageController implements Initiali
 
                 HBox_buttons.getChildren().add(button_uploadFile);
                 HBox_bottombuttons.getChildren().add(button_save);
+                HBox_bottombuttons.getChildren().add(button_back);
 
                 button_save.setOnAction(event -> {
                     updateSubmission();
+                });
+                
+                button_back.setOnAction(event -> {
+                    try {
+                        App.setRoot("Grades");
+                    } catch (IOException ex) {
+
+                    }
                 });
 
                 break;
