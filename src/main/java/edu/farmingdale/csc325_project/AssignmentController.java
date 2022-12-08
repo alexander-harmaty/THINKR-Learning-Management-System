@@ -39,6 +39,7 @@ import java.util.Date;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import javafx.geometry.Insets;
 import org.controlsfx.glyphfont.FontAwesome;
 
 /**
@@ -176,8 +177,7 @@ public class AssignmentController extends HomePageController implements Initiali
 
         VBox_left.getChildren().add(textField_title);
 
-        VBox_left.getChildren().add(datePicker_dueDate);
-        VBox_left.getChildren().add( new Label("Assignment Details"));
+        VBox_left.getChildren().add(datePicker_dueDate);       
         VBox_left.getChildren().add(textArea_assignmentDetails);
         VBox_left.getChildren().add(HBox_buttons);
         VBox_left.setMaxWidth(300);
