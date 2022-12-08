@@ -206,7 +206,8 @@ public class AssignmentController extends HomePageController implements Initiali
      * course
      */
     public void createAssignment() {
-        ZonedDateTime zdt = datePicker_dueDate.getCurrentDate().atStartOfDay(ZoneId.of("America/New_York"));
+        ZonedDateTime zdt = datePicker_dueDate.getValue().atStartOfDay(ZoneId.of("America/New_York"));
+       
         Instant instant = zdt.toInstant();
         Date d = Date.from(instant);
         Timestamp ts = Timestamp.of(d);

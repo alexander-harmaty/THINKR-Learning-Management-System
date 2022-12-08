@@ -202,7 +202,11 @@ public class SubmissionController extends HomePageController implements Initiali
                 textArea_submissionDetails.setPrefHeight(194);
                 textArea_submissionDetails.setPrefWidth(268);
                 textArea_submissionDetails.setStyle("-fx-border-color:" + "#4653eb");
-                textArea_submissionDetails.setEditable(true);
+                if (App.currentSubmission.grade == -1) {
+                    textArea_submissionDetails.setEditable(true);
+                } else {
+                    textArea_submissionDetails.setEditable(false);
+                }
 
                 textArea_assignmentDetails.setPromptText("Assignment Details");
                 textArea_assignmentDetails.setText(App.currentAssignment.detailsText);
