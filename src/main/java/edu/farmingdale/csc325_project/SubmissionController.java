@@ -41,12 +41,11 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
  *
  * @author trintydarbouze
  */
-public class SubmissionController implements Initializable {
+public class SubmissionController extends HomePageController implements Initializable {
 
     @FXML
     private HBox HBox_buttons;
-    
-    
+
     @FXML
     private HBox HBox_bottombuttons;
 
@@ -110,6 +109,7 @@ public class SubmissionController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         buildSubmission();
         readSubmission();
+        updateMenu();
     }
 
     private void readSubmission() {
@@ -132,42 +132,35 @@ public class SubmissionController implements Initializable {
                     Assignment assignment = new Assignment(document);
 
                     if (assignment.title.equals(App.currentSubmission.assignment)) {
-                          textField_dueDate.setText(assignment.dueDate.toString());
-                          textArea_assignmentDetails.setText(assignment.detailsText);
+                        textField_dueDate.setText(assignment.dueDate.toString());
+                        textArea_assignmentDetails.setText(assignment.detailsText);
                     }
 
                 }
             }
-        } 
-        catch(InterruptedException | ExecutionException e){
+        } catch (InterruptedException | ExecutionException e) {
         }
     }
-    
-    private void updateSubmission(){
-        
+
+    private void updateSubmission() {
+
         DocumentReference docRef = App.fstore.collection("submissions").document(App.currentSubmission.getID());
-       
-        ApiFuture<WriteResult> cresult = docRef.update("studentComment",textArea_studentComment.getText());
-        ApiFuture<WriteResult> cresult2 = docRef.update("submitted",true);
-        ApiFuture<WriteResult> cresult3 = docRef.update("teacherFeedback",textArea_professorFeedback.getText());
-        ApiFuture<WriteResult> cresult4 = docRef.update("grade",textField_grade.getText());
 
-        
+        ApiFuture<WriteResult> cresult = docRef.update("studentComment", textArea_studentComment.getText());
+        ApiFuture<WriteResult> cresult2 = docRef.update("submitted", true);
+        ApiFuture<WriteResult> cresult3 = docRef.update("teacherFeedback", textArea_professorFeedback.getText());
+        ApiFuture<WriteResult> cresult4 = docRef.update("grade", textField_grade.getText());
 
-        
     }
-    
-    
 
     protected void buildSubmission() {
         VBox_left.getChildren().clear();
         VBox_right.getChildren().clear();
         HBox_buttons.getChildren().clear();
 
-         tj = new Font("System", 12);
-         font = new Font("System", 20);
+        tj = new Font("System", 12);
+        font = new Font("System", 20);
 
-    
         switch (App.currentUser.type) {
 
             case "STUDENT":
@@ -178,8 +171,7 @@ public class SubmissionController implements Initializable {
                 label_title.setPrefWidth(268);
                 label_title.setAlignment(Pos.CENTER);
                 label_title.setStyle("-fx-border-color:" + "#4653eb");
-                
-                
+
                 textField_grade.setFloatingText("Grade");
                 textField_grade.setFont(tj);
                 textField_grade.setPrefHeight(38);
@@ -195,8 +187,6 @@ public class SubmissionController implements Initializable {
                 textField_dueDate.setAlignment(Pos.CENTER_LEFT);
                 textField_dueDate.setStyle("-fx-border-color:" + "#4653eb");
                 textField_dueDate.setEditable(false);
-                
-                
 
 //                textArea_assignmentDetails.setPromptText("Assignment Details");
 //                textArea_assignmentDetails.setText(App.currentAssignment.detailsText);
@@ -204,13 +194,11 @@ public class SubmissionController implements Initializable {
 //                textArea_assignmentDetails.setPrefHeight(194);
 //                textArea_assignmentDetails.setPrefWidth(268);
 //                textArea_assignmentDetails.setStyle("-fx-border-color:" + "#4653eb");
-
                 textArea_studentComment.setPromptText("Student Comment");
                 textArea_studentComment.setFont(tj);
                 textArea_studentComment.setPrefHeight(200);
                 textArea_studentComment.setPrefWidth(200);
                 textArea_studentComment.setStyle("-fx-border-color:" + "#4653eb");
-               
 
                 textArea_professorFeedback.setPromptText("Professor Feedback");
                 textArea_professorFeedback.setFont(tj);
@@ -246,9 +234,9 @@ public class SubmissionController implements Initializable {
 
                 HBox_buttons.getChildren().add(button_uploadF);
                 HBox_bottombuttons.getChildren().add(button_save);
-                
-                button_save.setOnAction(event->{
-                updateSubmission();   
+
+                button_save.setOnAction(event -> {
+                    updateSubmission();
                 });
 
                 break;
@@ -261,7 +249,6 @@ public class SubmissionController implements Initializable {
                 label_title.setPrefWidth(268);
                 label_title.setAlignment(Pos.CENTER);
                 label_title.setStyle("-fx-border-color:" + "#4653eb");
-                
 
                 textField_grade.setFloatingText("Grade");
                 textField_grade.setFont(tj);
@@ -269,7 +256,6 @@ public class SubmissionController implements Initializable {
                 textField_grade.setPrefWidth(290);
                 textField_grade.setAlignment(Pos.CENTER_LEFT);
                 textField_grade.setStyle("-fx-border-color:" + "#4653eb");
-             
 
                 textField_dueDate.setFloatingText("Due Date");
                 textField_dueDate.setFont(tj);
@@ -325,9 +311,9 @@ public class SubmissionController implements Initializable {
 
                 HBox_buttons.getChildren().add(button_uploadFile);
                 HBox_bottombuttons.getChildren().add(button_save);
-                
-                button_save.setOnAction(event->{
-                updateSubmission();   
+
+                button_save.setOnAction(event -> {
+                    updateSubmission();
                 });
 
                 break;
@@ -340,4 +326,3 @@ public class SubmissionController implements Initializable {
     }
 
 }
-
