@@ -109,6 +109,7 @@ public class SubmissionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         buildSubmission();
+        readSubmission();
     }
 
     private void readSubmission() {
@@ -148,6 +149,11 @@ public class SubmissionController implements Initializable {
        
         ApiFuture<WriteResult> cresult = docRef.update("studentComment",textArea_studentComment.getText());
         ApiFuture<WriteResult> cresult2 = docRef.update("submitted",true);
+        ApiFuture<WriteResult> cresult3 = docRef.update("teacherFeedback",textArea_professorFeedback.getText());
+        ApiFuture<WriteResult> cresult4 = docRef.update("grade",textField_grade.getText());
+
+        
+
         
     }
     
@@ -173,12 +179,14 @@ public class SubmissionController implements Initializable {
                 label_title.setAlignment(Pos.CENTER);
                 label_title.setStyle("-fx-border-color:" + "#4653eb");
                 
+                
                 textField_grade.setFloatingText("Grade");
                 textField_grade.setFont(tj);
                 textField_grade.setPrefHeight(38);
                 textField_grade.setPrefWidth(290);
                 textField_grade.setAlignment(Pos.CENTER_LEFT);
                 textField_grade.setStyle("-fx-border-color:" + "#4653eb");
+                textField_grade.setEditable(false);
 
                 textField_dueDate.setFloatingText("Due Date");
                 textField_dueDate.setFont(tj);
@@ -186,6 +194,9 @@ public class SubmissionController implements Initializable {
                 textField_dueDate.setPrefWidth(290);
                 textField_dueDate.setAlignment(Pos.CENTER_LEFT);
                 textField_dueDate.setStyle("-fx-border-color:" + "#4653eb");
+                textField_dueDate.setEditable(false);
+                
+                
 
 //                textArea_assignmentDetails.setPromptText("Assignment Details");
 //                textArea_assignmentDetails.setText(App.currentAssignment.detailsText);
@@ -199,12 +210,14 @@ public class SubmissionController implements Initializable {
                 textArea_studentComment.setPrefHeight(200);
                 textArea_studentComment.setPrefWidth(200);
                 textArea_studentComment.setStyle("-fx-border-color:" + "#4653eb");
+               
 
                 textArea_professorFeedback.setPromptText("Professor Feedback");
                 textArea_professorFeedback.setFont(tj);
                 textArea_professorFeedback.setPrefHeight(200);
                 textArea_professorFeedback.setPrefWidth(200);
                 textArea_professorFeedback.setStyle("-fx-border-color:" + "#4653eb");
+                textArea_professorFeedback.setEditable(false);
 
                 button_uploadFile.setFont(tj);
                 button_uploadFile.setPrefHeight(USE_COMPUTED_SIZE);
@@ -242,12 +255,13 @@ public class SubmissionController implements Initializable {
 
             case "PROFESSOR":
 
-                textField_title.getText();
-                textField_title.setFont(font);
-                textField_title.setPrefHeight(40);
-                textField_title.setPrefWidth(268);
-                textField_title.setAlignment(Pos.CENTER);
-                textField_title.setStyle("-fx-border-color:" + "#4653eb");
+                label_title.setText(App.currentSubmission.assignment);
+                label_title.setFont(font);
+                label_title.setPrefHeight(40);
+                label_title.setPrefWidth(268);
+                label_title.setAlignment(Pos.CENTER);
+                label_title.setStyle("-fx-border-color:" + "#4653eb");
+                
 
                 textField_grade.setFloatingText("Grade");
                 textField_grade.setFont(tj);
@@ -255,6 +269,7 @@ public class SubmissionController implements Initializable {
                 textField_grade.setPrefWidth(290);
                 textField_grade.setAlignment(Pos.CENTER_LEFT);
                 textField_grade.setStyle("-fx-border-color:" + "#4653eb");
+             
 
                 textField_dueDate.setFloatingText("Due Date");
                 textField_dueDate.setFont(tj);
@@ -262,6 +277,7 @@ public class SubmissionController implements Initializable {
                 textField_dueDate.setPrefWidth(290);
                 textField_dueDate.setAlignment(Pos.CENTER_LEFT);
                 textField_dueDate.setStyle("-fx-border-color:" + "#4653eb");
+                textField_dueDate.setEditable(false);
 
                 textArea_assignmentDetails.setPromptText("Assignment Details");
                 textArea_assignmentDetails.setFont(tj);
@@ -274,6 +290,7 @@ public class SubmissionController implements Initializable {
                 textArea_studentComment.setPrefHeight(200);
                 textArea_studentComment.setPrefWidth(200);
                 textArea_studentComment.setStyle("-fx-border-color:" + "#4653eb");
+                textArea_studentComment.setEditable(false);
 
                 textArea_professorFeedback.setPromptText("Professor Feedback");
                 textArea_professorFeedback.setFont(tj);
@@ -299,7 +316,7 @@ public class SubmissionController implements Initializable {
                 button_post.setStyle("-fx-text-fill:" + "#4653eb");
                 button_post.setAlignment(Pos.CENTER);
 
-                VBox_left.getChildren().add(textField_title);
+                VBox_left.getChildren().add(label_title);
                 VBox_right.getChildren().add(textField_grade);
                 VBox_left.getChildren().add(textField_dueDate);
                 VBox_right.getChildren().add(textArea_studentComment);
@@ -307,7 +324,11 @@ public class SubmissionController implements Initializable {
                 VBox_right.getChildren().add(textArea_professorFeedback);
 
                 HBox_buttons.getChildren().add(button_uploadFile);
-                HBox_buttons.getChildren().add(button_post);
+                HBox_bottombuttons.getChildren().add(button_save);
+                
+                button_save.setOnAction(event->{
+                updateSubmission();   
+                });
 
                 break;
 

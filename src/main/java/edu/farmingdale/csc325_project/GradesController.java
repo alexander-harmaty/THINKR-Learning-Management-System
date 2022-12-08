@@ -142,15 +142,14 @@ public class GradesController extends HomePageController implements Initializabl
                             }
                             break;
                         case"PROFESSOR":
-//                            for (int i = 0; i < App.currentListOfCourses.size(); i++) {
-//                                Course course = App.currentListOfCourses.get(i);
-//                                for (int j = 0; j < course.assignments.size(); j++) {
-//                                    Assignment assignment = course.assignments.;
-//                                }
-//                                course.assignments.get(i)
-//                            }
-//                                
-//                            if(submission.assignment.equals)
+                            for(Course course : App.currentListOfCourses)
+                            {
+                                if(course.CRN.equals(submission.CRN))
+                                {
+                                    listOfSubmissions.add(submission);
+                                    submissions.add(submission);
+                                }
+                            }
                             break;
                                 
                     }
