@@ -4,11 +4,14 @@
  */
 package edu.farmingdale.csc325_project;
 
+import com.google.api.core.ApiFuture;
 import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  *
@@ -26,6 +29,9 @@ public class Submission {
     protected String CRN;
     protected String ID;
     protected String submissionDetails;
+    protected String fullName;
+
+   
 
     public Submission(int grade, String student, String studentComment, boolean submitted, Timestamp submittedDate, String teacherFeedback, String assignment, String course, String ID, String submissionDetails ) {
 
@@ -54,6 +60,7 @@ public class Submission {
         this.CRN = (String) document.getData().get("CRN");
         this.ID = document.getId();
         this.submissionDetails = (String) document.getData().get("submissionDetails");
+        this.fullName = getFullName();
     }
 
     public int getGrade() {
@@ -135,5 +142,44 @@ public class Submission {
 
     public void setSubmissionDetails(String submissionDetails) {
         this.submissionDetails = submissionDetails;
+    }
+    
+     public String getFullName() {
+        User user;
+                    List<QueryDocumentSnapshot> documents;
+                    
+                    //get assignment collection
+                    ApiFuture<QuerySnapshot> future = App.fstore.collection("users").get();
+                 
+                    try {
+                        //add collection into list
+                        documents = future.get().getDocuments();
+
+                        //check if empty
+                        if (!documents.isEmpty()) {
+                            
+                            //loop through assignments
+                            for (QueryDocumentSnapshot document : documents) {
+                                
+                                //use assignment document constructor to hold assignment data
+                                user = new User(document);
+
+                                //if the CRN of any course matches the selected course CRN...
+                                if (user.userID.equals(this.student)) {
+                                    //set currentAssignment to the selected course
+                                    fullName = user.firstName + " "+ user.lastName;
+                                   
+                                }
+                            }
+                        }
+                    } 
+                    catch (InterruptedException | ExecutionException  ex) {}
+        //QueryDocumentSnapshot docRef = App.fstore.collection("users").document(this.student);
+        
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

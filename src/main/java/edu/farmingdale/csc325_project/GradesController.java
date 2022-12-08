@@ -60,7 +60,7 @@ public class GradesController extends HomePageController implements Initializabl
     private TableColumn<CourseGradeInfo, Double> tableColumn_avg;
     
     @FXML 
-    private TableColumn< CourseGradeInfo, String> tableColumn_student;
+    private TableColumn<Submission, String> tableColumn_student;
 
     @FXML
     private TableColumn<CourseGradeInfo, String> tableColumn_course2;
@@ -95,6 +95,7 @@ public class GradesController extends HomePageController implements Initializabl
         tableColumn_submittedDate.setCellValueFactory(new PropertyValueFactory<>("submittedDate"));
         tableColumn_course.setCellValueFactory(new PropertyValueFactory<>("CRN"));
         tableColumn_grade.setCellValueFactory(new PropertyValueFactory<>("grade"));
+        tableColumn_student.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         
         readSubmissionIntoTable();
         
