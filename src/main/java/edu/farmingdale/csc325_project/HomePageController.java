@@ -184,12 +184,6 @@ public class HomePageController implements Initializable {
 
             case "ADMIN":
 
-                button_accounts.setOnAction(event -> {
-                    try {
-                        App.setRoot("Admin");
-                    } catch (IOException ex) {
-                    }
-                });
 
                 button_logout.setOnAction(event -> {
                     try {
@@ -197,8 +191,6 @@ public class HomePageController implements Initializable {
                     } catch (IOException ex) {
                     }
                 });
-
-                buttons.add(button_accounts);
 
                 buttons.add(button_logout);
 

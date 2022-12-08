@@ -90,7 +90,7 @@ public class AdminController extends HomePageController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         updateMenu();
-        VBox_navButtons.getChildren().remove(0);
+        
 
         tableColumn_dob.setCellValueFactory(new PropertyValueFactory<>("DOB"));
         tableColumn_email.setCellValueFactory(new PropertyValueFactory<>("email"));
