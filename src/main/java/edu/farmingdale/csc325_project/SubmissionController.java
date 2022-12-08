@@ -198,6 +198,7 @@ public class SubmissionController extends HomePageController implements Initiali
 //                textArea_assignmentDetails.setPrefHeight(194);
 //                textArea_assignmentDetails.setPrefWidth(268);
 //                textArea_assignmentDetails.setStyle("-fx-border-color:" + "#4653eb");
+                
                 textArea_studentComment.setPromptText("Student Comment");
                 textArea_studentComment.setFont(tj);
                 textArea_studentComment.setPrefHeight(200);
@@ -288,6 +289,7 @@ public class SubmissionController extends HomePageController implements Initiali
                 textArea_assignmentDetails.setPrefHeight(194);
                 textArea_assignmentDetails.setPrefWidth(268);
                 textArea_assignmentDetails.setStyle("-fx-border-color:" + "#4653eb");
+                textArea_assignmentDetails.setEditable(false);
 
                 textArea_studentComment.setPromptText("Student Comment");
                 textArea_studentComment.setFont(tj);
