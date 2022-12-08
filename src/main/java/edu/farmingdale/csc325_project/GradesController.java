@@ -58,6 +58,9 @@ public class GradesController extends HomePageController implements Initializabl
     
     @FXML
     private TableColumn<CourseGradeInfo, Double> tableColumn_avg;
+    
+    @FXML 
+    private TableColumn< CourseGradeInfo, String> tableColumn_student;
 
     @FXML
     private TableColumn<CourseGradeInfo, String> tableColumn_course2;
