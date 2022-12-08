@@ -232,7 +232,7 @@ public class AssignmentController extends HomePageController implements Initiali
 
             tempData.put("assignment", textField_title.getText());
             tempData.put("CRN", App.currentCourse.CRN);
-            tempData.put("grade", 0);
+            tempData.put("grade", -1);
             tempData.put("student", App.currentCourse.students.get(i));
             tempData.put("studentComment", textArea_studentComment.getText());
             tempData.put("submitted", false);
