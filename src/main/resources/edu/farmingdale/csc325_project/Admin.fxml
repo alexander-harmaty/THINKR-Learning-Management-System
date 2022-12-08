@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TableColumn?>
@@ -64,8 +66,8 @@
                         <MFXTextField fx:id="textField_email" floatingText="Email:" prefHeight="50.0" prefWidth="375.0" />
                         <MFXTextField fx:id="textField_firstName" floatingText="First Name:" prefHeight="50.0" prefWidth="375.0" />
                         <MFXTextField fx:id="textField_lastName" floatingText="Last Name:" prefHeight="50.0" prefWidth="375.0" />
-                        <MFXTextField fx:id="textField_dob" floatingText="DOB:" prefHeight="50.0" prefWidth="375.0" />
-                        <MFXTextField fx:id="textField_type" floatingText="Type:" prefHeight="50.0" prefWidth="375.0" />
+                        <MFXDatePicker fx:id="datePicker_DOB" prefHeight="50.0" prefWidth="375.0" />
+                        <MFXComboBox fx:id="comboBox_new_type" floatingText="Account Type" prefHeight="50.0" prefWidth="375.0" />
                      </children>
                      <padding>
                         <Insets left="15.0" top="15.0" />

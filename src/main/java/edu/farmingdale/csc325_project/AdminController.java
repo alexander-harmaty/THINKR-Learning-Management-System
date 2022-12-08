@@ -1,13 +1,20 @@
 package edu.farmingdale.csc325_project;
 
 import com.google.api.core.ApiFuture;
+import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.net.URL;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,7 +72,10 @@ public class AdminController extends HomePageController implements Initializable
     private TableView<User> tableView_userTable = new TableView();
 
     @FXML
-    private MFXTextField textField_dob;
+    private MFXDatePicker datePicker_DOB;
+
+    @FXML //declare ComboBox for user input
+    private MFXComboBox<String> comboBox_new_type;
 
     @FXML
     private MFXTextField textField_email;
@@ -92,6 +102,11 @@ public class AdminController extends HomePageController implements Initializable
         updateMenu();
         
 
+        String accountTypes[] = {"STUDENT", "PROFESSOR", "ADMIN"};
+        ObservableList<String> options = FXCollections.observableArrayList(accountTypes);
+        comboBox_new_type.setItems(options);
+//                
+
         tableColumn_dob.setCellValueFactory(new PropertyValueFactory<>("DOB"));
         tableColumn_email.setCellValueFactory(new PropertyValueFactory<>("email"));
         tableColumn_firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -101,19 +116,20 @@ public class AdminController extends HomePageController implements Initializable
         tableView_userTable.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                textField_dob.setText(tableView_userTable.getSelectionModel().getSelectedItem().getDOB());
+                datePicker_DOB.setText(tableView_userTable.getSelectionModel().getSelectedItem().getDOB());
                 textField_email.setText(tableView_userTable.getSelectionModel().getSelectedItem().getEmail());
                 textField_firstName.setText(tableView_userTable.getSelectionModel().getSelectedItem().getFirstName());
                 textField_lastName.setText(tableView_userTable.getSelectionModel().getSelectedItem().getLastName());
-                textField_type.setText(tableView_userTable.getSelectionModel().getSelectedItem().getType());
+                comboBox_new_type.setText(tableView_userTable.getSelectionModel().getSelectedItem().getType());
                 currentID = tableView_userTable.getSelectionModel().getSelectedItem().getUserID();
+
             }
         });
-        textField_dob.clear();
+        datePicker_DOB.clear();
         textField_email.clear();
         textField_firstName.clear();
         textField_lastName.clear();
-        textField_type.clear();
+        //comboBox_new_type.clear();
         tableView_userTable.getItems().clear();
         readRecords();
     }
@@ -129,11 +145,11 @@ public class AdminController extends HomePageController implements Initializable
     @FXML
     private void handle_readRecords(ActionEvent event) {
 
-        textField_dob.clear();
+        datePicker_DOB.clear();
         textField_email.clear();
         textField_firstName.clear();
         textField_lastName.clear();
-        textField_type.clear();
+        comboBox_new_type.clear();
         tableView_userTable.getItems().clear();
         readRecords();
 
@@ -163,26 +179,32 @@ public class AdminController extends HomePageController implements Initializable
     }
 
     public void clearRecord() {
-        textField_dob.clear();
+        datePicker_DOB.clear();
         textField_email.clear();
         textField_firstName.clear();
         textField_lastName.clear();
-        textField_type.clear();
+        comboBox_new_type.clear();
         tableView_userTable.getItems().clear();
         readRecords();
     }
 
     public void writeRecord() throws InterruptedException, ExecutionException {
 
-        if (!"".equals(textField_dob.getText()) || !"".equals(textField_email.getText()) || !"".equals(textField_firstName.getText()) || !"".equals(textField_lastName.getText()) || !"".equals(textField_type.getText())) {
+        String type = comboBox_new_type.getValue();
+         
+
+
+        //!"".equals(textField_dob.getText()) ||
+        if (!"".equals(textField_email.getText()) || !"".equals(textField_firstName.getText()) || !"".equals(textField_lastName.getText()) || !"".equals(type)) {
             DocumentReference docRef = App.fstore.collection("users").document(UUID.randomUUID().toString());
             // Add document data  with id "alovelace" using a hashmap
             Map<String, Object> data = new HashMap<>();
-            data.put("DOB", textField_dob.getText());
+            data.put("DOB", datePicker_DOB.getText());
             data.put("email", textField_email.getText());
             data.put("firstName", textField_firstName.getText());
             data.put("lastName", textField_lastName.getText());
-            data.put("type", textField_type.getText());
+            data.put("type", type);
+            data.put("password", datePicker_DOB.getText());
 
             //asynchronously write data
             ApiFuture<WriteResult> result = docRef.set(data);
@@ -223,15 +245,19 @@ public class AdminController extends HomePageController implements Initializable
 
     public void updateRecord() throws InterruptedException, ExecutionException {
 
-        if (!"".equals(textField_dob.getText()) || !"".equals(textField_email.getText()) || !"".equals(textField_firstName.getText()) || !"".equals(textField_lastName.getText()) || !"".equals(textField_type.getText())) {
+        String type = comboBox_new_type.getValue();
+        
+
+//!"".equals(textField_dob.getText()) ||
+        if (!"".equals(textField_email.getText()) || !"".equals(textField_firstName.getText()) || !"".equals(textField_lastName.getText()) || !"".equals(type)) {
             DocumentReference docRef = App.fstore.collection("users").document(currentID);
 
             Map<String, Object> updates = new HashMap<>();
-            updates.put("DOB", textField_dob.getText());
+            updates.put("DOB", datePicker_DOB.getText());
             updates.put("email", textField_email.getText());
             updates.put("firstName", textField_firstName.getText());
             updates.put("lastName", textField_lastName.getText());
-            updates.put("type", textField_type.getText());
+            updates.put("type", type);
 
             ApiFuture<WriteResult> writeResult = docRef.update(updates);
 
