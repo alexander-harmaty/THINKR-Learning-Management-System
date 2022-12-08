@@ -136,7 +136,7 @@ public class SubmissionController extends HomePageController implements Initiali
                     Assignment assignment = new Assignment(document);
 
                     if (assignment.title.equals(App.currentSubmission.assignment)) {
-                        textField_dueDate.setText(assignment.dueDate.toString());
+                        textField_dueDate.setText(assignment.dueDate.toSqlTimestamp().toLocalDateTime().toString());
                         textArea_assignmentDetails.setText(assignment.detailsText);
                     }
 
@@ -192,12 +192,12 @@ public class SubmissionController extends HomePageController implements Initiali
                 textField_dueDate.setStyle("-fx-border-color:" + "#4653eb");
                 textField_dueDate.setEditable(false);
 
-                textArea_assignmentDetails.setPromptText("Assignment Details");
-                textArea_assignmentDetails.setText(App.currentAssignment.detailsText);
-                textArea_assignmentDetails.setFont(tj);
-                textArea_assignmentDetails.setPrefHeight(194);
-                textArea_assignmentDetails.setPrefWidth(268);
-                textArea_assignmentDetails.setStyle("-fx-border-color:" + "#4653eb");
+//                textArea_assignmentDetails.setPromptText("Assignment Details");
+//                textArea_assignmentDetails.setText(App.currentAssignment.detailsText);
+//                textArea_assignmentDetails.setFont(tj);
+//                textArea_assignmentDetails.setPrefHeight(194);
+//                textArea_assignmentDetails.setPrefWidth(268);
+//                textArea_assignmentDetails.setStyle("-fx-border-color:" + "#4653eb");
                 
                 textArea_studentComment.setPromptText("Student Comment");
                 textArea_studentComment.setFont(tj);
