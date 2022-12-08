@@ -32,13 +32,13 @@ import javax.xml.namespace.QName;
  * @author AlexH
  */
 public class CalendarController extends HomePageController implements Initializable {
-    
+
     @FXML
     private VBox VBox_navBar;
 
     @FXML
     private VBox VBox_navButtons;
-    
+
     private Calendar cal = new Calendar("Cal");
     private CalendarSource calSource = new CalendarSource("Source");
     @FXML
@@ -50,113 +50,134 @@ public class CalendarController extends HomePageController implements Initializa
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         updateMenu();
-        
+
         Interval inter = new Interval(LocalDate.now(), LocalTime.now(), LocalDate.now(), LocalTime.now());
         Entry entry = new Entry("test", inter);
         cal.addEntry(entry);
-        
-        
+
         readEntriesIntoCalendar();
     }
 
     public void readEntriesIntoCalendar() {
-        
-        List<Calendar> calendars = new ArrayList<>();
-        
-        //declare course and its documents list
-        Course course;
-        List<Course> courses = new ArrayList<>();
-        List<QueryDocumentSnapshot> documents_course;
-        
-        //get courses collection
-        ApiFuture<QuerySnapshot> future_courses = App.fstore.collection("courses").get();
-        
-        try {
-            //add collection into list
-            documents_course = future_courses.get().getDocuments();
+        switch (App.currentUser.type) {
+            case "STUDENT":
 
-            //check if empty
-            if (!documents_course.isEmpty()) {
-                
-                //loop through courses
-                for (QueryDocumentSnapshot document : documents_course) {
-                    
-                    //use course document constructor to hold assignment data
-                    course = new Course(document);
+                List<Calendar> calendars = new ArrayList<>();
 
-                    //loop thorugh all courses
-                    for (String student : course.students) {
-                        
-                        //if the currentUser ID is found in any of the courses...
-                        if (App.currentUser.userID.equals(student)) {
-                            //add course to list
-                            courses.add(course);
-                            //add a calendar with course name
-                            calendars.add(new Calendar(course.subject + "-" + course.code));
-                        }
-                    }
-                }
-            }
-        } catch (InterruptedException | ExecutionException ex) {}
-        
-        ////////////////////////////////////////////////////////////////////////
-        
-        
-        
-        
-        
-        ////////////////////////////////////////////////////////////////////////
-        
-        //declare course and its documents list
-        Assignment assignment;
-        List<QueryDocumentSnapshot> documents_assignment;
-        
-        //get assignments collection
-        ApiFuture<QuerySnapshot> future_assignments = App.fstore.collection("assignments").get();
-        
-        try {
-            //add collection into list
-            documents_assignment = future_assignments.get().getDocuments();
+                //declare course and its documents list
+                Course course;
+                List<Course> courses = new ArrayList<>();
+                List<QueryDocumentSnapshot> documents_course;
 
-            //check if empty
-            if (!documents_assignment.isEmpty()) {
-                
-                //loop through all courses
-                int i = 0;
-                for (Course thisCourse : courses) {
-                    
-                    //loop through all assignments
-                    for (QueryDocumentSnapshot document : documents_assignment) {
+                //get courses collection
+                ApiFuture<QuerySnapshot> future_courses = App.fstore.collection("courses").get();
 
-                        //use assignments document constructor to hold assignment data
-                        assignment = new Assignment(document);
+                try {
+                    //add collection into list
+                    documents_course = future_courses.get().getDocuments();
 
-                        //loop through all the courseCRNs within assignment
-                        for (String thisAssignCourseCRN : assignment.course) {
-                            
-                            //if an assignment.courseCRN matches thisCourseCRN...
-                            if (thisAssignCourseCRN.equals(thisCourse.CRN)) {
-                                
-                                //add an entry into the current course calendar
-                                Entry entry = entryFactory(assignment);
-                                calendars.get(i).addEntry(entry);
+                    //check if empty
+                    if (!documents_course.isEmpty()) {
+
+                        //loop through courses
+                        for (QueryDocumentSnapshot document : documents_course) {
+
+                            //use course document constructor to hold assignment data
+                            course = new Course(document);
+
+                            //loop thorugh all courses
+                            for (String student : course.students) {
+
+                                //if the currentUser ID is found in any of the courses...
+                                if (App.currentUser.userID.equals(student)) {
+                                    //add course to list
+                                    courses.add(course);
+                                    //add a calendar with course name
+                                    calendars.add(new Calendar(course.subject + "-" + course.code));
+                                }
                             }
                         }
-
-
-                    }  
-                    i++;
+                    }
+                } catch (InterruptedException | ExecutionException ex) {
                 }
-            }
-        } catch (InterruptedException | ExecutionException ex) {}
-        
-        
-        
-        calSource.getCalendars().addAll(calendars);
-        calendarView_cal.getCalendarSources().set(0, calSource);
+
+                ////////////////////////////////////////////////////////////////////////
+                ////////////////////////////////////////////////////////////////////////
+                //declare course and its documents list
+                Assignment assignment;
+                List<QueryDocumentSnapshot> documents_assignment;
+
+                //get assignments collection
+                ApiFuture<QuerySnapshot> future_assignments = App.fstore.collection("assignments").get();
+
+                try {
+                    //add collection into list
+                    documents_assignment = future_assignments.get().getDocuments();
+
+                    //check if empty
+                    if (!documents_assignment.isEmpty()) {
+
+                        //loop through all courses
+                        int i = 0;
+                        for (Course thisCourse : courses) {
+
+                            //loop through all assignments
+                            for (QueryDocumentSnapshot document : documents_assignment) {
+
+                                //use assignments document constructor to hold assignment data
+                                assignment = new Assignment(document);
+
+                                //loop through all the courseCRNs within assignment
+                                for (String thisAssignCourseCRN : assignment.course) {
+
+                                    //if an assignment.courseCRN matches thisCourseCRN...
+                                    if (thisAssignCourseCRN.equals(thisCourse.CRN)) {
+
+                                        //add an entry into the current course calendar
+                                        Entry entry = entryFactory(assignment);
+                                        calendars.get(i).addEntry(entry);
+                                    }
+                                }
+
+                            }
+                            i++;
+                        }
+                    }
+                } catch (InterruptedException | ExecutionException ex) {
+                }
+                break;
+            case "PROFESSOR":
+//                Assignment assignment2;
+//                List<Calendar> Professorcalendars = new ArrayList<>();
+//                for (Course curcourse : App.currentListOfCourses) {
+//                    Professorcalendars.add(new Calendar(curcourse.subject + "-" + curcourse.code));
+//                    
+//                    List<QueryDocumentSnapshot> documents;
+//                    ApiFuture<QuerySnapshot> future2 = App.fstore.collection("assignments").get();
+//                    
+//                    try {
+//                        documents = future2.get().getDocuments();
+//                        if (!documents.isEmpty()) {
+//                            for (QueryDocumentSnapshot document : documents) {
+//                                assignment2 = new Assignment(document);
+//                                Entry entry2 = entryFactory(assignment2);
+//                                Professorcalendars.
+//                            }
+//                        }
+//                    }
+//                    
+//                    for (String curassignment: curcourse.assignments){
+//                        
+//                    }
+//                   
+//                }
+        }
+
+//        calSource.getCalendars().addAll(calendars);
+//        calendarView_cal.getCalendarSources().set(0, calSource);
     }
-    
-    public Entry entryFactory(Assignment assignment){
+
+    public Entry entryFactory(Assignment assignment) {
         //assignment.dueDate.toDate()
         //assignment.dueDate.
         LocalDateTime localDateTime = assignment.dueDate.toSqlTimestamp().toLocalDateTime();
@@ -164,5 +185,5 @@ public class CalendarController extends HomePageController implements Initializa
         Entry entry = new Entry(assignment.title, interval);
         return entry;
     }
-    
+
 }
