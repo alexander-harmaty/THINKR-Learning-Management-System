@@ -6,6 +6,8 @@ Computer Programming and Information Systems Software Engineering Capstone
 
 ## Summary
 
+The THINKR Learning Management System is a comprehensive tool designed to streamline and enhance the educational experience for both students and professors alike. Born out of a capstone project for a software engineering class, THINKR was meticulously designed by a team of four dedicated individuals, with myself taking on the dual role of project manager and scrum master. This project encapsulates the core tenets of the Software Development Life Cycle (SDLC), utilizing Scrum meetings, sprints, retrospectives, and other agile development practices to ensure a polished final product. Like traditional Learning Management Systems, THINKR is intended for academic institutions, serving as a centralized hub to manage classes, assignments, announcements, and other academic requirements. The THINKR LMS is more than just a tool; it's a holistic educational experience, bridging the gap between educators and learners in an ever-evolving digital landscape.
+
 
 ## Assignment Context
 
@@ -31,7 +33,7 @@ Computer Programming and Information Systems Software Engineering Capstone
 Upon launching the application, users encounter an animated greeting window. 
 Here, they can either login with existing credentials or register as a new user.
 
-### Main Window
+### Main Window UI/UX
 Post-authentication, the main window appears with options to navigate to the home page, view grades, access the calendar, or log out.
 
 ### Home Page
