@@ -70,11 +70,21 @@ The **handleButton_resetPassword** method allows users to reset their passwords.
 
 ### Course Page
 
-Here, users can view or create announcements related to the course. 
-A list of assignments is accessible, and each assignment can be clicked on to navigate to its dedicated page.
+This page provides functionalities to display course-related information, like assignments and announcements, to both students and professors. For professors specifically, it enables the ability to create new announcements and assignments. The controller integrates with the Firestore database to fetch, add, and update course-related data.
+
+The controller inherits from HomePageController to utilize its functionalities and UI components. The class declares various UI components like buttons, VBoxes, TableView components for announcements and assignments, and labels.
+
+The initialize method sets up the initial state of the course interface. Based on the user type (i.e., STUDENT or PROFESSOR), it adjusts the visibility of certain buttons (e.g., button_addAnnounce and button_createAssignment). The method also updates the course title label, and reads assignments and announcements from the database into the respective tables. For students, it sets an event handler to detect double-clicks on assignments in the table to navigate to the respective assignment page.
+
+The **readAssignmentsIntoTable** and **readAnnouncementsIntoTable** methods read the assignments and announcements from the Firestore database and populate the respective tables with them.
+
+The **handleButton_addAnnouncement** method allows professors to add a new announcement to the course. It provides a text area for the professor to write the announcement and a confirm button to save it while the **writeNewAnnouncement** method is responsible for saving the new announcement to the Firestore database.
+
+The **handleButton_createAssignment** method transitions the view to the assignment creation page. While the **writeNewAssignment** method is present, its implementation seems to be pending.
 
 
 ### Assignment Page
+
 This page showcases the details of an assignment, where professors can create assignments and graed submissions, while students can upload files and details for their submissions.
 
 This controller inherits from HomePageController, making it a specialized version tailored to handle assignment-specific actions. The window utilizes various UI elements like buttons, text fields, text areas, and boxes for efficient data entry.
@@ -85,14 +95,36 @@ The **createAssignment** method is responsible for creating a new assignment and
 
 
 ### Grades Page
+
+This page provides functionalities to display grades-related information. It offers a view of individual submissions and their grades, and it can also compute and display the average grade for a course. The controller integrates with the Firestore database to fetch submission data.
 Users can view their grades for each assignment. 
+
+This controller inherits from HomePageController, making it a specialized version tailored to handle assignment-specific actions. The page utilizes various UI components, particularly tables and columns that are meant to display grades-related information to the user.
+
+The initialize method sets up the initial state of the grades interface. Depending on the user type (i.e., STUDENT or PROFESSOR), it configures the UI differently. For example, a professor or student will not see tables outside of their classes. This method sets up the table columns to display submissions and their related information, and t reads the submissions from the database and populates the table.
+For professors, it also sets an event handler to detect double-clicks on submissions in the table for more detailed view.
+
+The **readSubmissionIntoTable** method reads the submissions from the Firestore database and populates the table with them. Depending on the user's type (STUDENT or PROFESSOR), the data is filtered differently.
+
+The **gradesListBuilder** method constructs a list of courses and their respective average grades while the **classAvgCalculator** calculates the average grade for a list of grades.
+
 Additionally, there's functionality to calculate the GPA. 
 Each grade entry also allows navigation back to the respective assignment page for detailed viewing.
 
 
 ### Calendar Page
-A visual representation of assignment and exam dates ensures users can plan their academic activities efficiently.
 
+This page provides functionalities to display a calendar view for both students and professors. It manages the behavior and events associated with the calendar interface of the system, integrating with the CalendarFX library to provide a user-friendly calendar tool. For students, it showcases the due dates for assignments across their courses, while for professors, it displays the due dates for assignments in the courses they teach. The controller seamlessly integrates with the Firestore database to fetch relevant data and populate the calendar.
+
+The controller inherits from HomePageController to utilize its functionalities and UI components. The class declares various UI elements like buttons, VBoxes, and the primary CalendarView component associated with CalendarFX.
+
+The initialize method sets up the initial state of the calendar interface, and reads entries from the database into the calendar.
+
+The **readEntriesIntoCalendar** method reads the assignments from the Firestore database based on the user type and populates the calendar with them. This method is specialized for both "STUDENT" and "PROFESSOR" user types, with each type having its distinct calendar views.
+For a student, the calendar will display assignments for all courses they are enrolled in.
+For a professor, the calendar will display assignments for all the courses they teach.
+
+The **entryFactory** method serves as a helper function to create a new calendar entry based on an assignment. This method converts the Firestore Timestamp of the assignment's due date into a LocalDateTime that can be used with CalendarFX.
 
 ### Admin Page
 
@@ -111,5 +143,10 @@ The initialize method prepares the user interface when it's loaded. It sets up t
 
 
 ### Logout
-For security, users can log out of the system, which returns them to the initial greeting window.
 
+The **CurrentUser** class extends the **User** class and holds the details of the logged-in user. 
+The App.java class contains a static variable **currentUser** of type **CurrentUser**.
+
+When a user decides to log out, the **logOut()** method is called. This method sets all the user information fields to their default or empty values. The method also navigates the user back to the login screen by calling **App.setRoot("LoginRegister");**.
+
+In the **HomePageController** class, the **button_logout** button's action is set to call the **logOut()** method from the **CurrentUser** class.
