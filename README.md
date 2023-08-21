@@ -4,12 +4,30 @@ Computer Programming and Information Systems Software Engineering Capstone
 
 (FSC-CSC-325: Capstone Project) 
 
+
+
+## Table of Contents
+
+
+
 ## Summary
 
 The THINKR Learning Management System is a comprehensive tool designed to streamline and enhance the educational experience for both students and professors alike. Born out of a capstone project for a software engineering class, THINKR was meticulously designed by a team of four dedicated individuals, with myself taking on the dual role of project manager and scrum master. This project encapsulates the core tenets of the Software Development Life Cycle (SDLC), utilizing Scrum meetings, sprints, retrospectives, and other agile development practices to ensure a polished final product. Like traditional Learning Management Systems, THINKR is intended for academic institutions, serving as a centralized hub to manage classes, assignments, announcements, and other academic requirements. The THINKR LMS is more than just a tool; it's a holistic educational experience, bridging the gap between educators and learners in an ever-evolving digital landscape.
 
 
-## Assignment Context
+
+## Technologies 
+
+- **Apache Netbeans** primary IDE
+- **Java** backend programming language
+- **FXML** frontend markup language
+- **Google Firestore** non-replational database
+- **MaterialFX** enhanced modern UI components library
+
+
+
+## Setup
+
 
 
 ## Features
@@ -22,10 +40,14 @@ The THINKR Learning Management System is a comprehensive tool designed to stream
 - **Calendar Page**: A visual interface to view assignment and exam dates.
 - **Logout**: Securely signs out the user and returns them to the greeting window.
 
-## Users
+
+
+## Intended Users
 - **Student**: Can view courses, submit assignments, check grades, and view announcements.
 - **Professor**: Can manage courses, create assignments, grade submissions, and post announcements.
 - **Admin**: Has overarching control over user accounts and course creation.
+
+
 
 ## How it Works
 
@@ -150,3 +172,11 @@ The App.java class contains a static variable **currentUser** of type **CurrentU
 When a user decides to log out, the **logOut()** method is called. This method sets all the user information fields to their default or empty values. The method also navigates the user back to the login screen by calling **App.setRoot("LoginRegister");**.
 
 In the **HomePageController** class, the **button_logout** button's action is set to call the **logOut()** method from the **CurrentUser** class.
+
+
+
+## Status
+
+
+
+## Credits
