@@ -1,4 +1,4 @@
-# THINKR Learning Management System 
+k# THINKR Learning Management System 
 
 Computer Programming and Information Systems Software Engineering Capstone 
 
@@ -52,7 +52,7 @@ The THINKR Learning Management System is a comprehensive tool designed to stream
 ## How it Works
 
 
-### Login/Register Window
+### Welcome Window (Login/Register)
 
 ![animation](https://github.com/alexander-harmaty/THINKR-Learning-Management-System/assets/92049896/f838b817-4680-42e2-9746-74a59b3f6cc0)
 
@@ -64,11 +64,17 @@ The initialize method sets up the UI components when the FXML is loaded, particu
 
 There are methods **showExisting** and **showNew** that provide animated transitions between the login and registration screens using fade transitions and path transitions.
 
+#### Login
+
+![login](https://github.com/alexander-harmaty/THINKR-Learning-Management-System/assets/92049896/4a2ee9ea-be7c-4af3-876c-bcc83005c376)
+
 The **handleButton_login** method validates user input against registered users in the Firestore database (App.fstore). If a match is found, it initializes the current user (App.currentUser) and navigates to the appropriate home page based on the user type: Admin, Student, or Professor.
 
-The **handleButton_register** method collects user input for registration, validates it, and if successful, adds a new user to the Firestore database. If the user is successfully registered, a success message is shown, and the view transitions back to the login screen.
+#### Register
 
-Throughout, there are checks and balances to ensure proper user input. For instance, matching emails and passwords, non-empty input fields, and valid dates for the date of birth.
+![register](https://github.com/alexander-harmaty/THINKR-Learning-Management-System/assets/92049896/a1721908-96a7-49b0-a4ee-0e0818118c53)
+
+The **handleButton_register** method collects user input for registration, validates it, and if successful, adds a new user to the Firestore database. Throughout, there are checks to ensure proper user input. For instance, matching emails and passwords, non-empty input fields, and valid dates for the date of birth. If the user is successfully registered, a success message is shown, and the view transitions back to the login screen.
 
 
 ### Program UI/UX, Main Window & Home Page
