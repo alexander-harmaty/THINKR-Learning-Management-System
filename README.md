@@ -21,7 +21,7 @@ The THINKR Learning Management System is a comprehensive tool designed to stream
 - **Apache Netbeans** primary IDE
 - **Java** backend programming language
 - **FXML** frontend markup language
-- **Google Firestore** non-replational database
+- **Google Firestore** non-relational database
 - **MaterialFX** enhanced modern UI components library
 
 
@@ -54,7 +54,7 @@ The THINKR Learning Management System is a comprehensive tool designed to stream
 
 ### Login/Register Window
 
-![animation](https://github.com/alexander-harmaty/THINKR-Learning-Management-System/assets/92049896/ce0c820a-2e74-49b5-b6a2-750ee1bfa6c1)
+https://github.com/alexander-harmaty/THINKR-Learning-Management-System/assets/92049896/914fda57-9696-42d4-b272-721a02bb1c53
 
 Upon launching the application, users encounter an animated greeting window where they can either login with existing credentials or register as a new user.
 
