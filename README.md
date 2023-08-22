@@ -54,7 +54,7 @@ The THINKR Learning Management System is a comprehensive tool designed to stream
 
 ### Login/Register Window
 
-![animation]([https://github.com/alexander-harmaty/THINKR-Learning-Management-System/issues/48#issue-1862014879](https://github.com/alexander-harmaty/THINKR-Learning-Management-System/assets/92049896/ce0c820a-2e74-49b5-b6a2-750ee1bfa6c1))
+![animation](https://github.com/alexander-harmaty/THINKR-Learning-Management-System/assets/92049896/ce0c820a-2e74-49b5-b6a2-750ee1bfa6c1)
 
 Upon launching the application, users encounter an animated greeting window where they can either login with existing credentials or register as a new user.
 
