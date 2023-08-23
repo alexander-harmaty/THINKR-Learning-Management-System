@@ -132,7 +132,13 @@ The **createAssignment** method is responsible for creating a new assignment and
 
 ### Grades Page
 
-![grades](https://github.com/alexander-harmaty/THINKR-Learning-Management-System/assets/92049896/9ac792b3-dab2-4093-84e9-bbb5926fee93)
+#### Professor View
+
+![profgrades](https://github.com/alexander-harmaty/THINKR-Learning-Management-System/assets/92049896/fcad476a-888d-4193-a928-2ed7fbb39c6f)
+
+#### Student View
+
+![grades](https://github.com/alexander-harmaty/THINKR-Learning-Management-System/assets/92049896/4ced1cd9-1978-4a70-b6d9-ab455b7c434e)
 
 This page provides functionalities to display grades-related information. It offers a view of individual submissions and their grades, and it can also compute and display the average grade for a course. The controller integrates with the Firestore database to fetch submission data.
 Users can view their grades for each assignment. 
