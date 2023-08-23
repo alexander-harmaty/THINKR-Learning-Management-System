@@ -58,7 +58,7 @@ The THINKR Learning Management System is a comprehensive tool designed to stream
    - Version: 11
    - [Download Link](https://adoptopenjdk.net/?variant=openjdk11)
    
-2. **Maven**
+2. **Apache Maven**
    - [Installation Guide](https://maven.apache.org/install.html)
    
 3. **Firebase Admin SDK**
