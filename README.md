@@ -252,8 +252,6 @@ In the **HomePageController** class, the **button_logout** button's action is se
 
 ## Status
 
-## Status
-
 The THINKR Learning Management System was conceived and executed as a pivotal capstone project for the Software Engineering class at Farmingdale State College. The project spanned the duration of the Fall 2022 semester and reached its culmination with a final presentation in December. Embodying the principles of the Software Development Life Cycle (SDLC), the project was systematically ushered through stages of planning, design, implementation, testing, and deployment.
 
 We are proud to note that the project was not only well-received by our professor but also earned full marks, standing out as the top-scoring project in the class. This recognition underscores the team's dedication, hard work, and adherence to software engineering best practices.
