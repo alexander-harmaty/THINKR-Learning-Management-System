@@ -1,4 +1,4 @@
-k# THINKR Learning Management System 
+# THINKR Learning Management System 
 
 Computer Programming and Information Systems Software Engineering Capstone 
 
