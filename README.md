@@ -72,7 +72,7 @@ The **handleButton_login** method validates user input against registered users 
 
 #### Register
 
-![register](https://github.com/alexander-harmaty/THINKR-Learning-Management-System/assets/92049896/a1721908-96a7-49b0-a4ee-0e0818118c53)
+![register](https://github.com/alexander-harmaty/THINKR-Learning-Management-System/assets/92049896/f504ebf8-3866-44ed-b9bd-946e008f4372)
 
 The **handleButton_register** method collects user input for registration, validates it, and if successful, adds a new user to the Firestore database. Throughout, there are checks to ensure proper user input. For instance, matching emails and passwords, non-empty input fields, and valid dates for the date of birth. If the user is successfully registered, a success message is shown, and the view transitions back to the login screen.
 
