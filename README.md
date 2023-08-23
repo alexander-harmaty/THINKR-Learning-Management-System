@@ -8,6 +8,27 @@ Computer Programming and Information Systems Software Engineering Capstone
 
 ## Table of Contents
 
+- [Summary](#summary)
+- [Technologies](#technologies)
+- [Setup](#setup)
+  - [Prerequisites](#prerequisites)
+  - [Instructions](#instructions)
+- [Features](#features)
+- [Intended Users](#intended-users)
+- [How it Works](#how-it-works)
+  - [Welcome Window (Login/Register)](#welcome-window-loginregister)
+    - [Login](#login)
+    - [Register](#register)
+  - [Program UI/UX, Main Window & Home Page](#program-uiux-main-window--home-page)
+  - [Course Page](#course-page)
+  - [Assignment Page](#assignment-page)
+  - [Grades Page](#grades-page)
+  - [Calendar Page](#calendar-page)
+  - [Admin Page](#admin-page)
+  - [Logout](#logout)
+- [Status](#status)
+- [Credits](#credits)
+
 
 
 ## Summary
