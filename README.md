@@ -19,15 +19,43 @@ The THINKR Learning Management System is a comprehensive tool designed to stream
 ## Technologies 
 
 - **Apache Netbeans** primary IDE
-- **Java** backend programming language
-- **FXML** frontend markup language
-- **Google Firestore** non-relational database
-- **MaterialFX** enhanced modern UI components library
+- **Java** JDK version 11, backend programming language
+- **Maven** dependency management tool
+- **JavaFX** Controls, Swing, Graphics, FXML frontend markup language
+- **MaterialFX** JavaFX enhanced modern UI components library
+- **CalendarFX** UI library for interactive calendar view and interface 
+- **Google Cloud Firestore** non-relational noSQL database
+- **Firebase Admin SDK**  server-side cloud storage functionality
 
 
 
 ## Setup
 
+### Prerequisites:
+
+1. **Java Development Kit (JDK)**
+   - Version: 11
+   - [Download Link](https://adoptopenjdk.net/?variant=openjdk11)
+   
+2. **Maven**
+   - [Installation Guide](https://maven.apache.org/install.html)
+   
+3. **Firebase Admin SDK**
+   - You'll need to set up a Firebase project and download the service account key. This will be a JSON file.
+   - [Firebase Console](https://console.firebase.google.com/)
+   - [Admin SDK Setup Guide](https://firebase.google.com/docs/admin/setup)
+
+### Instructions:
+
+1. **Clone the Repository**
+
+2. **Firebase Configuration**:
+- Place your Firebase service account key JSON file named `key.json` in the `resources/edu/farmingdale/csc325_project` directory.
+- Please note: The project uses the `FirestoreContext.java` class to initialize the Firebase connection by fetching the Firebase service account key file. This class is configured to read the default filename of `key.json` and would need to be reconfigured accordingly for the use of any other filename.
+
+3. **Build the Project**
+
+4. **Run the Project**
 
 
 ## Features
