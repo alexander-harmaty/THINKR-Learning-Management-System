@@ -79,6 +79,8 @@ The **handleButton_register** method collects user input for registration, valid
 
 ### Program UI/UX, Main Window & Home Page
 
+![home](https://github.com/alexander-harmaty/THINKR-Learning-Management-System/assets/92049896/438710d8-4bfa-4209-b42c-ae2ca8e86464)
+
 Post-authentication, the main window appears with options to navigate to the home page, view grades, access the calendar, or log out.
 
 This larger window uses several UI elements like buttons, text fields, table columns, and VBoxes.
@@ -100,6 +102,8 @@ The **handleButton_resetPassword** method allows users to reset their passwords.
 
 ### Course Page
 
+![course](https://github.com/alexander-harmaty/THINKR-Learning-Management-System/assets/92049896/4fa2b25b-158f-4bca-b91a-b355c25c8a62)
+
 This page provides functionalities to display course-related information, like assignments and announcements, to both students and professors. For professors specifically, it enables the ability to create new announcements and assignments. The controller integrates with the Firestore database to fetch, add, and update course-related data.
 
 The controller inherits from HomePageController to utilize its functionalities and UI components. The class declares various UI components like buttons, VBoxes, TableView components for announcements and assignments, and labels.
@@ -115,6 +119,8 @@ The **handleButton_createAssignment** method transitions the view to the assignm
 
 ### Assignment Page
 
+![assignment](https://github.com/alexander-harmaty/THINKR-Learning-Management-System/assets/92049896/d17e3b46-fa0a-4b84-bb63-e0ea59eaf2e5)
+
 This page showcases the details of an assignment, where professors can create assignments and graed submissions, while students can upload files and details for their submissions.
 
 This controller inherits from HomePageController, making it a specialized version tailored to handle assignment-specific actions. The window utilizes various UI elements like buttons, text fields, text areas, and boxes for efficient data entry.
@@ -125,6 +131,8 @@ The **createAssignment** method is responsible for creating a new assignment and
 
 
 ### Grades Page
+
+![grades](https://github.com/alexander-harmaty/THINKR-Learning-Management-System/assets/92049896/9ac792b3-dab2-4093-84e9-bbb5926fee93)
 
 This page provides functionalities to display grades-related information. It offers a view of individual submissions and their grades, and it can also compute and display the average grade for a course. The controller integrates with the Firestore database to fetch submission data.
 Users can view their grades for each assignment. 
@@ -144,6 +152,8 @@ Each grade entry also allows navigation back to the respective assignment page f
 
 ### Calendar Page
 
+![calendar](https://github.com/alexander-harmaty/THINKR-Learning-Management-System/assets/92049896/caa8f943-f2bc-4e85-8870-1c08d5ae5378)
+
 This page provides functionalities to display a calendar view for both students and professors. It manages the behavior and events associated with the calendar interface of the system, integrating with the CalendarFX library to provide a user-friendly calendar tool. For students, it showcases the due dates for assignments across their courses, while for professors, it displays the due dates for assignments in the courses they teach. The controller seamlessly integrates with the Firestore database to fetch relevant data and populate the calendar.
 
 The controller inherits from HomePageController to utilize its functionalities and UI components. The class declares various UI elements like buttons, VBoxes, and the primary CalendarView component associated with CalendarFX.
@@ -157,6 +167,8 @@ For a professor, the calendar will display assignments for all the courses they 
 The **entryFactory** method serves as a helper function to create a new calendar entry based on an assignment. This method converts the Firestore Timestamp of the assignment's due date into a LocalDateTime that can be used with CalendarFX.
 
 ### Admin Page
+
+![admin](https://github.com/alexander-harmaty/THINKR-Learning-Management-System/assets/92049896/40cf24fd-173e-4c91-941d-3a45052f937e)
 
 This page provides administrative functionalities that allow the admin to manage user accounts. The admin can add, read, update, and delete user records from the Firestore database and see the changes reflected in the user table. The form fields are also dynamic, updating based on the selected user in the table.
 
